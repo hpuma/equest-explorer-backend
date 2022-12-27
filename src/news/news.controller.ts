@@ -5,7 +5,7 @@ import { NewsService } from './news.service';
 export class NewsController {
   constructor(private readonly newsService: NewsService) {}
   @Get()
-  findAll() {
-    return this.newsService.findAll();
+  findAllNews() {
+    return this.newsService.findAllNews();
   }
 }

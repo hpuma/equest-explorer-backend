@@ -14,4 +14,8 @@ export class NewsApiService {
     httpService.axiosRef.defaults.baseURL = newsApiConfig.newsApiBaseURL;
     this.apiKey = newsApiConfig.newsApiKey;
   }
+
+  getEverything() {
+    return 'NEWS-API - GET EVERYTHING';
+  }
 }
