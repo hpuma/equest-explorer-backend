@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
+import { NewsApiService } from './api/news-api.service';
 
 @Injectable()
 export class NewsService {
+  constructor(private newsApiService: NewsApiService) {}
   create(createNewsDto: CreateNewsDto) {
     return 'This action adds a new news';
   }
