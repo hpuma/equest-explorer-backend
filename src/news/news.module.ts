@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { NewsService } from './news.service';
+import { NewsService } from './service/news.service';
 import { NewsController } from './news.controller';
 import { NewsApiService } from './api/news-api.service';
 import { HttpModule } from '@nestjs/axios';
