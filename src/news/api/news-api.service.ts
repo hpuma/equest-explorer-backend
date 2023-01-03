@@ -4,7 +4,7 @@ import { ConfigType } from '@nestjs/config';
 import apisConfig from '../../apis.config';
 
 // Global VALIDATOR
-import { ObjValidator } from './validators/validator';
+import { ApiQueryValidator } from '../../validation/ApiQueryValidator.class';
 
 // Api PARAMETER METHOD DTOS
 
@@ -12,8 +12,8 @@ import { EverythingDto } from '../dto/everything.dto';
 
 // Api VALIDATORS/DTOS
 // getEverything
-import { GetEverythingValidator } from './validators/get-everything-validator';
-import { GetEverythingDto } from './validators/dto/get-everything.dto';
+import { GetEverythingValidator } from './validation/get-everything-validator';
+import { GetEverythingDto } from './validation/dto/get-everything.dto';
 
 @Injectable()
 export class NewsApiService {
@@ -29,11 +29,10 @@ export class NewsApiService {
 
   async getEverything(query: EverythingDto) {
     // delete query.ticker;
-    const validator = new ObjValidator<EverythingDto, typeof GetEverythingDto>(
-      query,
-      GetEverythingValidator<GetEverythingDto>,
-      GetEverythingDto,
-    );
+    const validator = new ApiQueryValidator<
+      EverythingDto,
+      typeof GetEverythingDto
+    >(query, GetEverythingValidator<GetEverythingDto>, GetEverythingDto);
 
     const mappedQuery = await validator.validate();
 
