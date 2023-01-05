@@ -1,22 +1,21 @@
-import { plainToInstance } from 'class-transformer';
+import { ClassConstructor, plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 
-export class ApiQueryValidator<InputDto, OutputDto> {
-  constructor(query: InputDto, validatorClass, validationDto: OutputDto) {
-    const mappedData = new validatorClass(query);
-    const cleanedData = this.#removeUndefined(mappedData);
-
-    this.data = cleanedData as OutputDto;
-    this.validationDto = validationDto;
+export class ApiQueryValidator {
+  constructor(query) {
+    this.query = query;
   }
-  data: any;
-  validationDto: any;
+
+  query: any;
 
   // Validate data with validate() using validator
-  async validate() {
-    const objInstance = plainToInstance(this.validationDto, this.data);
+  async validate(ValidationClass: ClassConstructor<any>) {
+    const mappedQuery = new ValidationClass(this.query);
 
-    const errors = await validate(objInstance);
+    this.query = plainToInstance(ValidationClass, mappedQuery, {
+      exposeUnsetFields: false,
+    });
+    const errors = await validate(this.query);
     if (errors.length > 0) {
       throw new TypeError(
         `Validation failed. The error fields : ${errors.map(
@@ -24,17 +23,7 @@ export class ApiQueryValidator<InputDto, OutputDto> {
         )}`,
       );
     }
-    return objInstance;
-  }
 
-  // Private helper methods
-  #removeUndefined(data: object) {
-    const cleanedData = {};
-    Object.keys(data).forEach((key) => {
-      if (data[key] !== undefined) {
-        cleanedData[key] = data[key];
-      }
-    });
-    return cleanedData;
+    return this.query;
   }
 }
