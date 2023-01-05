@@ -10,9 +10,9 @@ export class NewsController {
   async everything(@Query() query: EverythingDto, @Res() res: Response) {
     try {
       const data = await this.newsService.getEverything(query);
-      res.json({ ...data });
+
+      res.json(data);
     } catch (e) {
-      console.error(e.message);
       res.json({ message: e.message });
     }
   }
