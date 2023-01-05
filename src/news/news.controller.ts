@@ -1,7 +1,7 @@
 import { Controller, Get, Query, Res } from '@nestjs/common';
-import { NewsService } from './service/news.service';
-import { EverythingDto } from './dto/everything.dto';
 import { Response } from 'express';
+import { NewsService } from './news.service';
+import { EverythingDto } from './dto/everything.dto';
 
 @Controller('news')
 export class NewsController {

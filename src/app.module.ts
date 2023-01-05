@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { NewsModule } from './news/news.module';
 import { ConfigModule } from '@nestjs/config';
-import apisConfig from './apis.config';
+import apisConfig from '@configs/apis.config';
 
 @Module({
   imports: [

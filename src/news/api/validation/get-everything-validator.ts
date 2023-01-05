@@ -1,4 +1,4 @@
-import { EverythingDto } from '../../dto/everything.dto';
+import { EverythingDto } from '@news/dto/everything.dto';
 
 export class GetEverythingValidator<MappedQuery> {
   constructor(query: EverythingDto) {

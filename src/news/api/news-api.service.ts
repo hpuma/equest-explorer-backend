@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { ConfigType } from '@nestjs/config';
-import apisConfig from '../../configs/apis.config';
+import apisConfig from '@configs/apis.config';
 
 // Global VALIDATOR
 import { ApiQueryValidator } from '../../validation/ApiQueryValidator.class';
