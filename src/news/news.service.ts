@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { NewsApiService } from '../api/news-api.service';
-import { EverythingDto } from '../dto/everything.dto';
+import { NewsApiService } from './api/news-api.service';
+import { EverythingDto } from './dto/everything.dto';
 
 @Injectable()
 export class NewsService {
