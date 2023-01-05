@@ -9,7 +9,12 @@
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": "./src",
+    "paths": {
+      "@configs/*": ["configs/*"],
+      "@validation/*": ["validation/*"],
+      "@news/*": ["news/*"],
+    },
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
