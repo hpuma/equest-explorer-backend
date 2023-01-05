@@ -75,7 +75,6 @@
     "testEnvironment": "node"
   },
   "_moduleAliases": {
-    "@configs": "dist/configs",
     "@validation": "dist/validation",
     "@news": "dist/news"
   }

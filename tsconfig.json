@@ -11,7 +11,6 @@
     "outDir": "./dist",
     "baseUrl": "./src",
     "paths": {
-      "@configs/*": ["configs/*"],
       "@validation/*": ["validation/*"],
       "@news/*": ["news/*"],
     },
