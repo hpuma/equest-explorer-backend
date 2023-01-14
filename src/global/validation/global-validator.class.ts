@@ -12,9 +12,9 @@ export class GlobalValidator<T> {
 
   // Validate data with validate() using validator
   async validate(): Promise<T> {
-    const mappeddata = new this.validationClass(this.data);
+    const mappedData = new this.validationClass(this.data);
 
-    this.data = plainToInstance(this.validationClass, mappeddata, {
+    this.data = plainToInstance(this.validationClass, mappedData, {
       exposeUnsetFields: false,
     });
 
