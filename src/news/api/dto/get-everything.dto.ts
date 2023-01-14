@@ -1,7 +1,10 @@
-import { EverythingDto } from '@news/dto/everything.dto';
 import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
 export class GetEverythingDto {
+  constructor(query: GetEverythingDto) {
+    if (query) Object.assign(this, query);
+  }
   @IsNotEmpty()
+  @IsString()
   q!: string;
 
   @IsOptional()
@@ -27,18 +30,4 @@ export class GetEverythingDto {
   @IsOptional()
   @IsString()
   language?: string;
-
-  constructor(query: EverythingDto) {
-    if (query) {
-      Object.assign(this, {
-        q: query.ticker,
-        searchIn: query.contentSource,
-        source: query.newsSource,
-        from: query.startDate,
-        to: query.endDate,
-        sortBy: query.sortBy,
-        language: query.language,
-      });
-    }
-  }
 }

@@ -25,26 +25,27 @@ export class Article {
   source: Source;
 
   @IsString()
-  title: string;
-
-  @IsString()
   @ValidateIf((object, value) => value !== null)
   author: string;
 
   @IsString()
-  content: string;
+  title: string;
+
+  @IsString()
+  description: string;
 
   @IsString()
   url: string;
 
   @IsString()
+  @ValidateIf((object, value) => value !== null)
   urlToImage: string;
 
   @IsDateString()
-  publishedAt: Date;
+  publishedAt: string;
 
   @IsString()
-  description: string;
+  content: string;
 }
 
 export class GetEverythingResponseDto {
