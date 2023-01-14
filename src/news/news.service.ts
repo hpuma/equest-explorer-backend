@@ -7,7 +7,7 @@ export class NewsService {
   constructor(private newsApiService: NewsApiService) {}
 
   async getEverything(query: EverythingDto) {
-    const { data } = await this.newsApiService.getEverything(query);
+    const data = await this.newsApiService.getEverything(query);
 
     return data;
   }
