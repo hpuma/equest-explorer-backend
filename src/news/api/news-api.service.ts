@@ -4,9 +4,6 @@ import { HttpService } from '@nestjs/axios';
 // Global VALIDATOR
 import { GlobalValidator } from '@global/validation/global-validator.class';
 
-// Api PARAMETER METHOD DTOS
-import { EverythingDto } from '@news/dto/everything.dto';
-
 // Api VALIDATORS/DTOS
 // getEverything
 import { GetEverythingDto } from './dto/get-everything.dto';
@@ -16,7 +13,9 @@ import { GetEverythingResponseDto } from './dto/get-everything-response.dto';
 export class NewsApiService {
   constructor(private readonly httpService: HttpService) {}
 
-  async getEverything(query: EverythingDto): Promise<GetEverythingResponseDto> {
+  async getEverything(
+    query: GetEverythingDto,
+  ): Promise<GetEverythingResponseDto> {
     const params = await new GlobalValidator<GetEverythingDto>(
       query,
       GetEverythingDto,
