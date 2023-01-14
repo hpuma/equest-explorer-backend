@@ -13,6 +13,7 @@
     "paths": {
       "@validation/*": ["validation/*"],
       "@news/*": ["news/*"],
+      "@global/*": ["global/*"]
     },
     "incremental": true,
     "skipLibCheck": true,

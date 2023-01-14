@@ -75,7 +75,7 @@
     "testEnvironment": "node"
   },
   "_moduleAliases": {
-    "@validation": "dist/validation",
+    "@global": "dist/global",
     "@news": "dist/news"
   }
 }
