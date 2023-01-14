@@ -5,6 +5,7 @@ import {
   IsString,
   IsNumber,
   IsArray,
+  IsDateString,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -17,7 +18,7 @@ class Source {
   name: string;
 }
 
-class Article {
+export class Article {
   @IsObject()
   @ValidateNested()
   @Type(() => Source)
@@ -39,8 +40,8 @@ class Article {
   @IsString()
   urlToImage: string;
 
-  @IsString()
-  publishedAt: string;
+  @IsDateString()
+  publishedAt: Date;
 
   @IsString()
   description: string;
@@ -59,5 +60,5 @@ export class GetEverythingResponseDto {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => Article)
-  articles: Article;
+  articles: Article[];
 }

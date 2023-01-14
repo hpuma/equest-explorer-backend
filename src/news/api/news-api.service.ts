@@ -2,10 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 
 // Global VALIDATOR
-import { GlobalValidator } from '@validation/global-validator.class';
+import { GlobalValidator } from '@global/validation/global-validator.class';
 
 // Api PARAMETER METHOD DTOS
-
 import { EverythingDto } from '@news/dto/everything.dto';
 
 // Api VALIDATORS/DTOS

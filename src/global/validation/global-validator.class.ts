@@ -1,5 +1,5 @@
 import { ClassConstructor, plainToInstance } from 'class-transformer';
-import { validate, ValidationError } from 'class-validator';
+import { validate } from 'class-validator';
 
 export class GlobalValidator<T> {
   data: any;
@@ -13,11 +13,13 @@ export class GlobalValidator<T> {
   // Validate data with validate() using validator
   async validate(): Promise<T> {
     const mappeddata = new this.validationClass(this.data);
-    ValidationError;
+
     this.data = plainToInstance(this.validationClass, mappeddata, {
       exposeUnsetFields: false,
     });
+
     const errors = await validate(this.data);
+
     if (errors.length > 0) {
       throw new TypeError(`${errors.map((error) => error.toString())}`);
     }
