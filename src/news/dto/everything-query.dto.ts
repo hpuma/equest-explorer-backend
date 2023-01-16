@@ -1,5 +1,5 @@
 import { IsOptional, IsString, IsNotEmpty } from 'class-validator';
-export class EverythingDto {
+export class EverythingQueryDto {
   @IsString()
   @IsNotEmpty()
   ticker!: string;

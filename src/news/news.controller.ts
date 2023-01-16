@@ -8,9 +8,10 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import { NewsService } from './news.service';
-import { EverythingDto } from './dto/everything.dto';
-import { EverythingResponseDto } from './dto/everything-response.dto';
 import { GlobalValidator } from '@global/validation/global-validator.class';
+import { EverythingQueryDto } from './dto/everything-query.dto';
+import { EverythingResponseDto } from './dto/everything-response.dto';
+
 @Controller('news')
 export class NewsController {
   constructor(private readonly newsService: NewsService) {}
@@ -18,7 +19,7 @@ export class NewsController {
   @UseInterceptors(ClassSerializerInterceptor)
   @Get()
   async everything(
-    @Query() query: EverythingDto,
+    @Query() query: EverythingQueryDto,
     @Res() res: Response,
   ): Promise<EverythingResponseDto> {
     try {

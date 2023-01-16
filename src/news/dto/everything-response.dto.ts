@@ -1,9 +1,3 @@
-import { Format } from '../helpers/format.class';
-import { Time } from '../helpers/time.class';
-import {
-  Article,
-  GetEverythingResponseDto,
-} from '@news/api/dto/get-everything-response.dto';
 import {
   IsArray,
   IsNumber,
@@ -12,6 +6,12 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
+import { Format } from '../helpers/format.class';
+import { Time } from '../helpers/time.class';
+import {
+  Article,
+  GetEverythingResponseDto,
+} from '@news/api/dto/get-everything-response.dto';
 
 class Interval {
   constructor(date: Date) {

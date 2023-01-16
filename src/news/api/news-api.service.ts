@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 
-// Global VALIDATOR
+// GlobalValidator: Validator used for validating and transforming
 import { GlobalValidator } from '@global/validation/global-validator.class';
 
-// Api VALIDATORS/DTOS
-// getEverything
-import { GetEverythingDto } from './dto/get-everything.dto';
+// NewsApiService: dtos that undergo validation pre/post http request
+import { GetEverythingQueryDto } from './dto/get-everything-query.dto';
 import { GetEverythingResponseDto } from './dto/get-everything-response.dto';
 
 @Injectable()
@@ -14,20 +13,20 @@ export class NewsApiService {
   constructor(private readonly httpService: HttpService) {}
 
   async getEverything(
-    query: GetEverythingDto,
+    query: GetEverythingQueryDto,
   ): Promise<GetEverythingResponseDto> {
-    const params = await new GlobalValidator<GetEverythingDto>(
+    const params = await new GlobalValidator<GetEverythingQueryDto>(
       query,
-      GetEverythingDto,
+      GetEverythingQueryDto,
     ).validate();
 
-    const response = await this.httpService.axiosRef.get('/everything', {
+    const { data } = await this.httpService.axiosRef.get('/everything', {
       params,
     });
 
     const validatedResponse =
       await new GlobalValidator<GetEverythingResponseDto>(
-        response.data,
+        data,
         GetEverythingResponseDto,
       ).validate();
 

@@ -1,6 +1,6 @@
 import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
-export class GetEverythingDto {
-  constructor(query: GetEverythingDto) {
+export class GetEverythingQueryDto {
+  constructor(query: GetEverythingQueryDto) {
     if (query) Object.assign(this, query);
   }
   @IsNotEmpty()
