@@ -1,7 +1,7 @@
 import { IsString, ValidateNested, IsArray } from 'class-validator';
 import { Type } from 'class-transformer';
 import { Format } from '@alphav/helpers/format.class';
-import { GetIntradayResponseDto } from '@alphav/api/dto/get-intraday-response.dto';
+import { GetResponseDto } from '@alphav/api/dto/get-response.dto';
 
 export class ChartTimeSeries {
   @IsString()
@@ -41,7 +41,7 @@ export class Timeseries {
 }
 
 export class IntradayResponseDto {
-  constructor(data: GetIntradayResponseDto) {
+  constructor(data: GetResponseDto) {
     if (!data) return;
 
     const rawMetaData = Format.extractMetadata(data);

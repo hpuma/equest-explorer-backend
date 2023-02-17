@@ -4,28 +4,26 @@ import { HttpService } from '@nestjs/axios';
 // GlobalValidator: Validator used for validating and transforming
 import { GlobalValidator } from '@global/validation/global-validator.class';
 
-import { GetIntradayQueryDto } from './dto/get-intraday-query.dto';
-import { GetIntradayResponseDto } from './dto/get-intraday-response.dto';
+import { GetQueryDto } from './dto/get-query.dto';
+import { GetResponseDto } from './dto/get-response.dto';
 
 @Injectable()
 export class AlphavApiService {
   constructor(private readonly httpService: HttpService) {}
 
-  async getIntraday(
-    query: GetIntradayQueryDto,
-  ): Promise<GetIntradayResponseDto> {
-    const params = await new GlobalValidator<GetIntradayQueryDto>(
+  async getIntraday(query: GetQueryDto): Promise<GetResponseDto> {
+    const params = await new GlobalValidator<GetQueryDto>(
       query,
-      GetIntradayQueryDto,
+      GetQueryDto,
     ).validate();
 
     const { data } = await this.httpService.axiosRef.get('', {
       params,
     });
 
-    const validatedResponse = await new GlobalValidator<GetIntradayResponseDto>(
+    const validatedResponse = await new GlobalValidator<GetResponseDto>(
       data,
-      GetIntradayResponseDto,
+      GetResponseDto,
     ).validate();
 
     return validatedResponse;

@@ -1,8 +1,8 @@
 import { QueryFunctions } from './query-functions';
 import { IsString, IsOptional, IsEnum } from 'class-validator';
 
-export class GetIntradayQueryDto {
-  constructor(query: GetIntradayQueryDto) {
+export class GetQueryDto {
+  constructor(query: GetQueryDto) {
     if (query) Object.assign(this, query);
   }
 

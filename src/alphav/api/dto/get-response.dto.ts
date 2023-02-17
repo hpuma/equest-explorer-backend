@@ -103,8 +103,8 @@ export class MetaData {
   '6. Time Zone': string;
 }
 
-export class GetIntradayResponseDto {
-  constructor(data: GetIntradayResponseDto) {
+export class GetResponseDto {
+  constructor(data: GetResponseDto) {
     if (data) Object.assign(this, data);
   }
 

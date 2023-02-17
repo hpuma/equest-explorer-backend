@@ -1,7 +1,7 @@
 import {
   Timeseries as RawTimeseries,
   MetaData as RawMetaData,
-} from '@alphav/api/dto/get-intraday-response.dto';
+} from '@alphav/api/dto/get-response.dto';
 import {
   MetaData,
   Timeseries,
