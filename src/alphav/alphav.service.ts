@@ -16,6 +16,6 @@ export class AlphavService {
       outputsize: query.datasize,
     };
 
-    return await this.alphavApiService.getIntraday(params);
+    return await this.alphavApiService.get(params);
   }
 }

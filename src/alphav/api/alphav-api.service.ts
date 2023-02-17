@@ -11,7 +11,7 @@ import { GetResponseDto } from './dto/get-response.dto';
 export class AlphavApiService {
   constructor(private readonly httpService: HttpService) {}
 
-  async getIntraday(query: GetQueryDto): Promise<GetResponseDto> {
+  async get(query: GetQueryDto): Promise<GetResponseDto> {
     const params = await new GlobalValidator<GetQueryDto>(
       query,
       GetQueryDto,
