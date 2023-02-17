@@ -85,8 +85,8 @@ export class EverythingResponseDto {
   constructor(data: GetEverythingResponseDto) {
     if (!data) return;
     Object.assign(this, {
-      count: data.totalResults,
       results: data.articles.map((article) => new Result(article)),
+      count: data.totalResults,
     });
   }
 

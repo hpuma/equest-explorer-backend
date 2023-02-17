@@ -17,7 +17,7 @@ export class NewsController {
   constructor(private readonly newsService: NewsService) {}
 
   @UseInterceptors(ClassSerializerInterceptor)
-  @Get()
+  @Get('everything')
   async everything(
     @Query() query: EverythingQueryDto,
     @Res() res: Response,
