@@ -13,7 +13,8 @@
     "paths": {
       "@validation/*": ["validation/*"],
       "@news/*": ["news/*"],
-      "@global/*": ["global/*"]
+      "@global/*": ["global/*"],
+      "@alphav/*": ["alphav/*"]
     },
     "incremental": true,
     "skipLibCheck": true,
