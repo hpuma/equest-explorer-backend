@@ -6,14 +6,10 @@ import { GlobalValidator } from '@global/validation/global-validator.class';
 
 import { GetIntradayQueryDto } from './dto/get-intraday-query.dto';
 import { GetIntradayResponseDto } from './dto/get-intraday-response.dto';
-import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AlphavApiService {
-  constructor(
-    private readonly httpService: HttpService,
-    private readonly configService: ConfigService,
-  ) {}
+  constructor(private readonly httpService: HttpService) {}
 
   async getIntraday(
     query: GetIntradayQueryDto,

@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AlpahvApiService } from './alphav-api.service';
+import { AlphavApiService } from './alphav-api.service';
 
 describe('ApiService', () => {
-  let service: AlpahvApiService;
+  let service: AlphavApiService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [AlpahvApiService],
+      providers: [AlphavApiService],
     }).compile();
 
-    service = module.get<AlpahvApiService>(AlpahvApiService);
+    service = module.get<AlphavApiService>(AlphavApiService);
   });
 
   it('should be defined', () => {
