@@ -5,8 +5,8 @@ import { GetIntradayResponseDto } from '@alphav/api/dto/get-intraday-response.dt
 
 export class ChartTimeSeries {
   @IsDate()
-  x: Date;
-  y: number[];
+  x!: Date;
+  y!: number[];
 }
 
 export class MetaData {
