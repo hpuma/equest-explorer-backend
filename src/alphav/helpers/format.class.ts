@@ -27,13 +27,13 @@ class Format {
   static timeseries(data: RawTimeseries): Timeseries {
     const timeseries = Object.values(data)[0];
     const mappedTimeSeries = {} as Timeseries;
-    Object.entries(timeseries).forEach(([key, timeseries_data]) => {
+    Object.entries(timeseries).forEach(([key, timeseriesData]) => {
       mappedTimeSeries[key] = {
-        open: timeseries_data['1. open'],
-        high: timeseries_data['2. high'],
-        low: timeseries_data['3. low'],
-        close: timeseries_data['4. close'],
-        volume: timeseries_data['5. volume'],
+        open: timeseriesData['1. open'],
+        high: timeseriesData['2. high'],
+        low: timeseriesData['3. low'],
+        close: timeseriesData['4. close'],
+        volume: timeseriesData['5. volume'],
       };
     });
     return mappedTimeSeries;
@@ -43,14 +43,14 @@ class Format {
     const timeseries = Object.values(data)[0];
     const mappedChartTimeSeries = [] as any;
 
-    Object.entries(timeseries).forEach(([key, timeseries_data]) => {
+    Object.entries(timeseries).forEach(([key, timeseriesData]) => {
       mappedChartTimeSeries.push({
         x: new Date(key).toLocaleTimeString(),
         y: [
-          Number(timeseries_data['1. open']),
-          Number(timeseries_data['2. high']),
-          Number(timeseries_data['3. low']),
-          Number(timeseries_data['4. close']),
+          Number(timeseriesData['1. open']),
+          Number(timeseriesData['2. high']),
+          Number(timeseriesData['3. low']),
+          Number(timeseriesData['4. close']),
         ],
       });
     });

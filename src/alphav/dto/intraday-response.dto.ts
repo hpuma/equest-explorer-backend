@@ -1,11 +1,12 @@
-import { IsString, IsDate, ValidateNested } from 'class-validator';
+import { IsString, ValidateNested, IsArray } from 'class-validator';
 import { Type } from 'class-transformer';
 import { Format } from '@alphav/helpers/format.class';
 import { GetIntradayResponseDto } from '@alphav/api/dto/get-intraday-response.dto';
 
 export class ChartTimeSeries {
-  @IsDate()
+  @IsString()
   x!: Date;
+
   y!: number[];
 }
 
@@ -68,5 +69,8 @@ export class IntradayResponseDto {
   @Type(() => Timeseries)
   timeseries: Timeseries;
 
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => ChartTimeSeries)
   chartTimeSeries: ChartTimeSeries[];
 }
