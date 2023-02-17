@@ -24,6 +24,10 @@
 
 ## Description
 
+#### Equest-endpoint-migration
+
+<img src="equest_endpoint_migration.png" />
+
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
