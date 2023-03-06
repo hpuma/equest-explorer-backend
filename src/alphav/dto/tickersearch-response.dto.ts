@@ -1,53 +1,51 @@
-import {IsArray, IsNumber, IsString, ValidateNested} from "class-validator";
-import {Type} from "class-transformer";
-import {GetResponseDto} from "@alphav/api/dto/get-response.dto";
-import {Format} from "@alphav/helpers/format.class";
-
+import { IsArray, IsNumber, IsString, ValidateNested } from 'class-validator';
+import { Type } from 'class-transformer';
+import { GetResponseDto } from '@alphav/api/dto/get-response.dto';
+import { Format } from '@alphav/helpers/format.class';
 
 export class BestMatch {
-    @IsString()
-    symbol: string;
+  @IsString()
+  symbol: string;
 
-    @IsString()
-    name: string;
+  @IsString()
+  name: string;
 
-    @IsString()
-    type: string;
+  @IsString()
+  type: string;
 
-    @IsString()
-    region: string;
+  @IsString()
+  region: string;
 
-    @IsString()
-    marketOpen: string;
+  @IsString()
+  marketOpen: string;
 
-    @IsString()
-    marketClose: string;
+  @IsString()
+  marketClose: string;
 
-    @IsString()
-    timezone: string;
+  @IsString()
+  timezone: string;
 
-    @IsString()
-    currency: string;
+  @IsString()
+  currency: string;
 
-    @IsString()
-    matchScore: string;
+  @IsString()
+  matchScore: string;
 }
 
-
 export class TickerSearchResponseDto {
-    constructor(data: GetResponseDto) {
-        if (!data) return
+  constructor(data: GetResponseDto) {
+    if (!data) return;
 
-        const rawBestMatches = Format.extractBestMatches(data)
-        if (!rawBestMatches) throw new Error('Unable to map rawBestMatches');
+    const rawBestMatches = Format.extractBestMatches(data);
+    if (!rawBestMatches) throw new Error('Unable to map rawBestMatches');
 
-        Object.assign(this, Format.tickerSearch(rawBestMatches))
-    }
-    @IsArray()
-    @ValidateNested({ each: true })
-    @Type(() => BestMatch)
-    results!: BestMatch[]
+    Object.assign(this, Format.tickerSearch(rawBestMatches));
+  }
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => BestMatch)
+  results!: BestMatch[];
 
-    @IsNumber()
-    totalCount!: number
+  @IsNumber()
+  totalCount!: number;
 }

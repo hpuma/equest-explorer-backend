@@ -10,8 +10,11 @@ import {
   Timeseries,
   ChartTimeSeries,
 } from '../dto/intraday-response.dto';
-import { GlobalQuoteResponseDto } from "@alphav/dto/globalquote-response.dto";
-import {BestMatch, TickerSearchResponseDto} from "@alphav/dto/tickersearch-response.dto";
+import { GlobalQuoteResponseDto } from '@alphav/dto/globalquote-response.dto';
+import {
+  BestMatch,
+  TickerSearchResponseDto,
+} from '@alphav/dto/tickersearch-response.dto';
 
 class Format {
   static metaData(data: RawMetaData): MetaData {
@@ -62,36 +65,35 @@ class Format {
     return mappedChartTimeSeries;
   }
 
-
   static globalQuote(data: RawGlobalQuote): GlobalQuoteResponseDto {
     return {
-      symbol: data["01. symbol"],
-      open: data["02. open"],
-      high: data["03. high"],
-      low: data["04. low"],
-      price: data["05. price"],
-      volume: data["06. volume"],
-      latestTradingDay: data["07. latest trading day"],
-      previousClose: data["08. previous close"],
-      change: data["09. change"],
-      changePercent: data["10. change percent"]
+      symbol: data['01. symbol'],
+      open: data['02. open'],
+      high: data['03. high'],
+      low: data['04. low'],
+      price: data['05. price'],
+      volume: data['06. volume'],
+      latestTradingDay: data['07. latest trading day'],
+      previousClose: data['08. previous close'],
+      change: data['09. change'],
+      changePercent: data['10. change percent'],
     };
   }
 
   static tickerSearch(data: RawBestMatch[]): TickerSearchResponseDto {
     const results: BestMatch[] = data.map((match) => ({
-      symbol: match["1. symbol"],
-      name: match["2. name"],
-      type: match["3. type"],
-      region: match["4. region"],
-      marketOpen: match["5. marketOpen"],
-      marketClose: match["6. marketClose"],
-      timezone: match["7. timezone"],
-      currency: match["8. currency"],
-      matchScore: match["9. matchScore"]
-    }))
-    const totalCount = results.length
-    return { results, totalCount }
+      symbol: match['1. symbol'],
+      name: match['2. name'],
+      type: match['3. type'],
+      region: match['4. region'],
+      marketOpen: match['5. marketOpen'],
+      marketClose: match['6. marketClose'],
+      timezone: match['7. timezone'],
+      currency: match['8. currency'],
+      matchScore: match['9. matchScore'],
+    }));
+    const totalCount = results.length;
+    return { results, totalCount };
   }
 
   // EXTRACTORS
@@ -111,7 +113,7 @@ class Format {
     return null;
   }
   static extractGlobalQuote(data: GetResponseDto): RawGlobalQuote {
-    return data['Global Quote']
+    return data['Global Quote'];
   }
 
   static extractBestMatches(data: GetResponseDto): RawBestMatch[] {
