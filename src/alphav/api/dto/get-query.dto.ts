@@ -1,5 +1,5 @@
-import { QueryFunctions } from './query-functions';
 import { IsString, IsOptional, IsEnum } from 'class-validator';
+import { QueryFunctions } from './query-functions';
 
 export class GetQueryDto {
   constructor(query: GetQueryDto) {

@@ -1,5 +1,5 @@
-import { Type } from 'class-transformer';
 import { IsString, IsArray, IsOptional, ValidateNested } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class BestMatch {
   @IsString()
