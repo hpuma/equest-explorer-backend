@@ -9,8 +9,9 @@ export class GetQueryDto {
   @IsEnum(QueryFunctions)
   function!: string;
 
+  @IsOptional()
   @IsString()
-  symbol!: string;
+  symbol?: string;
 
   @IsOptional()
   @IsString()
@@ -19,4 +20,8 @@ export class GetQueryDto {
   @IsOptional()
   @IsString()
   outputsize?: string;
+
+  @IsOptional()
+  @IsString()
+  keywords?: string;
 }
