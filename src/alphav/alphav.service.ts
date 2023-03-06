@@ -3,6 +3,7 @@ import { AlphavApiService } from './api/alphav-api.service';
 import { IntradayQueryDto } from './dto/intraday-query.dto';
 import { GetQueryDto } from './api/dto/get-query.dto';
 import { QueryFunctions } from './api/dto/query-functions';
+import {GlobalQuoteQueryDto} from "@alphav/dto/globalquote-query.dto";
 
 @Injectable()
 export class AlphavService {
@@ -15,6 +16,15 @@ export class AlphavService {
       interval: query.interval,
       outputsize: query.datasize,
     };
+
+    return await this.alphavApiService.get(params);
+  }
+
+  async getGlobalQuote(query: GlobalQuoteQueryDto){
+    const params: GetQueryDto =  {
+      function: QueryFunctions.GLOBAL_QUOTE,
+      symbol: query.ticker,
+    }
 
     return await this.alphavApiService.get(params);
   }

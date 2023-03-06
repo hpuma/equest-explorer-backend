@@ -6,6 +6,9 @@ import { GlobalValidator } from '@global/validation/global-validator.class';
 import { IntradayQueryDto } from './dto/intraday-query.dto';
 import { IntradayResponseDto } from './dto/intraday-response.dto';
 
+import { GlobalQuoteQueryDto} from "@alphav/dto/globalquote-query.dto";
+import { GlobalQuoteResponseDto} from "@alphav/dto/globalquote-response.dto";
+
 @Controller('alphav')
 export class AlphavController {
   constructor(private readonly alphavService: AlphavService) {}
@@ -21,6 +24,26 @@ export class AlphavController {
       const data = await new GlobalValidator<IntradayResponseDto>(
         alphaServiceResponse,
         IntradayResponseDto,
+      ).validate();
+
+      res.json(data);
+      return data;
+    } catch (e) {
+      res.json({ message: e.message });
+    }
+  }
+
+  @Get('global-quote')
+  async globalquote(
+      @Query() query: GlobalQuoteQueryDto,
+      @Res() res: Response,
+  ): Promise<GlobalQuoteResponseDto> {
+    try {
+      const alphaServiceResponse = await this.alphavService.getGlobalQuote(query);
+
+      const data = await new GlobalValidator<GlobalQuoteResponseDto>(
+          alphaServiceResponse,
+          GlobalQuoteResponseDto,
       ).validate();
 
       res.json(data);
