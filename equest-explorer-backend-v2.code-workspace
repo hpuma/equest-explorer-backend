@@ -1,10 +1,14 @@
 {
-	"folders": [
-    {
-      "path": "."
-    },
-    {
-      "path": "../equestrian-explorer-backend"
-    }
-  ]
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"path": "../equestrian-explorer-backend"
+	},
+	{
+		"path": "../equestrian-explorer-web"
+	}
+],
+  "settings": {}
 }
