@@ -5,9 +5,10 @@ import { GlobalValidator } from '@global/validation/global-validator.class';
 
 import { IntradayQueryDto } from './dto/intraday-query.dto';
 import { IntradayResponseDto } from './dto/intraday-response.dto';
-
 import { GlobalQuoteQueryDto } from '@alphav/dto/globalquote-query.dto';
 import { GlobalQuoteResponseDto } from '@alphav/dto/globalquote-response.dto';
+import { TickerSearchQueryDto } from './dto/tickersearch-query.dto';
+import { TickerSearchResponseDto } from './dto/tickersearch-response.dto';
 
 @Controller('alphav')
 export class AlphavController {
@@ -46,6 +47,28 @@ export class AlphavController {
       const data = await new GlobalValidator<GlobalQuoteResponseDto>(
         alphaServiceResponse,
         GlobalQuoteResponseDto,
+      ).validate();
+
+      res.json(data);
+      return data;
+    } catch (e) {
+      res.json({ message: e.message });
+    }
+  }
+
+  @Get('ticker-search')
+  async tickersearch(
+    @Query() query: TickerSearchQueryDto,
+    @Res() res: Response,
+  ): Promise<TickerSearchResponseDto> {
+    try {
+      const alphaServiceResponse = await this.alphavService.getTickerSearch(
+        query,
+      );
+
+      const data = await new GlobalValidator<TickerSearchResponseDto>(
+        alphaServiceResponse,
+        TickerSearchResponseDto,
       ).validate();
 
       res.json(data);

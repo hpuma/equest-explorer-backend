@@ -3,7 +3,8 @@ import { AlphavApiService } from './api/alphav-api.service';
 import { IntradayQueryDto } from './dto/intraday-query.dto';
 import { GetQueryDto } from './api/dto/get-query.dto';
 import { QueryFunctions } from './api/dto/query-functions';
-import {GlobalQuoteQueryDto} from "@alphav/dto/globalquote-query.dto";
+import { GlobalQuoteQueryDto } from '@alphav/dto/globalquote-query.dto';
+import { TickerSearchQueryDto } from './dto/tickersearch-query.dto';
 
 @Injectable()
 export class AlphavService {
@@ -20,11 +21,20 @@ export class AlphavService {
     return await this.alphavApiService.get(params);
   }
 
-  async getGlobalQuote(query: GlobalQuoteQueryDto){
-    const params: GetQueryDto =  {
+  async getGlobalQuote(query: GlobalQuoteQueryDto) {
+    const params: GetQueryDto = {
       function: QueryFunctions.GLOBAL_QUOTE,
       symbol: query.ticker,
-    }
+    };
+
+    return await this.alphavApiService.get(params);
+  }
+
+  async getTickerSearch(query: TickerSearchQueryDto) {
+    const params: GetQueryDto = {
+      function: QueryFunctions.SYMBOL_SEARCH,
+      keywords: query.ticker,
+    };
 
     return await this.alphavApiService.get(params);
   }
