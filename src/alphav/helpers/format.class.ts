@@ -3,6 +3,7 @@ import {
   Timeseries as RawTimeseries,
   MetaData as RawMetaData,
   GlobalQuote as RawGlobalQuote,
+  BestMatch as RawBestMatch,
 } from '@alphav/api/dto/get-response.dto';
 import {
   MetaData,
@@ -10,6 +11,7 @@ import {
   ChartTimeSeries,
 } from '../dto/intraday-response.dto';
 import { GlobalQuoteResponseDto } from "@alphav/dto/globalquote-response.dto";
+import {BestMatch, TickerSearchResponseDto} from "@alphav/dto/tickersearch-response.dto";
 
 class Format {
   static metaData(data: RawMetaData): MetaData {
@@ -76,6 +78,22 @@ class Format {
     };
   }
 
+  static tickerSearch(data: RawBestMatch[]): TickerSearchResponseDto {
+    const results: BestMatch[] = data.map((match) => ({
+      symbol: match["1. symbol"],
+      name: match["2. name"],
+      type: match["3. type"],
+      region: match["4. region"],
+      marketOpen: match["5. marketOpen"],
+      marketClose: match["6. marketClose"],
+      timezone: match["7. timezone"],
+      currency: match["8. currency"],
+      matchScore: match["9. matchScore"]
+    }))
+    const totalCount = results.length
+    return { results, totalCount }
+  }
+
   // EXTRACTORS
   static extractMetadata(data) {
     return data['Meta Data'];
@@ -94,6 +112,10 @@ class Format {
   }
   static extractGlobalQuote(data: GetResponseDto): RawGlobalQuote {
     return data['Global Quote']
+  }
+
+  static extractBestMatches(data: GetResponseDto): RawBestMatch[] {
+    return data.bestMatches;
   }
 }
 

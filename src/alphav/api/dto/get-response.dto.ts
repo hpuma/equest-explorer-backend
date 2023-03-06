@@ -1,7 +1,7 @@
 import { Type } from 'class-transformer';
 import { IsString, IsArray, IsOptional, ValidateNested } from 'class-validator';
 
-class BestMatch {
+export class BestMatch {
   @IsString()
   '1. symbol': string;
 
