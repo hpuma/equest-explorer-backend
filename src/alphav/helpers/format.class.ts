@@ -1,12 +1,15 @@
 import {
+  GetResponseDto,
   Timeseries as RawTimeseries,
   MetaData as RawMetaData,
+  GlobalQuote as RawGlobalQuote,
 } from '@alphav/api/dto/get-response.dto';
 import {
   MetaData,
   Timeseries,
   ChartTimeSeries,
 } from '../dto/intraday-response.dto';
+import { GlobalQuoteResponseDto } from "@alphav/dto/globalquote-response.dto";
 
 class Format {
   static metaData(data: RawMetaData): MetaData {
@@ -57,11 +60,26 @@ class Format {
     return mappedChartTimeSeries;
   }
 
-  // Extractors
+
+  static globalQuote(data: RawGlobalQuote): GlobalQuoteResponseDto {
+    return {
+      symbol: data["01. symbol"],
+      open: data["02. open"],
+      high: data["03. high"],
+      low: data["04. low"],
+      price: data["05. price"],
+      volume: data["06. volume"],
+      latestTradingDay: data["07. latest trading day"],
+      previousClose: data["08. previous close"],
+      change: data["09. change"],
+      changePercent: data["10. change percent"]
+    };
+  }
+
+  // EXTRACTORS
   static extractMetadata(data) {
     return data['Meta Data'];
   }
-
   static extractTimeseries(data) {
     if (!data) return null;
     const numMinutes = ['1', '5', '15', '30', '60'];
@@ -73,6 +91,9 @@ class Format {
       index++;
     }
     return null;
+  }
+  static extractGlobalQuote(data: GetResponseDto): RawGlobalQuote {
+    return data['Global Quote']
   }
 }
 
