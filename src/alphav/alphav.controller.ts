@@ -5,8 +5,8 @@ import { GlobalValidator } from '@global/validation/global-validator.class';
 
 import { IntradayQueryDto } from './dto/intraday-query.dto';
 import { IntradayResponseDto } from './dto/intraday-response.dto';
-import { GlobalQuoteQueryDto } from '@alphav/dto/globalquote-query.dto';
-import { GlobalQuoteResponseDto } from '@alphav/dto/globalquote-response.dto';
+import { GlobalQuoteQueryDto } from './dto/globalquote-query.dto';
+import { GlobalQuoteResponseDto } from './dto/globalquote-response.dto';
 import { TickerSearchQueryDto } from './dto/tickersearch-query.dto';
 import { TickerSearchResponseDto } from './dto/tickersearch-response.dto';
 

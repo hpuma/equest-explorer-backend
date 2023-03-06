@@ -1,6 +1,7 @@
 import { IsString } from 'class-validator';
-import { GetResponseDto } from '@alphav/api/dto/get-response.dto';
 import { Format } from '@alphav/helpers/format.class';
+import { GetResponseDto } from '@alphav/api/dto/get-response.dto';
+
 export class GlobalQuoteResponseDto {
   constructor(data: GetResponseDto) {
     if (!data) return;

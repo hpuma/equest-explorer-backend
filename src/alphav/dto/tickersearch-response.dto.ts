@@ -1,7 +1,7 @@
 import { IsArray, IsNumber, IsString, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
-import { GetResponseDto } from '@alphav/api/dto/get-response.dto';
 import { Format } from '@alphav/helpers/format.class';
+import { GetResponseDto } from '@alphav/api/dto/get-response.dto';
 
 export class BestMatch {
   @IsString()
