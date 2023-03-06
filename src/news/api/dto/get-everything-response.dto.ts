@@ -32,6 +32,7 @@ export class Article {
   title: string;
 
   @IsString()
+  @ValidateIf((object, value) => value !== null)
   description: string;
 
   @IsString()
