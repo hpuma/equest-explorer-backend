@@ -30,7 +30,7 @@ class BestMatch {
   '9. matchScore': string;
 }
 
-class GlobalQuote {
+export class GlobalQuote {
   @IsString()
   '01. symbol': string;
 
