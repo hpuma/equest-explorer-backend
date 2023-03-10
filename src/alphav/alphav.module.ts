@@ -4,8 +4,10 @@ import { AlphavController } from './alphav.controller';
 import { AlphavApiService } from './api/alphav-api.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
+import { GlobalModule } from '@global/global.module';
 @Module({
   imports: [
+    GlobalModule,
     HttpModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
