@@ -1,11 +1,4 @@
-import {
-  ClassSerializerInterceptor,
-  Controller,
-  Get,
-  Query,
-  Res,
-  UseInterceptors,
-} from '@nestjs/common';
+import { Controller, Get, Query, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { NewsService } from './news.service';
 import { GlobalValidator } from '@global/validation/global-validator.class';
@@ -19,7 +12,6 @@ export class NewsController {
     private readonly globalValidator: GlobalValidator,
   ) {}
 
-  @UseInterceptors(ClassSerializerInterceptor)
   @Get('everything')
   async everything(
     @Query() query: EverythingQueryDto,
