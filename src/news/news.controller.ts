@@ -14,7 +14,10 @@ import { EverythingResponseDto } from './dto/everything-response.dto';
 
 @Controller('news')
 export class NewsController {
-  constructor(private readonly newsService: NewsService) {}
+  constructor(
+    private readonly newsService: NewsService,
+    private readonly globalValidator: GlobalValidator,
+  ) {}
 
   @UseInterceptors(ClassSerializerInterceptor)
   @Get('everything')
@@ -25,10 +28,10 @@ export class NewsController {
     try {
       const newsServiceResponse = await this.newsService.getEverything(query);
 
-      const data = await new GlobalValidator<EverythingResponseDto>(
+      const data = await this.globalValidator.validate(
         newsServiceResponse,
         EverythingResponseDto,
-      ).validate();
+      );
 
       res.json(data);
       return data;

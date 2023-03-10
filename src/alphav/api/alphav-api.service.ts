@@ -9,22 +9,22 @@ import { GetResponseDto } from './dto/get-response.dto';
 
 @Injectable()
 export class AlphavApiService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly globalValidator: GlobalValidator,
+  ) {}
 
   async get(query: GetQueryDto): Promise<GetResponseDto> {
-    const params = await new GlobalValidator<GetQueryDto>(
-      query,
-      GetQueryDto,
-    ).validate();
+    const params = await this.globalValidator.validate(query, GetQueryDto);
 
     const { data } = await this.httpService.axiosRef.get('', {
       params,
     });
 
-    const validatedResponse = await new GlobalValidator<GetResponseDto>(
+    const validatedResponse = await this.globalValidator.validate(
       data,
       GetResponseDto,
-    ).validate();
+    );
 
     return validatedResponse;
   }

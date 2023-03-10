@@ -12,7 +12,10 @@ import { TickerSearchResponseDto } from './dto/tickersearch-response.dto';
 
 @Controller('alphav')
 export class AlphavController {
-  constructor(private readonly alphavService: AlphavService) {}
+  constructor(
+    private readonly alphavService: AlphavService,
+    private readonly globalValidator: GlobalValidator,
+  ) {}
 
   @Get('intraday')
   async intraday(
@@ -22,10 +25,10 @@ export class AlphavController {
     try {
       const alphaServiceResponse = await this.alphavService.getIntraday(query);
 
-      const data = await new GlobalValidator<IntradayResponseDto>(
+      const data = await this.globalValidator.validate(
         alphaServiceResponse,
         IntradayResponseDto,
-      ).validate();
+      );
 
       res.json(data);
       return data;
@@ -44,10 +47,10 @@ export class AlphavController {
         query,
       );
 
-      const data = await new GlobalValidator<GlobalQuoteResponseDto>(
+      const data = await this.globalValidator.validate(
         alphaServiceResponse,
         GlobalQuoteResponseDto,
-      ).validate();
+      );
 
       res.json(data);
       return data;
@@ -66,10 +69,10 @@ export class AlphavController {
         query,
       );
 
-      const data = await new GlobalValidator<TickerSearchResponseDto>(
+      const data = await this.globalValidator.validate(
         alphaServiceResponse,
         TickerSearchResponseDto,
-      ).validate();
+      );
 
       res.json(data);
       return data;

@@ -10,25 +10,27 @@ import { GetEverythingResponseDto } from './dto/get-everything-response.dto';
 
 @Injectable()
 export class NewsApiService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly globalValidator: GlobalValidator,
+  ) {}
 
   async getEverything(
     query: GetEverythingQueryDto,
   ): Promise<GetEverythingResponseDto> {
-    const params = await new GlobalValidator<GetEverythingQueryDto>(
+    const params = await this.globalValidator.validate(
       query,
       GetEverythingQueryDto,
-    ).validate();
+    );
 
     const { data } = await this.httpService.axiosRef.get('/everything', {
       params,
     });
 
-    const validatedResponse =
-      await new GlobalValidator<GetEverythingResponseDto>(
-        data,
-        GetEverythingResponseDto,
-      ).validate();
+    const validatedResponse = await await this.globalValidator.validate(
+      data,
+      GetEverythingResponseDto,
+    );
 
     return validatedResponse;
   }

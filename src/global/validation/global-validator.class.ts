@@ -1,29 +1,24 @@
 import { ClassConstructor, plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 
-export class GlobalValidator<T> {
-  data: any;
-  validationClass: ClassConstructor<T>;
-
-  constructor(data: any, validationClass: ClassConstructor<T>) {
-    this.validationClass = validationClass;
-    this.data = data;
-  }
-
+export class GlobalValidator {
   // Validate data with validate() using validator
-  async validate(): Promise<T> {
-    const mappedData = new this.validationClass(this.data);
+  async validate<T>(
+    data: any,
+    validationClass: ClassConstructor<T>,
+  ): Promise<T> {
+    const mappedData = new validationClass(data);
 
-    this.data = plainToInstance(this.validationClass, mappedData, {
+    const instanceData = plainToInstance(validationClass, mappedData, {
       exposeUnsetFields: false,
-    });
+    }) as any;
 
-    const errors = await validate(this.data);
+    const errors = await validate(instanceData);
 
     if (errors.length > 0) {
       throw new TypeError(`${errors.map((error) => error.toString())}`);
     }
 
-    return this.data;
+    return instanceData;
   }
 }
