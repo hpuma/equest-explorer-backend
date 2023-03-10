@@ -11,11 +11,11 @@
     "outDir": "./dist",
     "baseUrl": "./src",
     "paths": {
-      "@validation/*": ["validation/*"],
       "@news/*": ["news/*"],
       "@global/*": ["global/*"],
       "@alphav/*": ["alphav/*"]
     },
+ 
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
