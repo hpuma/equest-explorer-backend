@@ -76,6 +76,7 @@
     "testEnvironment": "node",
     "moduleNameMapper": {
       "@global/(.*)": "<rootDir>/global/$1",
+      "@alphav/(.*)": "<rootDir>/alphav/$1",
       "@news/(.*)": "<rootDir>/news/$1"
     }
   },
