@@ -6,7 +6,13 @@ describe('AlphavService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [AlphavService],
+      providers: [
+        AlphavService,
+        {
+          provide: AlphavService,
+          useValue: { getIntraday: jest.fn() },
+        },
+      ],
     }).compile();
 
     service = module.get<AlphavService>(AlphavService);
