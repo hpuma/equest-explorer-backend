@@ -36,8 +36,8 @@ describe('AlphavController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
-  describe('Should return a response', () => {
-    it('Should return a successful response', async () => {
+  describe('when a response is returned', () => {
+    it('should return a successful response', async () => {
       jest
         .spyOn(service, 'getIntraday')
         .mockResolvedValue({ intradayParams: 'WIP' } as GetResponseDto);
@@ -54,6 +54,6 @@ describe('AlphavController', () => {
       expect(res.json).toBeCalledWith({ validateParams: 'WIP' });
       expect(response).toEqual({ validateParams: 'WIP' });
     });
-    it.skip('Should return an unsuccessful response', async () => {});
+    it.skip('should return an unsuccessful response', async () => {});
   });
 });
