@@ -22,7 +22,8 @@ function getImportsByType(testType: string) {
 }
 
 function getControllerByType(testType: string) {
-  return testType === 'controller' ? [AlphavController] : [];
+  const isTypeController = testType === 'controller';
+  return isTypeController ? [AlphavController] : [];
 }
 
 function getProviderByType(testType: string) {
