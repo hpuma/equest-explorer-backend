@@ -1,32 +1,19 @@
-import { GlobalModule } from '@global/global.module';
 import { GlobalValidator } from '@global/validation/global-validator.class';
-import { Test, TestingModule } from '@nestjs/testing';
-import { AlphavController } from './alphav.controller';
-import { AlphavService } from './alphav.service';
-import { GetResponseDto } from './api/dto/get-response.dto';
-import { IntradayQueryDto } from './dto/intraday-query.dto';
+import { AlphavController } from '../alphav.controller';
+import { AlphavService } from '../alphav.service';
+import { GetResponseDto } from '../api/dto/get-response.dto';
+import { IntradayQueryDto } from '../dto/intraday-query.dto';
+import { res } from '@global/testing/test-setup';
+import { getTestingModule } from './test-setup';
 
 describe('AlphavController', () => {
   let controller: AlphavController;
   let service: AlphavService;
   let response;
   let globalValidator: GlobalValidator;
-  const res: any = {
-    send: jest.fn(),
-    json: jest.fn(),
-  };
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      imports: [GlobalModule],
-      controllers: [AlphavController],
-      providers: [
-        {
-          provide: AlphavService,
-          useValue: { getIntraday: jest.fn() },
-        },
-      ],
-    }).compile();
+    const module = await getTestingModule('controller');
 
     controller = module.get<AlphavController>(AlphavController);
     service = module.get<AlphavService>(AlphavService);
