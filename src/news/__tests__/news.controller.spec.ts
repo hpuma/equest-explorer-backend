@@ -1,10 +1,13 @@
 import { GlobalValidator } from '@global/validation/global-validator.class';
 import { NewsController } from '../news.controller';
 import { NewsService } from '../news.service';
-import { GetEverythingResponseDto } from '../api/dto/get-everything-response.dto';
-import { EverythingQueryDto } from '../dto/everything-query.dto';
 import { res } from '@global/testing/test-setup';
-import { getTestingModule } from './test-setup';
+import { getTestingModule } from './utils/test-setup';
+import { createGetEverythingResponse } from './utils/service-data';
+import {
+  createEverythingQueryData,
+  createGlobalValidatorData,
+} from './utils/controller-data';
 
 describe('NewsController', () => {
   let controller: NewsController;
@@ -18,30 +21,59 @@ describe('NewsController', () => {
     service = module.get<NewsService>(NewsService);
     globalValidator = module.get<GlobalValidator>(GlobalValidator);
   });
-
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
+  });
   describe('when a response is returned', () => {
-    it('should be defined', () => {
-      expect(controller).toBeDefined();
+    beforeEach(() => {
+      jest.resetAllMocks();
     });
-    it('should return a successful response', async () => {
-      jest.spyOn(service, 'getEverything').mockResolvedValue({
-        status: 'OK',
-        totalResults: 1,
-        articles: [],
-      } as GetEverythingResponseDto);
+    describe('when a successful response is returned', () => {
+      it('should return a successful response when all dtos are valid', async () => {
+        jest
+          .spyOn(service, 'getEverything')
+          .mockResolvedValueOnce(createGetEverythingResponse());
 
-      jest
-        .spyOn(globalValidator, 'validate')
-        .mockResolvedValue({ validateParams: 'WIP' });
+        const mockGlobalValidatorData = createGlobalValidatorData();
+        jest
+          .spyOn(globalValidator, 'validate')
+          .mockResolvedValueOnce(mockGlobalValidatorData);
 
-      response = await controller.everything(
-        { ticker: 'SPY' } as EverythingQueryDto,
-        res,
-      );
+        response = await controller.everything(
+          createEverythingQueryData(),
+          res,
+        );
 
-      expect(res.json).toBeCalledWith({ validateParams: 'WIP' });
-      expect(response).toEqual({ validateParams: 'WIP' });
+        expect(res.json).toBeCalledWith(mockGlobalValidatorData);
+        expect(response).toEqual(mockGlobalValidatorData);
+      });
     });
-    it.skip('should return an unsuccessful response', async () => {});
+    describe('when an unsuccessful response returned', () => {
+      it('should throw when service fails', async () => {
+        const serviceErrorMessage = 'Service has encountered an error';
+        jest.spyOn(service, 'getEverything').mockImplementationOnce(() => {
+          throw new Error(serviceErrorMessage);
+        });
+
+        response = await controller.everything(
+          createEverythingQueryData(),
+          res,
+        );
+        expect(res.json).toBeCalledWith({ message: serviceErrorMessage });
+      });
+
+      it('should throw when validator fails', async () => {
+        const serviceErrorMessage = 'Global Validator has encountered an error';
+        jest.spyOn(globalValidator, 'validate').mockImplementationOnce(() => {
+          throw new Error(serviceErrorMessage);
+        });
+
+        response = await controller.everything(
+          createEverythingQueryData(),
+          res,
+        );
+        expect(res.json).toBeCalledWith({ message: serviceErrorMessage });
+      });
+    });
   });
 });

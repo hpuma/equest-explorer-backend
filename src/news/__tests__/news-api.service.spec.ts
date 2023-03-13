@@ -1,5 +1,5 @@
 import { NewsApiService } from '../api/news-api.service';
-import { getTestingModule } from './test-setup';
+import { getTestingModule } from './utils/test-setup';
 
 describe('NewsApiService', () => {
   let service: NewsApiService;

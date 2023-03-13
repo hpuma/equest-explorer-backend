@@ -29,6 +29,7 @@ export class NewsController {
       return data;
     } catch (e) {
       res.json({ message: e.message });
+      return null;
     }
   }
 }
