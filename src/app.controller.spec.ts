@@ -15,6 +15,6 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it.skip('should return "Hello World!"', () => {});
+    it('should return "Hello World!"', () => {});
   });
 });
