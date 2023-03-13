@@ -24,7 +24,7 @@ describe('NewsController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
-  describe('when a response is returned', () => {
+  describe('when everything() is invoked', () => {
     beforeEach(() => {
       jest.resetAllMocks();
     });
