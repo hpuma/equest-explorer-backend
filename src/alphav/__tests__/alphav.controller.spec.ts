@@ -4,7 +4,7 @@ import { AlphavService } from '../alphav.service';
 import { GetResponseDto } from '../api/dto/get-response.dto';
 import { IntradayQueryDto } from '../dto/intraday-query.dto';
 import { res } from '@global/testing/test-setup';
-import { getTestingModule } from './test-setup';
+import { getTestingModule } from './utils/test-setup';
 
 describe('AlphavController', () => {
   let controller: AlphavController;
@@ -41,6 +41,5 @@ describe('AlphavController', () => {
       expect(res.json).toBeCalledWith({ validateParams: 'WIP' });
       expect(response).toEqual({ validateParams: 'WIP' });
     });
-    it.skip('should return an unsuccessful response', async () => {});
   });
 });

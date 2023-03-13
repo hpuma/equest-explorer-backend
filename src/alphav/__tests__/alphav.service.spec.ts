@@ -1,5 +1,5 @@
 import { AlphavService } from '../alphav.service';
-import { getTestingModule } from './test-setup';
+import { getTestingModule } from './utils/test-setup';
 
 describe('AlphavService', () => {
   let service: AlphavService;
