@@ -5,8 +5,8 @@ import { res } from '@global/testing/test-setup';
 import { getTestingModule } from './utils/test-setup';
 import { createGetEverythingResponse } from './utils/service-data';
 import {
-  createEverythingQueryData,
-  createGlobalValidatorData,
+  createEverythingQuery,
+  createEverythingResponse,
 } from './utils/controller-data';
 
 describe('NewsController', () => {
@@ -24,7 +24,7 @@ describe('NewsController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
-  describe('when everything() is invoked', () => {
+  describe('when everything()', () => {
     beforeEach(() => {
       jest.resetAllMocks();
     });
@@ -34,15 +34,12 @@ describe('NewsController', () => {
           .spyOn(service, 'getEverything')
           .mockResolvedValueOnce(createGetEverythingResponse());
 
-        const mockGlobalValidatorData = createGlobalValidatorData();
+        const mockGlobalValidatorData = createEverythingResponse();
         jest
           .spyOn(globalValidator, 'validate')
           .mockResolvedValueOnce(mockGlobalValidatorData);
 
-        response = await controller.everything(
-          createEverythingQueryData(),
-          res,
-        );
+        response = await controller.everything(createEverythingQuery(), res);
 
         expect(res.json).toBeCalledWith(mockGlobalValidatorData);
         expect(response).toEqual(mockGlobalValidatorData);
@@ -55,10 +52,7 @@ describe('NewsController', () => {
           throw new Error(serviceErrorMessage);
         });
 
-        response = await controller.everything(
-          createEverythingQueryData(),
-          res,
-        );
+        response = await controller.everything(createEverythingQuery(), res);
         expect(res.json).toBeCalledWith({ message: serviceErrorMessage });
       });
 
@@ -68,10 +62,7 @@ describe('NewsController', () => {
           throw new Error(serviceErrorMessage);
         });
 
-        response = await controller.everything(
-          createEverythingQueryData(),
-          res,
-        );
+        response = await controller.everything(createEverythingQuery(), res);
         expect(res.json).toBeCalledWith({ message: serviceErrorMessage });
       });
     });
