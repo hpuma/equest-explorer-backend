@@ -32,7 +32,14 @@ function getProviderByType(testType: string) {
     case 'service':
       return [
         AlphavService,
-        { provide: AlphavService, useValue: { getIntraday: jest.fn() } },
+        {
+          provide: AlphavService,
+          useValue: {
+            getIntraday: jest.fn(),
+            getGlobalQuote: jest.fn(),
+            getTickerSearch: jest.fn(),
+          },
+        },
       ];
     case 'api':
       return [
