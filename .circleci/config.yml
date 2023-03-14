@@ -1,0 +1,12 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: cimg/node:19.0.0
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run: npm install
+      - run: NODE_ENV=ci_test npm test --NEWS_API_KEY=$NEWS_API_KEY --NEWS_BASE_URL=$NEWS_BASE_URL --INTEGRATIONS_ENABLED=$INTEGRATIONS_ENABLED --ALPHAV_API_KEY=$ALPHAV_API_KEY --ALPHAV_BASE_URL=$ALPHAV_BASE_URL --MARKETAUX_API_KEY=$MARKETAUX_API_KEY --MARKETAUX_BASE_URL=$MARKETAUX_BASE_URL
