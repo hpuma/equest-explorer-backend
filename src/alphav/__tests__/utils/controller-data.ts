@@ -73,7 +73,7 @@ export function createTickerSearchQuery(
 
 export function createTickerSearchResponse(
   overrides: TickerSearchResponseDto | null = {
-    results: [
+    bestMatches: [
       {
         symbol: 'SPY',
         name: 'SPDR S&P 500 ETF Trust',
@@ -86,7 +86,7 @@ export function createTickerSearchResponse(
         matchScore: '1.0000',
       },
     ],
-    totalCount: 1,
+    count: 1,
   },
 ): TickerSearchResponseDto {
   return overrides;

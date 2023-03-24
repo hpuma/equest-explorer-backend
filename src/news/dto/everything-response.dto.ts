@@ -9,7 +9,7 @@ import { Type } from 'class-transformer';
 import { Format } from '../helpers/format.class';
 import { Time } from '../helpers/time.class';
 import {
-  Article,
+  Article as RawArticle,
   GetEverythingResponseDto,
 } from '@news/api/dto/get-everything-response.dto';
 
@@ -49,11 +49,11 @@ class Timestamp {
   interval: Interval;
 }
 
-class Result {
-  constructor(article: Article) {
-    if (!article) return;
-    const timestamp = new Timestamp(article.publishedAt);
-    Object.assign(this, { ...article, timestamp });
+class Article {
+  constructor(rawArticle: RawArticle) {
+    if (!rawArticle) return;
+    const timestamp = new Timestamp(rawArticle.publishedAt);
+    Object.assign(this, { ...rawArticle, timestamp });
   }
 
   @IsString()
@@ -86,15 +86,15 @@ export class EverythingResponseDto {
   constructor(data: GetEverythingResponseDto) {
     if (!data) return;
     Object.assign(this, {
-      results: data.articles.map((article) => new Result(article)),
+      articles: data.articles.map((rawArticles) => new Article(rawArticles)),
       count: data.totalResults,
     });
   }
 
   @IsArray()
   @ValidateNested({ each: true })
-  @Type(() => Result)
-  results: Result[];
+  @Type(() => Article)
+  articles: Article[];
 
   @IsNumber()
   count: number;

@@ -81,7 +81,7 @@ class Format {
   }
 
   static tickerSearch(data: RawBestMatch[]): TickerSearchResponseDto {
-    const results: BestMatch[] = data.map((match) => ({
+    const bestMatches: BestMatch[] = data.map((match) => ({
       symbol: match['1. symbol'],
       name: match['2. name'],
       type: match['3. type'],
@@ -92,8 +92,8 @@ class Format {
       currency: match['8. currency'],
       matchScore: match['9. matchScore'],
     }));
-    const totalCount = results.length;
-    return { results, totalCount };
+    const count = bestMatches.length;
+    return { bestMatches, count };
   }
 
   // EXTRACTORS

@@ -44,8 +44,8 @@ export class TickerSearchResponseDto {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => BestMatch)
-  results!: BestMatch[];
+  bestMatches!: BestMatch[];
 
   @IsNumber()
-  totalCount!: number;
+  count!: number;
 }
