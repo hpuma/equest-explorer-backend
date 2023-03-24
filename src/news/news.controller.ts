@@ -4,7 +4,7 @@ import { NewsService } from './news.service';
 import { GlobalValidator } from '@global/validation/global-validator.class';
 import { EverythingQueryDto } from './dto/everything-query.dto';
 import { EverythingResponseDto } from './dto/everything-response.dto';
-
+import { ApiResponse } from '@nestjs/swagger';
 @Controller('news')
 export class NewsController {
   constructor(
@@ -13,6 +13,11 @@ export class NewsController {
   ) {}
 
   @Get('everything')
+  @ApiResponse({
+    status: 200,
+    description: 'everything response object',
+    type: EverythingResponseDto,
+  })
   async everything(
     @Query() query: EverythingQueryDto,
     @Res() res: Response,
