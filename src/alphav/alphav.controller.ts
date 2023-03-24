@@ -9,7 +9,7 @@ import { GlobalQuoteQueryDto } from './dto/globalquote-query.dto';
 import { GlobalQuoteResponseDto } from './dto/globalquote-response.dto';
 import { TickerSearchQueryDto } from './dto/tickersearch-query.dto';
 import { TickerSearchResponseDto } from './dto/tickersearch-response.dto';
-
+import { ApiResponse } from '@nestjs/swagger';
 @Controller('alphav')
 export class AlphavController {
   constructor(
@@ -18,6 +18,11 @@ export class AlphavController {
   ) {}
 
   @Get('intraday')
+  @ApiResponse({
+    status: 200,
+    description: 'Intraday response object',
+    type: IntradayResponseDto,
+  })
   async intraday(
     @Query() query: IntradayQueryDto,
     @Res() res: Response,
@@ -38,6 +43,11 @@ export class AlphavController {
   }
 
   @Get('global-quote')
+  @ApiResponse({
+    status: 200,
+    description: 'global-quote response object',
+    type: GlobalQuoteResponseDto,
+  })
   async globalquote(
     @Query() query: GlobalQuoteQueryDto,
     @Res() res: Response,
@@ -60,6 +70,11 @@ export class AlphavController {
   }
 
   @Get('ticker-search')
+  @ApiResponse({
+    status: 200,
+    description: 'ticker-search response object',
+    type: TickerSearchResponseDto,
+  })
   async tickersearch(
     @Query() query: TickerSearchQueryDto,
     @Res() res: Response,
