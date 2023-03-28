@@ -21,36 +21,36 @@ export class GlobalQuoteResponseDto {
 
   @IsString()
   @ApiProperty({
-    description: 'day opening price',
+    description: 'day opening',
     example: '117',
   })
   open: string;
 
   @IsString()
   @ApiProperty({
-    description: 'day highest price',
+    description: 'day highest',
     example: '120',
   })
   high: string;
 
   @IsString()
   @ApiProperty({
-    description: 'day lowest price',
+    description: 'day lowest',
     example: '115',
   })
   low: string;
 
   @IsString()
   @ApiProperty({
-    description: 'latest price',
+    description: 'day current',
     example: '115',
   })
   price: string;
 
   @IsString()
   @ApiProperty({
-    description: 'total number of shares traded for the day',
-    example: '115',
+    description: 'day total number of shares traded',
+    example: '74010408',
   })
   volume: string;
 
@@ -64,21 +64,21 @@ export class GlobalQuoteResponseDto {
 
   @IsString()
   @ApiProperty({
-    description: 'price of stock at previous closing day',
+    description: 'previous closing day price',
     example: '118',
   })
   previousClose: string;
 
   @IsString()
   @ApiProperty({
-    description: 'difference between the price and previousClose',
+    description: 'numeric diff between the price and previousClose',
     example: '-3.0',
   })
   change: string;
 
   @IsString()
   @ApiProperty({
-    description: 'percent difference between the price and previousClose',
+    description: 'percent diff between the price and previousClose',
     example: '-0.025',
   })
   changePercent: string;
