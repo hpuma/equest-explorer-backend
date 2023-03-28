@@ -21,35 +21,38 @@ export class GlobalQuoteResponseDto {
 
   @IsString()
   @ApiProperty({
-    description: 'day opening',
+    description: 'opening price of the security on the latest trading day',
     example: '117',
   })
   open: string;
 
   @IsString()
   @ApiProperty({
-    description: 'day highest',
+    description:
+      'highest price at which the security was traded on the latest trading day',
     example: '120',
   })
   high: string;
 
   @IsString()
   @ApiProperty({
-    description: 'day lowest',
+    description:
+      'lowest price at which the security was traded on the latest trading day',
     example: '115',
   })
   low: string;
 
   @IsString()
   @ApiProperty({
-    description: 'day current',
+    description: 'last traded price of the security on the latest trading day',
     example: '115',
   })
   price: string;
 
   @IsString()
   @ApiProperty({
-    description: 'day total number of shares traded',
+    description:
+      'total number of shares that were traded on the latest trading day',
     example: '74010408',
   })
   volume: string;
@@ -57,14 +60,14 @@ export class GlobalQuoteResponseDto {
   @IsString()
   @ApiProperty({
     description:
-      'latest day stock may trade or be closed out before the delivery of the underlying asset or cash settlement must occur',
+      'closing price of the security on the previous trading day in the format "YYYY-MM-DD"',
     example: '2023-04-20',
   })
   latestTradingDay: string;
 
   @IsString()
   @ApiProperty({
-    description: 'previous closing day price',
+    description: 'closing price of the security on the previous trading day',
     example: '118',
   })
   previousClose: string;
