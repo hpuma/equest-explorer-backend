@@ -67,7 +67,7 @@ export class MetaData {
   timezone: string;
 }
 
-export class Timeseries {
+class TimeseriesData {
   @IsString()
   @ApiProperty({ description: 'interval open', example: '117' })
   open: string;
@@ -90,6 +90,9 @@ export class Timeseries {
     example: '74010408',
   })
   volume: string;
+}
+export class Timeseries {
+  [key: string]: TimeseriesData;
 }
 
 export class IntradayResponseDto {
@@ -132,7 +135,7 @@ export class IntradayResponseDto {
     isArray: true,
     additionalProperties: { type: 'string' },
   })
-  timeseries: Record<string, Timeseries>;
+  timeseries: Timeseries;
 
   @IsArray()
   @ValidateNested({ each: true })
