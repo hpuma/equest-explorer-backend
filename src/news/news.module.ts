@@ -12,7 +12,7 @@ import { GlobalModule } from '@global/global.module';
     HttpModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        baseURL: configService.get('NEWS_API_BASE_URL'),
+        baseURL: configService.get('NEWS_BASE_URL'),
         headers: {
           'X-Api-Key': configService.get('NEWS_API_KEY'),
         },
