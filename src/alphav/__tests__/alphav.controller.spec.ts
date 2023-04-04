@@ -1,4 +1,4 @@
-import { GlobalValidator } from '@global/validation/global-validator.class';
+import { GlobalValidator } from '@global/global-validator.class';
 import { res } from '@global/testing/test-setup';
 import { getTestingModule } from './utils/test-setup';
 import { createGetResponse } from './utils/service-data';

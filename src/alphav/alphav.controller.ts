@@ -1,7 +1,7 @@
 import { Controller, Get, Query, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { AlphavService } from './alphav.service';
-import { GlobalValidator } from '@global/validation/global-validator.class';
+import { GlobalValidator } from '@global/global-validator.class';
 
 import { IntradayQueryDto } from './dto/intraday-query.dto';
 import { IntradayResponseDto } from './dto/intraday-response.dto';

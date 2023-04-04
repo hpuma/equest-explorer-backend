@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 
 // GlobalValidator: Validator used for validating and transforming
-import { GlobalValidator } from '@global/validation/global-validator.class';
+import { GlobalValidator } from '@global/global-validator.class';
 
 // NewsApiService: dtos that undergo validation pre/post http request
 import { GetEverythingQueryDto } from './dto/get-everything-query.dto';

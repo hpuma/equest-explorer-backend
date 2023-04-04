@@ -1,7 +1,7 @@
 import { Controller, Get, Query, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { NewsService } from './news.service';
-import { GlobalValidator } from '@global/validation/global-validator.class';
+import { GlobalValidator } from '@global/global-validator.class';
 import { EverythingQueryDto } from './dto/everything-query.dto';
 import { EverythingResponseDto } from './dto/everything-response.dto';
 import { ApiResponse } from '@nestjs/swagger';

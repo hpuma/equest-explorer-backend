@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { GlobalValidator } from './validation/global-validator.class';
+import { GlobalValidator } from './global-validator.class';
 
 @Module({
   providers: [GlobalValidator],
