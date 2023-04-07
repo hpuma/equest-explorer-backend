@@ -6,7 +6,7 @@ import { TickerSearchQueryDto } from '@alphav/dto/tickersearch-query.dto';
 import { TickerSearchResponseDto } from '@alphav/dto/tickersearch-response.dto';
 
 export function createIntradayQuery(
-  overrides: IntradayQueryDto | null = { ticker: 'SPY' },
+  overrides: IntradayQueryDto | null = { ticker: 'SPY', interval: '1min' },
 ): IntradayQueryDto {
   return overrides;
 }
