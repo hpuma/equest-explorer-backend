@@ -15,7 +15,8 @@ export class ChartTimeSeries {
 
   @IsNumber({}, { each: true })
   @ApiProperty({
-    description: 'array containing open, high, low, current',
+    description:
+      'listing containing numeric values that represents: open, high, low, current',
     example: [397.02, 397.03, 396.98, 397.01],
     type: [Number],
   })
@@ -116,7 +117,7 @@ export class IntradayResponseDto {
   @ValidateNested()
   @Type(() => MetaData)
   @ApiProperty({
-    description: 'intraday metadata',
+    description: '`MetaData` object containing intraday metadata',
   })
   metadata: MetaData;
 
@@ -130,7 +131,7 @@ export class IntradayResponseDto {
   @ValidateNested()
   @Type(() => Timeseries)
   @ApiProperty({
-    description: 'list of timeseries within interval',
+    description: '`Timeseries` object containing data within an interval',
     type: Timeseries,
     isArray: true,
     additionalProperties: { type: 'string' },
@@ -142,7 +143,7 @@ export class IntradayResponseDto {
   @Type(() => ChartTimeSeries)
   @ApiProperty({
     description:
-      'list of chartTimeSeries within interval, NOTE: need to make optional',
+      'List of `ChartTimeSeries` objects within interval, NOTE: need to make optional',
     type: ChartTimeSeries,
     isArray: true,
   })

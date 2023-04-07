@@ -83,7 +83,8 @@ export class TickerSearchResponseDto {
   @ValidateNested({ each: true })
   @Type(() => BestMatch)
   @ApiProperty({
-    description: 'list of objects containing matches for ticker value',
+    description:
+      'List of `BestMatch` objects containing matches for ticker value',
     type: BestMatch,
     isArray: true,
   })
@@ -91,7 +92,7 @@ export class TickerSearchResponseDto {
 
   @IsNumber()
   @ApiProperty({
-    description: 'the number of bestMatches found',
+    description: 'number of `BestMatch`s found',
     example: 5,
   })
   count!: number;
