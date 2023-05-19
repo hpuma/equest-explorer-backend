@@ -13,9 +13,10 @@
     "paths": {
       "@news/*": ["news/*"],
       "@global/*": ["global/*"],
-      "@alphav/*": ["alphav/*"]
+      "@alphav/*": ["alphav/*"],
+      "@database/*": ["database/*"]
     },
- 
+
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
