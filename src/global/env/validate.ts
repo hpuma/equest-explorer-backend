@@ -38,6 +38,11 @@ class EnvVariables extends ApiBaseUrls {
   @IsNotEmpty()
   @Expose()
   MARKETAUX_API_KEY: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @Expose()
+  MONGODB_URI: string;
 }
 
 export function validate(config: Record<string, unknown>) {
