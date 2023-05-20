@@ -10,16 +10,34 @@ export class EquestService {
   ) {}
 
   async tickersearch(tickerValue: string): Promise<any[]> {
-    const tickerValues = await this.tickerValueModel
-      .find({
-        symbol: {
-          $regex: new RegExp(`^${tickerValue}`, 'i'),
+    let tickerValues = [];
+
+    try {
+      tickerValues = await this.tickerValueModel.aggregate([
+        {
+          $search: {
+            index: 'symbol_text',
+            text: {
+              query: tickerValue,
+              path: {
+                wildcard: '*',
+              },
+            },
+          },
         },
-      })
-      .limit(5)
-      .lean()
-      .sort({ symbol: 1 })
-      .select({ _id: 0, symbol: 1, name: 1 });
+
+        {
+          $project: {
+            _id: 0,
+            symbol: 1,
+            name: 1,
+            score: { $meta: 'searchScore' },
+          },
+        },
+      ]);
+    } catch (error) {
+      console.log(error.message);
+    }
 
     return tickerValues;
   }

@@ -17,7 +17,7 @@ export class EquestController {
         query.ticker,
       );
 
-      res.json(equestServiceResponse);
+      res.json({ bestMatches: equestServiceResponse });
       return equestServiceResponse;
     } catch (e) {
       res.json({ message: e.message });
