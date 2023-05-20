@@ -25,7 +25,6 @@ export class EquestService {
             },
           },
         },
-
         {
           $project: {
             _id: 0,

@@ -11,14 +11,12 @@ export class EquestController {
   async tickersearch(
     @Query() query: TickerSearchQueryDto,
     @Res() res: Response,
-  ): Promise<any[]> {
+  ): Promise<any> {
     try {
-      const equestServiceResponse = await this.equestService.tickersearch(
-        query.ticker,
-      );
-
-      res.json({ bestMatches: equestServiceResponse });
-      return equestServiceResponse;
+      const bestMatches = await this.equestService.tickersearch(query.ticker);
+      const responseObject = { bestMatches };
+      res.json(responseObject);
+      return responseObject;
     } catch (e) {
       res.json({ message: e.message });
     }
