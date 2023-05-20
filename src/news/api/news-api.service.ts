@@ -5,8 +5,7 @@ import { HttpService } from '@nestjs/axios';
 import { GlobalValidator } from '@global/global-validator.class';
 
 // NewsApiService: dtos that undergo validation pre/post http request
-import { GetEverythingQueryDto } from './dto/get-everything-query.dto';
-import { GetEverythingResponseDto } from './dto/get-everything-response.dto';
+import { GetEverythingQueryDto, GetEverythingResponseDto } from './dto';
 
 @Injectable()
 export class NewsApiService {

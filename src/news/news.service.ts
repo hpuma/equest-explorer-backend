@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { NewsApiService } from './api/news-api.service';
-import { EverythingQueryDto } from './dto/everything-query.dto';
-import { GetEverythingQueryDto } from './api/dto/get-everything-query.dto';
+import { EverythingQueryDto } from './dto';
+import { GetEverythingQueryDto } from './api/dto';
 
 @Injectable()
 export class NewsService {

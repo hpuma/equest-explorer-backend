@@ -3,9 +3,11 @@ import { AlphavApiService } from './api/alphav-api.service';
 import { QueryFunctions } from './api/dto/query-functions';
 import { GetQueryDto } from './api/dto/get-query.dto';
 
-import { IntradayQueryDto } from './dto/intraday-query.dto';
-import { GlobalQuoteQueryDto } from './dto/globalquote-query.dto';
-import { TickerSearchQueryDto } from './dto/tickersearch-query.dto';
+import {
+  IntradayQueryDto,
+  GlobalQuoteQueryDto,
+  TickerSearchQueryDto,
+} from './dto';
 
 @Injectable()
 export class AlphavService {

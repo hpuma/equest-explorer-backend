@@ -2,9 +2,9 @@ import { Controller, Get, Query, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { NewsService } from './news.service';
 import { GlobalValidator } from '@global/global-validator.class';
-import { EverythingQueryDto } from './dto/everything-query.dto';
-import { EverythingResponseDto } from './dto/everything-response.dto';
+import { EverythingQueryDto, EverythingResponseDto } from './dto';
 import { ApiResponse } from '@nestjs/swagger';
+
 @Controller('news')
 export class NewsController {
   constructor(

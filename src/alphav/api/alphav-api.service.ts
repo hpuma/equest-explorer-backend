@@ -3,9 +3,7 @@ import { HttpService } from '@nestjs/axios';
 
 // GlobalValidator: Validator used for validating and transforming
 import { GlobalValidator } from '@global/global-validator.class';
-
-import { GetQueryDto } from './dto/get-query.dto';
-import { GetResponseDto } from './dto/get-response.dto';
+import { GetQueryDto, GetResponseDto } from './dto';
 
 @Injectable()
 export class AlphavApiService {
