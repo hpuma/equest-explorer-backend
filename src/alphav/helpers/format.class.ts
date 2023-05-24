@@ -66,7 +66,9 @@ class Format {
   }
 
   static globalQuote(data: RawGlobalQuote): GlobalQuoteResponseDto {
-    return {
+    const formatDecimal = (decimalNum: number) =>
+      decimalNum.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
+    const mappedData = {
       symbol: data['01. symbol'],
       open: data['02. open'],
       high: data['03. high'],
@@ -78,6 +80,14 @@ class Format {
       change: data['09. change'],
       changePercent: data['10. change percent'],
     };
+
+    ['open', 'high', 'low', 'price', 'previousClose', 'change'].forEach(
+      (field) => {
+        mappedData[field] = formatDecimal(mappedData[field]);
+      },
+    );
+
+    return mappedData;
   }
 
   static tickerSearch(data: RawBestMatch[]): TickerSearchResponseDto {
