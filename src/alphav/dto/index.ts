@@ -8,6 +8,7 @@ import {
   TimeseriesData,
   Timeseries,
 } from './intraday/intraday-response.dto';
+import { NewsQueryDto } from './news/news-query.dto';
 import { TickerSearchQueryDto } from './tickersearch/tickersearch-query.dto';
 import {
   TickerSearchResponseDto,
@@ -23,6 +24,7 @@ export {
   MetaData,
   TimeseriesData,
   Timeseries,
+  NewsQueryDto,
   TickerSearchResponseDto,
   BestMatch,
 };

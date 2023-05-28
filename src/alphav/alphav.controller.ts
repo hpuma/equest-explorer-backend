@@ -7,6 +7,7 @@ import {
   GlobalQuoteQueryDto,
   TickerSearchQueryDto,
   IntradayResponseDto,
+  NewsQueryDto,
   GlobalQuoteResponseDto,
   TickerSearchResponseDto,
 } from './dto';
@@ -18,31 +19,6 @@ export class AlphavController {
     private readonly alphavService: AlphavService,
     private readonly globalValidator: GlobalValidator,
   ) {}
-
-  @Get('intraday')
-  @ApiResponse({
-    status: 200,
-    description: 'Intraday response object',
-    type: IntradayResponseDto,
-  })
-  async intraday(
-    @Query() query: IntradayQueryDto,
-    @Res() res: Response,
-  ): Promise<IntradayResponseDto> {
-    try {
-      const alphaServiceResponse = await this.alphavService.getIntraday(query);
-
-      const data = await this.globalValidator.validate(
-        alphaServiceResponse,
-        IntradayResponseDto,
-      );
-
-      res.json(data);
-      return data;
-    } catch (e) {
-      res.json({ message: e.message });
-    }
-  }
 
   @Get('global-quote')
   @ApiResponse({
@@ -70,6 +46,56 @@ export class AlphavController {
       res.json({ message: e.message });
     }
   }
+
+  @Get('intraday')
+  @ApiResponse({
+    status: 200,
+    description: 'Intraday response object',
+    type: IntradayResponseDto,
+  })
+  async intraday(
+    @Query() query: IntradayQueryDto,
+    @Res() res: Response,
+  ): Promise<IntradayResponseDto> {
+    try {
+      const alphaServiceResponse = await this.alphavService.getIntraday(query);
+
+      const data = await this.globalValidator.validate(
+        alphaServiceResponse,
+        IntradayResponseDto,
+      );
+
+      res.json(data);
+      return data;
+    } catch (e) {
+      res.json({ message: e.message });
+    }
+  }
+
+  // @Get('news')
+  // @ApiResponse({
+  //   status: 200,
+  //   description: 'News response object',
+  //   type: NewsQueryDto,
+  // })
+  // async news(
+  //   @Query() query: NewsQueryDto,
+  //   @Res() res: Response,
+  // ): Promise<IntradayResponseDto> {
+  //   try {
+  //     const alphaServiceResponse = await this.alphavService.getNews(query);
+
+  //     const data = await this.globalValidator.validate(
+  //       alphaServiceResponse,
+  //       IntradayResponseDto,
+  //     );
+
+  //     res.json(data);
+  //     return data;
+  //   } catch (e) {
+  //     res.json({ message: e.message });
+  //   }
+  // }
 
   @Get('ticker-search')
   @ApiResponse({
