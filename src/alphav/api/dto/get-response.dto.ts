@@ -1,7 +1,16 @@
-import { IsString, IsArray, IsOptional, ValidateNested } from 'class-validator';
+import {
+  IsString,
+  IsArray,
+  IsOptional,
+  ValidateNested,
+  IsNotEmpty,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class BestMatch {
+  constructor(data: BestMatch) {
+    if (data) Object.assign(this, data);
+  }
   @IsString()
   '1. symbol': string;
 
@@ -31,6 +40,10 @@ export class BestMatch {
 }
 
 export class GlobalQuote {
+  constructor(data: GlobalQuote) {
+    if (data) Object.assign(this, data);
+  }
+
   @IsString()
   '01. symbol': string;
 
@@ -62,7 +75,10 @@ export class GlobalQuote {
   '10. change percent': string;
 }
 
-class TimeseriesData {
+export class TimeseriesData {
+  constructor(data: TimeseriesData) {
+    if (data) Object.assign(this, data);
+  }
   @IsString()
   '1. open': string;
 
@@ -84,6 +100,9 @@ export class Timeseries {
 }
 
 export class MetaData {
+  constructor(data: MetaData) {
+    if (data) Object.assign(this, data);
+  }
   @IsString()
   '1. Information': string;
 
@@ -103,13 +122,14 @@ export class MetaData {
   '6. Time Zone': string;
 }
 
-export class GetResponseDto {
-  constructor(data: GetResponseDto) {
+export class GetIntradayDto {
+  constructor(data: GetIntradayDto) {
     if (data) Object.assign(this, data);
   }
 
+  @IsNotEmpty()
   @Type(() => MetaData)
-  'Meta Data'?: MetaData;
+  'Meta Data'!: MetaData;
 
   @Type(() => Timeseries)
   'Time Series (1min)'?: Timeseries;
@@ -125,13 +145,26 @@ export class GetResponseDto {
 
   @Type(() => Timeseries)
   'Time Series (60min)'?: Timeseries;
+}
 
+export class GetQuoteDto {
+  constructor(data: GetQuoteDto) {
+    if (data) Object.assign(this, data);
+  }
+
+  @IsNotEmpty()
   @Type(() => GlobalQuote)
-  'Global Quote'?: GlobalQuote;
+  'Global Quote': GlobalQuote;
+}
 
+export class GetTickerSearchDto {
+  constructor(data: GetTickerSearchDto) {
+    if (data) Object.assign(this, data);
+  }
   @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => BestMatch)
   bestMatches?: BestMatch[];
 }
+export class GetResponseDto {}
