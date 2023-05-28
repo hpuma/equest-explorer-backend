@@ -1,5 +1,4 @@
-import { EverythingQueryDto } from '@news/dto/everything-query.dto';
-import { EverythingResponseDto } from '@news/dto/everything-response.dto';
+import { EverythingQueryDto, EverythingResponseDto } from '@news/dto';
 
 export function createEverythingQuery(
   overrides: EverythingQueryDto | null = { ticker: 'SPY' },

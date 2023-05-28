@@ -7,9 +7,8 @@ import {
   NewsResource,
   Interval,
   Timestamp,
-} from '@global/news.resource.class';
-import Format from './helpers/format.class';
-import Time from './helpers/time.class';
+} from '@global/newsresource.class';
+import { Format, Time } from '../helpers';
 
 class MappedInterval extends Interval {
   constructor(date: Date) {
