@@ -1,9 +1,11 @@
-import { IntradayQueryDto } from '@alphav/dto/intraday-query.dto';
-import { IntradayResponseDto } from '@alphav/dto/intraday-response.dto';
-import { GlobalQuoteQueryDto } from '@alphav/dto/globalquote-query.dto';
-import { GlobalQuoteResponseDto } from '@alphav/dto/globalquote-response.dto';
-import { TickerSearchQueryDto } from '@alphav/dto/tickersearch-query.dto';
-import { TickerSearchResponseDto } from '@alphav/dto/tickersearch-response.dto';
+import {
+  IntradayQueryDto,
+  IntradayResponseDto,
+  GlobalQuoteQueryDto,
+  GlobalQuoteResponseDto,
+  TickerSearchQueryDto,
+  TickerSearchResponseDto,
+} from '@alphav/dto';
 
 export function createIntradayQuery(
   overrides: IntradayQueryDto | null = { ticker: 'SPY', interval: '1min' },

@@ -11,6 +11,7 @@ import {
   TickerSearchResponseDto,
 } from './dto';
 import { ApiResponse } from '@nestjs/swagger';
+
 @Controller('alphav')
 export class AlphavController {
   constructor(

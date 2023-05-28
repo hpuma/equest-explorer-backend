@@ -2,7 +2,7 @@ import { IsString, ValidateNested, IsArray, IsNumber } from 'class-validator';
 import { Type } from 'class-transformer';
 import { GetResponseDto } from '@alphav/api/dto/get-response.dto';
 import { ApiProperty } from '@nestjs/swagger';
-import Format from './helpers/format.class';
+import Format from '../helpers/format.class';
 
 export class ChartTimeSeries {
   @IsString()
@@ -68,7 +68,7 @@ export class MetaData {
   timezone: string;
 }
 
-class TimeseriesData {
+export class TimeseriesData {
   @IsString()
   @ApiProperty({ description: 'interval open', example: '117' })
   open: string;

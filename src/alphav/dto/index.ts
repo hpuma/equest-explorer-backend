@@ -1,16 +1,31 @@
-import { IntradayQueryDto } from './intraday-query.dto';
-import { GlobalQuoteQueryDto } from './globalquote-query.dto';
-import { TickerSearchQueryDto } from './tickersearch-query.dto';
+import { GlobalQuoteQueryDto } from './globalquote/globalquote-query.dto';
+import { GlobalQuoteResponseDto } from './globalquote/globalquote-response.dto';
 
-import { IntradayResponseDto } from './intraday-response.dto';
-import { GlobalQuoteResponseDto } from './globalquote-response.dto';
-import { TickerSearchResponseDto } from './tickersearch-response.dto';
+import { IntradayQueryDto } from './intraday/intraday-query.dto';
+import {
+  IntradayResponseDto,
+  ChartTimeSeries,
+  MetaData,
+  TimeseriesData,
+  Timeseries,
+} from './intraday/intraday-response.dto';
+
+import { TickerSearchQueryDto } from './tickersearch/tickersearch-query.dto';
+import {
+  TickerSearchResponseDto,
+  BestMatch,
+} from './tickersearch/tickersearch-response.dto';
 
 export {
-  IntradayQueryDto,
   GlobalQuoteQueryDto,
+  GlobalQuoteResponseDto,
   TickerSearchQueryDto,
   IntradayResponseDto,
-  GlobalQuoteResponseDto,
+  IntradayQueryDto,
+  ChartTimeSeries,
+  MetaData,
+  TimeseriesData,
+  Timeseries,
   TickerSearchResponseDto,
+  BestMatch,
 };

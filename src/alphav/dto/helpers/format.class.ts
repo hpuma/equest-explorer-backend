@@ -6,15 +6,13 @@ import {
   BestMatch as RawBestMatch,
 } from '@alphav/api/dto/get-response.dto';
 import {
+  GlobalQuoteResponseDto,
   MetaData,
   Timeseries,
   ChartTimeSeries,
-} from '../intraday-response.dto';
-import { GlobalQuoteResponseDto } from '@alphav/dto/globalquote-response.dto';
-import {
-  BestMatch,
   TickerSearchResponseDto,
-} from '@alphav/dto/tickersearch-response.dto';
+  BestMatch,
+} from '..';
 
 export default class Format {
   static metaData(data: RawMetaData): MetaData {

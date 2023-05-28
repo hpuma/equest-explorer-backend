@@ -1,7 +1,7 @@
 import { IsString } from 'class-validator';
 import { GetResponseDto } from '@alphav/api/dto/get-response.dto';
 import { ApiProperty } from '@nestjs/swagger';
-import Format from './helpers/format.class';
+import Format from '../helpers/format.class';
 
 export class GlobalQuoteResponseDto {
   constructor(data: GetResponseDto) {
