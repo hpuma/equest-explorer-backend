@@ -1,16 +1,16 @@
-import { Format } from '../helpers/format.class';
-import { Time } from '../helpers/time.class';
 import {
   Article as RawArticle,
   GetEverythingResponseDto,
 } from '@news/api/dto/get-everything-response.dto';
-
 import {
   Article,
   NewsResource,
   Interval,
   Timestamp,
 } from '@global/news.resource.class';
+import Format from './helpers/format.class';
+import Time from './helpers/time.class';
+
 class MappedInterval extends Interval {
   constructor(date: Date) {
     super({

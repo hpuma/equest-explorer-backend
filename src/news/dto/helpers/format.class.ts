@@ -1,4 +1,4 @@
-class Format {
+export default class Format {
   static date(date: Date) {
     return (
       date.getFullYear() +
@@ -20,4 +20,3 @@ class Format {
     return Format.date(date) + ' ' + Format.time(date);
   }
 }
-export { Format };

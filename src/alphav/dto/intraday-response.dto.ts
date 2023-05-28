@@ -1,8 +1,8 @@
 import { IsString, ValidateNested, IsArray, IsNumber } from 'class-validator';
 import { Type } from 'class-transformer';
-import { Format } from '@alphav/helpers/format.class';
 import { GetResponseDto } from '@alphav/api/dto/get-response.dto';
 import { ApiProperty } from '@nestjs/swagger';
+import Format from './helpers/format.class';
 
 export class ChartTimeSeries {
   @IsString()

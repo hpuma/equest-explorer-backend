@@ -9,14 +9,14 @@ import {
   MetaData,
   Timeseries,
   ChartTimeSeries,
-} from '../dto/intraday-response.dto';
+} from '../intraday-response.dto';
 import { GlobalQuoteResponseDto } from '@alphav/dto/globalquote-response.dto';
 import {
   BestMatch,
   TickerSearchResponseDto,
 } from '@alphav/dto/tickersearch-response.dto';
 
-class Format {
+export default class Format {
   static metaData(data: RawMetaData): MetaData {
     return {
       info: data['1. Information'],
@@ -130,5 +130,3 @@ class Format {
     return data.bestMatches;
   }
 }
-
-export { Format };

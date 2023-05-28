@@ -1,4 +1,4 @@
-class Time {
+export default class Time {
   static roundMinute(date: Date, direction: string): Date {
     const minutes = 1;
     const ms = 1000 * 60 * minutes;
@@ -12,4 +12,3 @@ class Time {
     }
   }
 }
-export { Time };
