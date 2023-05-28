@@ -12,13 +12,15 @@ export class GlobalValidator {
     const instanceData = plainToInstance(validationClass, mappedData, {
       exposeUnsetFields: false,
     }) as any;
-    console.log('[VALIDATE] - GlobalValidator - ', validationClass);
+
     const errors = await validate(instanceData);
 
     if (errors.length > 0) {
-      throw new TypeError(`${errors.map((error) => error.toString())}`);
+      throw new TypeError(
+        `VALIDATION ERROR: ${errors.map((error) => error.toString())}`,
+      );
     }
-
+    console.log('[VALIDATE] - GlobalValidator - ', validationClass);
     return instanceData;
   }
 }
