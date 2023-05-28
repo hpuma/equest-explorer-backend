@@ -1,5 +1,9 @@
-import { Connection } from 'mongoose';
-import { TickerValueSchema } from './tickervalue.schema';
+import { Connection, Schema } from 'mongoose';
+
+export const TickerValueSchema = new Schema({
+  symbol: String,
+  name: String,
+});
 
 export const TickerValueProvider = {
   provide: 'TICKERVALUE_MODEL',
