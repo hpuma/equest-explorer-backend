@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 describe('AppController', () => {
-  let appController: AppController;
+  let appController: AppController = new AppController(null);
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
@@ -15,6 +15,8 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should automatically pass"', () => {});
+    it('should automatically pass"', () => {
+      expect(appController).toBeDefined();
+    });
   });
 });

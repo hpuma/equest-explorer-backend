@@ -5,7 +5,6 @@ import { NewsService } from './news.service';
 import { NewsController } from './news.controller';
 import { NewsApiService } from './api/news-api.service';
 import { GlobalModule } from '@global/global.module';
-
 @Module({
   imports: [
     GlobalModule,

@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { AlphavApiService } from './api/alphav-api.service';
 import { QueryFunctions } from './api/dto/query-functions';
 import { GetQueryDto } from './api/dto/get-query.dto';
-
 import {
   IntradayQueryDto,
   GlobalQuoteQueryDto,
