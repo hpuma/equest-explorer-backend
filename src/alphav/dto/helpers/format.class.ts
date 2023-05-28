@@ -1,5 +1,6 @@
 import {
-  GetResponseDto,
+  GetQuoteDto,
+  GetTickerSearchDto,
   Timeseries as RawTimeseries,
   MetaData as RawMetaData,
   GlobalQuote as RawGlobalQuote,
@@ -120,11 +121,11 @@ export default class Format {
     }
     return null;
   }
-  static extractGlobalQuote(data: GetResponseDto): RawGlobalQuote {
+  static extractGlobalQuote(data: GetQuoteDto): RawGlobalQuote {
     return data['Global Quote'];
   }
 
-  static extractBestMatches(data: GetResponseDto): RawBestMatch[] {
+  static extractBestMatches(data: GetTickerSearchDto): RawBestMatch[] {
     return data.bestMatches;
   }
 }

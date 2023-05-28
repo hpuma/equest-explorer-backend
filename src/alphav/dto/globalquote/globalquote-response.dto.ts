@@ -1,10 +1,10 @@
 import { IsString } from 'class-validator';
-import { GetResponseDto } from '@alphav/api/dto/get-response.dto';
+import { GetQuoteDto } from '@alphav/api/dto';
 import { ApiProperty } from '@nestjs/swagger';
 import Format from '../helpers/format.class';
 
 export class GlobalQuoteResponseDto {
-  constructor(data: GetResponseDto) {
+  constructor(data: GetQuoteDto) {
     if (!data) return;
     const rawGlobalQuote = Format.extractGlobalQuote(data);
     if (!rawGlobalQuote)

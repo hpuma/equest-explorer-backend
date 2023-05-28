@@ -1,4 +1,15 @@
 import { GetQueryDto } from './get-query.dto';
-import { GetResponseDto } from './get-response.dto';
+import {
+  GetResponseDto,
+  GetIntradayDto,
+  GetQuoteDto,
+  GetTickerSearchDto,
+} from './get-response.dto';
 
-export { GetQueryDto, GetResponseDto };
+export {
+  GetQueryDto,
+  GetResponseDto,
+  GetIntradayDto,
+  GetQuoteDto,
+  GetTickerSearchDto,
+};

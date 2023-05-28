@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { AlphavApiService } from './api/alphav-api.service';
-import { QueryFunctions } from './api/dto/query-functions';
-import { GetQueryDto } from './api/dto/get-query.dto';
+import { QueryFunctions } from './api/dto/utils';
+import { GetQueryDto } from './api/dto';
 import {
   IntradayQueryDto,
   GlobalQuoteQueryDto,
@@ -36,6 +36,15 @@ export class AlphavService {
     const params: GetQueryDto = {
       function: QueryFunctions.SYMBOL_SEARCH,
       keywords: query.ticker,
+    };
+
+    return await this.alphavApiService.get(params);
+  }
+
+  async getNews(query: TickerSearchQueryDto) {
+    const params: GetQueryDto = {
+      function: QueryFunctions.NEWS_SENTIMENT,
+      tickers: query.ticker,
     };
 
     return await this.alphavApiService.get(params);
