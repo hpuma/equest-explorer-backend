@@ -111,7 +111,7 @@ export class Article {
 
 export class NewsResource {
   constructor(data: NewsResource) {
-    Object.assign(this, { ...data });
+    Object.assign(this, data);
   }
   @IsArray()
   @ValidateNested({ each: true })

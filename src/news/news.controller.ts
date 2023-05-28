@@ -4,7 +4,6 @@ import { NewsService } from './news.service';
 import { GlobalValidator } from '@global/global-validator.class';
 import { EverythingQueryDto, EverythingResponseDto } from './dto';
 import { ApiResponse } from '@nestjs/swagger';
-import { NewsResource } from '@global/news.resource.class';
 
 @Controller('news')
 export class NewsController {
@@ -26,11 +25,9 @@ export class NewsController {
     try {
       const newsServiceResponse = await this.newsService.getEverything(query);
 
-      const formattedDto = new EverythingResponseDto(newsServiceResponse);
-
       const data = await this.globalValidator.validate(
-        formattedDto,
-        NewsResource,
+        newsServiceResponse,
+        EverythingResponseDto,
       );
 
       res.json(data);

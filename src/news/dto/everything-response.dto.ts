@@ -13,7 +13,6 @@ import {
 } from '@global/news.resource.class';
 class MappedInterval extends Interval {
   constructor(date: Date) {
-    if (!date) return;
     super({
       plusone: Format.dateString(Time.roundMinute(date, 'up')),
       exact: Format.dateString(date),
@@ -24,7 +23,6 @@ class MappedInterval extends Interval {
 
 class MappedTimestamp extends Timestamp {
   constructor(publishedAt: string) {
-    if (!publishedAt) return;
     const date = new Date(publishedAt);
     super({
       date: Format.date(date),
@@ -36,20 +34,22 @@ class MappedTimestamp extends Timestamp {
 
 class MappedArticle extends Article {
   constructor(rawArticle: RawArticle) {
-    if (!rawArticle) return;
     const timestamp = new MappedTimestamp(rawArticle.publishedAt);
     super({ ...rawArticle, timestamp });
   }
 }
 
 export class EverythingResponseDto extends NewsResource {
-  constructor(data: GetEverythingResponseDto) {
-    if (!data) return;
+  constructor(
+    { articles, totalResults }: GetEverythingResponseDto = {
+      articles: [],
+      totalResults: 0,
+      status: 'ok',
+    },
+  ) {
     super({
-      articles: data.articles.map(
-        (rawArticles) => new MappedArticle(rawArticles),
-      ),
-      count: data.totalResults,
+      articles: articles.map((rawArticles) => new MappedArticle(rawArticles)),
+      count: totalResults,
     });
   }
 }
