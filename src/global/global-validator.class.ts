@@ -12,7 +12,7 @@ export class GlobalValidator {
     const instanceData = plainToInstance(validationClass, mappedData, {
       exposeUnsetFields: false,
     }) as any;
-
+    console.log('[VALIDATE] - GlobalValidator - ', validationClass);
     const errors = await validate(instanceData);
 
     if (errors.length > 0) {
