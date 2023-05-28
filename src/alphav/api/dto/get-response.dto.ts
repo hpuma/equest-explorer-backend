@@ -167,4 +167,3 @@ export class GetTickerSearchDto {
   @Type(() => BestMatch)
   bestMatches?: BestMatch[];
 }
-export class GetResponseDto {}

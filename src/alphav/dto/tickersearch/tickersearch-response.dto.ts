@@ -1,6 +1,6 @@
 import { IsArray, IsNumber, IsString, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
-import { GetResponseDto } from '@alphav/api/dto/get-response.dto';
+import { GetTickerSearchDto } from '@alphav/api/dto';
 import { ApiProperty } from '@nestjs/swagger';
 import Format from '../helpers/format.class';
 
@@ -71,7 +71,7 @@ export class BestMatch {
 }
 
 export class TickerSearchResponseDto {
-  constructor(data: GetResponseDto) {
+  constructor(data: GetTickerSearchDto) {
     if (!data) return;
 
     const rawBestMatches = Format.extractBestMatches(data);

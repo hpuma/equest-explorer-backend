@@ -1,7 +1,7 @@
-import { GetResponseDto } from '@alphav/api/dto/get-response.dto';
+import { GetIntradayDto } from '@alphav/api/dto';
 
 export function createGetResponse(
-  overrides: GetResponseDto | null = {
+  overrides: GetIntradayDto | null = {
     'Meta Data': {
       '1. Information':
         'Intraday (1min) open, high, low, close prices and volume',
@@ -21,6 +21,6 @@ export function createGetResponse(
       },
     },
   },
-): GetResponseDto {
+): GetIntradayDto {
   return overrides;
 }

@@ -1,6 +1,6 @@
 import { IsString, ValidateNested, IsArray, IsNumber } from 'class-validator';
 import { Type } from 'class-transformer';
-import { GetResponseDto } from '@alphav/api/dto/get-response.dto';
+import { GetIntradayDto } from '@alphav/api/dto';
 import { ApiProperty } from '@nestjs/swagger';
 import Format from '../helpers/format.class';
 
@@ -97,7 +97,7 @@ export class Timeseries {
 }
 
 export class IntradayResponseDto {
-  constructor(data: GetResponseDto) {
+  constructor(data: GetIntradayDto) {
     if (!data) return;
 
     const rawMetaData = Format.extractMetadata(data);
