@@ -34,6 +34,7 @@ class MappedTimestamp extends Timestamp {
 class MappedArticle extends Article {
   constructor(rawArticle: RawArticle) {
     const timestamp = new MappedTimestamp(rawArticle.publishedAt);
+    delete rawArticle.source;
     super({ ...rawArticle, timestamp });
   }
 }
