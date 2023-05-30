@@ -8,7 +8,7 @@ import {
   Interval,
   Timestamp,
 } from '@global/newsresource.class';
-import { Format, Time } from '../helpers';
+import { Format, Time } from '@global/helpers';
 
 class MappedInterval extends Interval {
   constructor(date: Date) {
