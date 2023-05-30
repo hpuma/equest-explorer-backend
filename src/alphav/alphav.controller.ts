@@ -9,6 +9,7 @@ import {
   IntradayResponseDto,
   NewsQueryDto,
   GlobalQuoteResponseDto,
+  NewsSentimentResponsDto,
   TickerSearchResponseDto,
 } from './dto';
 import { ApiResponse } from '@nestjs/swagger';
@@ -72,30 +73,30 @@ export class AlphavController {
     }
   }
 
-  // @Get('news')
-  // @ApiResponse({
-  //   status: 200,
-  //   description: 'News response object',
-  //   type: NewsQueryDto,
-  // })
-  // async news(
-  //   @Query() query: NewsQueryDto,
-  //   @Res() res: Response,
-  // ): Promise<IntradayResponseDto> {
-  //   try {
-  //     const alphaServiceResponse = await this.alphavService.getNews(query);
+  @Get('news')
+  @ApiResponse({
+    status: 200,
+    description: 'News response object',
+    type: NewsQueryDto,
+  })
+  async news(
+    @Query() query: NewsQueryDto,
+    @Res() res: Response,
+  ): Promise<NewsSentimentResponsDto> {
+    try {
+      const alphaServiceResponse = await this.alphavService.getNews(query);
 
-  //     const data = await this.globalValidator.validate(
-  //       alphaServiceResponse,
-  //       IntradayResponseDto,
-  //     );
+      const data = await this.globalValidator.validate(
+        alphaServiceResponse,
+        NewsSentimentResponsDto,
+      );
 
-  //     res.json(data);
-  //     return data;
-  //   } catch (e) {
-  //     res.json({ message: e.message });
-  //   }
-  // }
+      res.json(data);
+      return data;
+    } catch (e) {
+      res.json({ message: e.message });
+    }
+  }
 
   @Get('ticker-search')
   @ApiResponse({
