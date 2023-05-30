@@ -9,10 +9,6 @@ import {
 import { Type } from 'class-transformer';
 
 export class GlobalQuote {
-  constructor(data: GlobalQuote) {
-    if (data) Object.assign(this, data);
-  }
-
   @IsString()
   '01. symbol': string;
 
@@ -55,9 +51,6 @@ export class GetQuoteDto {
 }
 
 export class TimeseriesData {
-  constructor(data: TimeseriesData) {
-    if (data) Object.assign(this, data);
-  }
   @IsString()
   '1. open': string;
 
@@ -126,7 +119,7 @@ export class GetIntradayDto {
   'Time Series (60min)'?: Timeseries;
 }
 
-class FeedTopics {
+export class FeedTopics {
   @IsString()
   topic: string;
 
@@ -148,10 +141,7 @@ class TickerSentiment {
   ticker_sentiment_label: string;
 }
 
-class NewsSentimentFeed {
-  constructor(data: NewsSentimentFeed) {
-    Object.assign(this, data);
-  }
+export class NewsSentimentFeed {
   @IsString()
   title: string;
 
@@ -162,8 +152,6 @@ class NewsSentimentFeed {
   time_published: string;
 
   @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => String)
   authors: string[];
 
   @IsString()
@@ -194,18 +182,18 @@ class NewsSentimentFeed {
   ticker_sentiment: TickerSentiment[];
 }
 // NEWS
-export class GetNewsSentiment {
-  constructor(data: GetNewsSentiment) {
-    Object.assign(this, data);
+export class GetNewsSentimentDto {
+  constructor(data: GetNewsSentimentDto) {
+    if (data) Object.assign(this, data);
   }
   @IsString()
   items: string;
 
   @IsString()
-  sentiment_score_definitions: string;
+  sentiment_score_definition: string;
 
   @IsString()
-  relevance_score_definintion: string;
+  relevance_score_definition: string;
 
   @IsArray()
   @ValidateNested({ each: true })
@@ -214,9 +202,6 @@ export class GetNewsSentiment {
 }
 
 export class BestMatch {
-  constructor(data: BestMatch) {
-    if (data) Object.assign(this, data);
-  }
   @IsString()
   '1. symbol': string;
 

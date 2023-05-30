@@ -7,6 +7,7 @@ import {
   GetQueryDto,
   GetIntradayDto,
   GetQuoteDto,
+  GetNewsSentimentDto,
   GetTickerSearchDto,
 } from './dto';
 import { MapQueryToResponse } from './dto/utils';
@@ -20,7 +21,9 @@ export class AlphavApiService {
 
   async get(
     query: GetQueryDto,
-  ): Promise<GetIntradayDto | GetQuoteDto | GetTickerSearchDto> {
+  ): Promise<
+    GetIntradayDto | GetQuoteDto | GetNewsSentimentDto | GetTickerSearchDto
+  > {
     const params = await this.globalValidator.validate(query, GetQueryDto);
 
     const {
@@ -31,7 +34,7 @@ export class AlphavApiService {
     });
 
     console.log(
-      `[${method}] ${protocol}//${host}/?${new URLSearchParams(
+      `[${method}] ${protocol}//${host}/query?${new URLSearchParams(
         params as any,
       ).toString()}`,
     );

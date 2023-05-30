@@ -1,4 +1,9 @@
-import { GetIntradayDto, GetQuoteDto, GetTickerSearchDto } from './';
+import {
+  GetIntradayDto,
+  GetQuoteDto,
+  GetNewsSentimentDto,
+  GetTickerSearchDto,
+} from './';
 
 export enum QueryFunctions {
   TIME_SERIES_INTRADAY = 'TIME_SERIES_INTRADAY',
@@ -9,11 +14,17 @@ export enum QueryFunctions {
 
 export function MapQueryToResponse(
   queryFunction: QueryFunctions,
-): GetIntradayDto | GetQuoteDto | GetTickerSearchDto {
+):
+  | typeof GetIntradayDto
+  | typeof GetQuoteDto
+  | typeof GetNewsSentimentDto
+  | typeof GetTickerSearchDto {
   const mapper = {
     TIME_SERIES_INTRADAY: GetIntradayDto,
     GLOBAL_QUOTE: GetQuoteDto,
+    NEWS_SENTIMENT: GetNewsSentimentDto,
     SYMBOL_SEARCH: GetTickerSearchDto,
   };
+
   return mapper[queryFunction];
 }
