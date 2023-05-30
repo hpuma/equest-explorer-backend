@@ -4,40 +4,9 @@ import {
   IsOptional,
   ValidateNested,
   IsNotEmpty,
+  IsNumber,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-
-export class BestMatch {
-  constructor(data: BestMatch) {
-    if (data) Object.assign(this, data);
-  }
-  @IsString()
-  '1. symbol': string;
-
-  @IsString()
-  '2. name': string;
-
-  @IsString()
-  '3. type': string;
-
-  @IsString()
-  '4. region': string;
-
-  @IsString()
-  '5. marketOpen': string;
-
-  @IsString()
-  '6. marketClose': string;
-
-  @IsString()
-  '7. timezone': string;
-
-  @IsString()
-  '8. currency': string;
-
-  @IsString()
-  '9. matchScore': string;
-}
 
 export class GlobalQuote {
   constructor(data: GlobalQuote) {
@@ -73,6 +42,16 @@ export class GlobalQuote {
 
   @IsString()
   '10. change percent': string;
+}
+// QUOTE
+export class GetQuoteDto {
+  constructor(data: GetQuoteDto) {
+    if (data) Object.assign(this, data);
+  }
+
+  @IsNotEmpty()
+  @Type(() => GlobalQuote)
+  'Global Quote': GlobalQuote;
 }
 
 export class TimeseriesData {
@@ -121,7 +100,7 @@ export class MetaData {
   @IsString()
   '6. Time Zone': string;
 }
-
+// INTRADAY
 export class GetIntradayDto {
   constructor(data: GetIntradayDto) {
     if (data) Object.assign(this, data);
@@ -147,16 +126,125 @@ export class GetIntradayDto {
   'Time Series (60min)'?: Timeseries;
 }
 
-export class GetQuoteDto {
-  constructor(data: GetQuoteDto) {
-    if (data) Object.assign(this, data);
-  }
+class FeedTopics {
+  @IsString()
+  topic: string;
 
-  @IsNotEmpty()
-  @Type(() => GlobalQuote)
-  'Global Quote': GlobalQuote;
+  @IsString()
+  relevance_score: string;
 }
 
+class TickerSentiment {
+  @IsString()
+  ticker: string;
+
+  @IsString()
+  relevance_score: string;
+
+  @IsString()
+  ticker_sentiment_score: string;
+
+  @IsString()
+  ticker_sentiment_label: string;
+}
+
+class NewsSentimentFeed {
+  constructor(data: NewsSentimentFeed) {
+    Object.assign(this, data);
+  }
+  @IsString()
+  title: string;
+
+  @IsString()
+  url: string;
+
+  @IsString()
+  time_published: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => String)
+  authors: string[];
+
+  @IsString()
+  summary: string;
+
+  @IsString()
+  banner_image: string;
+
+  @IsString()
+  source: string;
+
+  @IsString()
+  category_within_source: string;
+
+  @IsString()
+  source_domain: string;
+  topics: FeedTopics[];
+
+  @IsNumber()
+  overall_sentiment_score: number;
+
+  @IsString()
+  overall_sentiment_label: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => TickerSentiment)
+  ticker_sentiment: TickerSentiment[];
+}
+// NEWS
+export class GetNewsSentiment {
+  constructor(data: GetNewsSentiment) {
+    Object.assign(this, data);
+  }
+  @IsString()
+  items: string;
+
+  @IsString()
+  sentiment_score_definitions: string;
+
+  @IsString()
+  relevance_score_definintion: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => NewsSentimentFeed)
+  feed: NewsSentimentFeed[];
+}
+
+export class BestMatch {
+  constructor(data: BestMatch) {
+    if (data) Object.assign(this, data);
+  }
+  @IsString()
+  '1. symbol': string;
+
+  @IsString()
+  '2. name': string;
+
+  @IsString()
+  '3. type': string;
+
+  @IsString()
+  '4. region': string;
+
+  @IsString()
+  '5. marketOpen': string;
+
+  @IsString()
+  '6. marketClose': string;
+
+  @IsString()
+  '7. timezone': string;
+
+  @IsString()
+  '8. currency': string;
+
+  @IsString()
+  '9. matchScore': string;
+}
+// TICKER SEARCH
 export class GetTickerSearchDto {
   constructor(data: GetTickerSearchDto) {
     if (data) Object.assign(this, data);
