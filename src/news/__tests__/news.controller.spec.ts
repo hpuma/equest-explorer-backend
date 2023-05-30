@@ -1,7 +1,7 @@
 import { GlobalValidator } from '@global/global-validator.class';
 import { NewsController } from '../news.controller';
 import { NewsService } from '../news.service';
-import { res } from '@global/testing/test-setup';
+import { res } from '@global/testing/setup';
 import { getTestingModule } from './utils/test-setup';
 import { createGetEverythingResponse } from './utils/service-data';
 import {

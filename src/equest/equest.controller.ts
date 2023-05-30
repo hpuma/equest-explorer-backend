@@ -11,7 +11,7 @@ import {
 import { Response } from 'express';
 import { EquestService } from './equest.service';
 import { CreateApiKeyBodyDto, TickerSearchQueryDto } from './dto';
-import { AuthGuard } from '@global/auth.gaurd';
+import { AuthGuard } from '@global/auth-gaurd.class';
 
 @Controller('equest')
 export class EquestController {

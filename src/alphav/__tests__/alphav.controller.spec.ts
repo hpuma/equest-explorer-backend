@@ -1,5 +1,5 @@
 import { GlobalValidator } from '@global/global-validator.class';
-import { res } from '@global/testing/test-setup';
+import { res } from '@global/testing/setup';
 import { getTestingModule } from './utils/test-setup';
 import { createGetResponse } from './utils/service-data';
 import {
