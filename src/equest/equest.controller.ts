@@ -10,8 +10,7 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import { EquestService } from './equest.service';
-import { TickerSearchQueryDto } from './dto/tickersearch-query.dto';
-import { CreateApiKeyBodyDto } from './dto/createapikey-body.dto';
+import { CreateApiKeyBodyDto, TickerSearchQueryDto } from './dto';
 import { AuthGuard } from '@global/auth.gaurd';
 
 @Controller('equest')
