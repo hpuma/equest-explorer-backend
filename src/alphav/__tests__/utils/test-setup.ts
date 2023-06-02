@@ -38,6 +38,7 @@ function getProviderByType(testType: string) {
             getIntraday: jest.fn(),
             getGlobalQuote: jest.fn(),
             getTickerSearch: jest.fn(),
+            getNews: jest.fn(),
           },
         },
       ];

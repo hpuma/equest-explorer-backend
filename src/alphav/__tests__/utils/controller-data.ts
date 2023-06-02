@@ -3,6 +3,8 @@ import {
   IntradayResponseDto,
   GlobalQuoteQueryDto,
   GlobalQuoteResponseDto,
+  NewsQueryDto,
+  NewsSentimentResponsDto,
   TickerSearchQueryDto,
   TickerSearchResponseDto,
 } from '@alphav/dto';
@@ -64,6 +66,18 @@ export function createGlobalQuoteResponse(
     changePercent: '-1.4429%',
   },
 ): GlobalQuoteResponseDto {
+  return overrides;
+}
+
+export function createGetNewsQuery(
+  overrides: NewsQueryDto | null = { ticker: 'SPY' },
+): NewsQueryDto {
+  return overrides;
+}
+
+export function createNewsSentimentResponseDto(
+  overrides: NewsSentimentResponsDto | null = { articles: [], count: 2 },
+): NewsSentimentResponsDto {
   return overrides;
 }
 
