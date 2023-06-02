@@ -20,7 +20,7 @@ export class GlobalValidator {
         `VALIDATION ERROR: ${errors.map((error) => error.toString())}`,
       );
     }
-    console.log('[VALIDATE] - GlobalValidator - ', validationClass);
+    // console.log('[VALIDATE] - GlobalValidator - ', validationClass);
     return instanceData;
   }
 }
