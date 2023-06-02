@@ -9,6 +9,8 @@ import {
   createGlobalQuoteResponse,
   createTickerSearchQuery,
   createTickerSearchResponse,
+  createGetNewsQuery,
+  createNewsSentimentResponseDto,
 } from './utils/controller-data';
 import { AlphavController } from '@alphav/alphav.controller';
 import { AlphavService } from '@alphav/alphav.service';
@@ -18,7 +20,8 @@ describe('AlphavController', () => {
   let service: AlphavService;
   let response;
   let globalValidator: GlobalValidator;
-
+  const serviceErrorMessage = 'Service has encountered an error';
+  const validatorErrorMessage = 'Global Validator has encountered an error';
   beforeEach(async () => {
     const module = await getTestingModule('controller');
     controller = module.get<AlphavController>(AlphavController);
@@ -31,6 +34,45 @@ describe('AlphavController', () => {
 
   beforeEach(() => {
     jest.resetAllMocks();
+  });
+
+  describe('when globalquote()', () => {
+    describe('when a successful response is returned', () => {
+      it('should return a successful response when all dtos are valid', async () => {
+        jest
+          .spyOn(service, 'getGlobalQuote')
+          .mockResolvedValueOnce(createGetResponse());
+
+        const mockGlobalValidatorData = createGlobalQuoteResponse();
+        jest
+          .spyOn(globalValidator, 'validate')
+          .mockResolvedValueOnce(mockGlobalValidatorData);
+
+        response = await controller.globalquote(createGlobalQuoteQuery(), res);
+
+        expect(res.json).toBeCalledWith(mockGlobalValidatorData);
+        expect(response).toEqual(mockGlobalValidatorData);
+      });
+    });
+    describe('when an unsuccessful response returned', () => {
+      it('should throw when service fails', async () => {
+        jest.spyOn(service, 'getGlobalQuote').mockImplementationOnce(() => {
+          throw new Error(serviceErrorMessage);
+        });
+
+        response = await controller.globalquote(createGlobalQuoteQuery(), res);
+        expect(res.json).toBeCalledWith({ message: serviceErrorMessage });
+      });
+
+      it('should throw when validator fails', async () => {
+        jest.spyOn(globalValidator, 'validate').mockImplementationOnce(() => {
+          throw new Error(validatorErrorMessage);
+        });
+
+        response = await controller.globalquote(createGlobalQuoteQuery(), res);
+        expect(res.json).toBeCalledWith({ message: validatorErrorMessage });
+      });
+    });
   });
   describe('when intraday()', () => {
     describe('when a successful response is returned', () => {
@@ -52,7 +94,6 @@ describe('AlphavController', () => {
     });
     describe('when an unsuccessful response returned', () => {
       it('should throw when service fails', async () => {
-        const serviceErrorMessage = 'Service has encountered an error';
         jest.spyOn(service, 'getIntraday').mockImplementationOnce(() => {
           throw new Error(serviceErrorMessage);
         });
@@ -62,29 +103,28 @@ describe('AlphavController', () => {
       });
 
       it('should throw when validator fails', async () => {
-        const serviceErrorMessage = 'Global Validator has encountered an error';
         jest.spyOn(globalValidator, 'validate').mockImplementationOnce(() => {
-          throw new Error(serviceErrorMessage);
+          throw new Error(validatorErrorMessage);
         });
 
         response = await controller.intraday(createIntradayQuery(), res);
-        expect(res.json).toBeCalledWith({ message: serviceErrorMessage });
+        expect(res.json).toBeCalledWith({ message: validatorErrorMessage });
       });
     });
   });
-  describe('when globalquote()', () => {
+  describe('when news()', () => {
     describe('when a successful response is returned', () => {
       it('should return a successful response when all dtos are valid', async () => {
         jest
-          .spyOn(service, 'getGlobalQuote')
+          .spyOn(service, 'getNews')
           .mockResolvedValueOnce(createGetResponse());
 
-        const mockGlobalValidatorData = createGlobalQuoteResponse();
+        const mockGlobalValidatorData = createNewsSentimentResponseDto();
         jest
           .spyOn(globalValidator, 'validate')
           .mockResolvedValueOnce(mockGlobalValidatorData);
 
-        response = await controller.globalquote(createGlobalQuoteQuery(), res);
+        response = await controller.news(createGetNewsQuery(), res);
 
         expect(res.json).toBeCalledWith(mockGlobalValidatorData);
         expect(response).toEqual(mockGlobalValidatorData);
@@ -92,23 +132,21 @@ describe('AlphavController', () => {
     });
     describe('when an unsuccessful response returned', () => {
       it('should throw when service fails', async () => {
-        const serviceErrorMessage = 'Service has encountered an error';
-        jest.spyOn(service, 'getGlobalQuote').mockImplementationOnce(() => {
+        jest.spyOn(service, 'getNews').mockImplementationOnce(() => {
           throw new Error(serviceErrorMessage);
         });
 
-        response = await controller.globalquote(createGlobalQuoteQuery(), res);
+        response = await controller.news(createGetNewsQuery(), res);
         expect(res.json).toBeCalledWith({ message: serviceErrorMessage });
       });
 
       it('should throw when validator fails', async () => {
-        const serviceErrorMessage = 'Global Validator has encountered an error';
         jest.spyOn(globalValidator, 'validate').mockImplementationOnce(() => {
-          throw new Error(serviceErrorMessage);
+          throw new Error(validatorErrorMessage);
         });
 
-        response = await controller.globalquote(createGlobalQuoteQuery(), res);
-        expect(res.json).toBeCalledWith({ message: serviceErrorMessage });
+        response = await controller.news(createGetNewsQuery(), res);
+        expect(res.json).toBeCalledWith({ message: validatorErrorMessage });
       });
     });
   });
@@ -135,7 +173,6 @@ describe('AlphavController', () => {
     });
     describe('when an unsuccessful response returned', () => {
       it('should throw when service fails', async () => {
-        const serviceErrorMessage = 'Service has encountered an error';
         jest.spyOn(service, 'getTickerSearch').mockImplementationOnce(() => {
           throw new Error(serviceErrorMessage);
         });
@@ -148,16 +185,15 @@ describe('AlphavController', () => {
       });
 
       it('should throw when validator fails', async () => {
-        const serviceErrorMessage = 'Global Validator has encountered an error';
         jest.spyOn(globalValidator, 'validate').mockImplementationOnce(() => {
-          throw new Error(serviceErrorMessage);
+          throw new Error(validatorErrorMessage);
         });
 
         response = await controller.tickersearch(
           createTickerSearchQuery(),
           res,
         );
-        expect(res.json).toBeCalledWith({ message: serviceErrorMessage });
+        expect(res.json).toBeCalledWith({ message: validatorErrorMessage });
       });
     });
   });
