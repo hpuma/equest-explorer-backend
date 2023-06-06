@@ -10,7 +10,7 @@ class ApiBaseUrls {
   ALPHAV_BASE_URL = 'https://www.alphavantage.co/query';
 
   @IsString()
-  MARKETAUX_BASE_URL = 'https://api.marketaux.com/v1/';
+  MARKETAUX_BASE_URL = 'https://api.marketaux.com/v1';
 }
 
 class EnvVariables extends ApiBaseUrls {

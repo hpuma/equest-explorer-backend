@@ -10,8 +10,8 @@ export class LoggerMiddleware implements NestMiddleware {
       hostname = 'localhost',
       socket: { localPort },
     } = req;
-    const timeString = new Date().toLocaleString().match(/(\d{2}:){2}\d{2}/)[0];
-    console.log(`[${method}] ${hostname}:${localPort}${url} +${timeString}`);
+    // const timeString = new Date().toLocaleString().match(/(\d{2}:){2}\d{2}/)[0];
+    console.log(`[${method}] ${hostname}:${localPort}${url}`);
     if (next) next();
   }
 }
