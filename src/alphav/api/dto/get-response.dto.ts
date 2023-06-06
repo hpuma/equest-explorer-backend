@@ -168,6 +168,9 @@ export class NewsSentimentFeed {
 
   @IsString()
   source_domain: string;
+
+  @ValidateNested({ each: true })
+  @Type(() => FeedTopics)
   topics: FeedTopics[];
 
   @IsNumber()
