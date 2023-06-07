@@ -1,22 +1,37 @@
 import { GlobalModule } from '@global/global.module';
 import { Test, TestingModule } from '@nestjs/testing';
+
 type ServiceMethods = Record<any, jest.Mock<any, any>>;
 
-export default class TestSetup {
+export enum TestClass {
+  controller = 'controller',
+  service = 'service',
+  api = 'api',
+}
+
+export class TestSetup {
+  private testClass: TestClass;
+  private isTestClassController: boolean;
   controller: any;
   service: any;
   apiService: any;
 
-  constructor({ controller = {}, service = {}, apiService = {} }) {
+  constructor(
+    testClass: TestClass,
+    { controller = {}, service = {}, apiService = {} },
+  ) {
+    this.testClass = testClass;
     this.controller = controller;
     this.service = service;
     this.apiService = apiService;
+    this.isTestClassController = this.testClass === TestClass.controller;
   }
-  async getTestingModule(testType: string, serviceMethods: ServiceMethods) {
+
+  async getTestingModule(serviceMethods: ServiceMethods) {
     const testModule: any = {
-      imports: this.getImportsByType(testType),
-      controllers: this.getControllerByType(testType),
-      providers: this.getProviderByType(testType, serviceMethods),
+      imports: this.getImportsByType(),
+      controllers: this.getControllerByType(),
+      providers: this.getProviderByType(serviceMethods),
     };
 
     return (await Test.createTestingModule(
@@ -24,20 +39,20 @@ export default class TestSetup {
     ).compile()) as TestingModule;
   }
 
-  getImportsByType(testType: string) {
-    const usesGlobalValidator = testType === 'controller' || testType === 'api';
+  getImportsByType() {
+    const usesGlobalValidator =
+      this.isTestClassController || this.testClass === TestClass.api;
     return usesGlobalValidator ? [GlobalModule] : [];
   }
 
-  getControllerByType(testType: string) {
-    const isTypeController = testType === 'controller';
-    return isTypeController ? [this.controller] : [];
+  getControllerByType() {
+    return this.isTestClassController ? [this.controller] : [];
   }
 
-  getProviderByType(testType: string, serviceMethods: ServiceMethods) {
-    switch (testType) {
-      case 'controller':
-      case 'service':
+  getProviderByType(serviceMethods: ServiceMethods) {
+    switch (this.testClass) {
+      case TestClass.controller:
+      case TestClass.service:
         return [
           this.service,
           {
@@ -45,7 +60,7 @@ export default class TestSetup {
             useValue: serviceMethods,
           },
         ];
-      case 'api':
+      case TestClass.api:
         return [
           this.apiService,
           { provide: this.apiService, useValue: serviceMethods },

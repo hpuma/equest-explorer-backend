@@ -1,15 +1,16 @@
 import { TestingModule } from '@nestjs/testing';
 import { MarketauxApiService } from '../api/marketaux-api.service';
-import TestSetup from '@global/testing/setup.class';
+import { TestSetup, TestClass } from '@global/testing/setup.class';
 
 describe('MarketauxApiService', () => {
   let service: MarketauxApiService;
-  const testSetup = new TestSetup({ apiService: MarketauxApiService });
+  const testSetup = new TestSetup(TestClass.api, {
+    apiService: MarketauxApiService,
+  });
   beforeAll(async () => {
-    const module: TestingModule = await testSetup.getTestingModule('api', {
+    const module: TestingModule = await testSetup.getTestingModule({
       get: jest.fn(),
     });
-
     service = module.get<MarketauxApiService>(MarketauxApiService);
   });
 
