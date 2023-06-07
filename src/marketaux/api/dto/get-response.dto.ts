@@ -65,7 +65,7 @@ class EntityItem {
   highlights: HighlightItem[];
 }
 
-class DataItem {
+export class DataItem {
   @IsString()
   uuid: string;
 
