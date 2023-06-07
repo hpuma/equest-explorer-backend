@@ -1,13 +1,20 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { TestingModule } from '@nestjs/testing';
 import { MarketauxController } from '../marketaux.controller';
-
+import { MarketauxService } from '../marketaux.service';
+import TestSetup from '@global/testing/setup.class';
 describe('MarketauxController', () => {
   let controller: MarketauxController;
-
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [MarketauxController],
-    }).compile();
+  const testSetup = new TestSetup({
+    controller: MarketauxController,
+    service: MarketauxService,
+  });
+  beforeAll(async () => {
+    const module: TestingModule = await testSetup.getTestingModule(
+      'controller',
+      {
+        news: jest.fn(),
+      },
+    );
 
     controller = module.get<MarketauxController>(MarketauxController);
   });
