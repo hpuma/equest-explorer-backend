@@ -26,7 +26,7 @@ export class NewsApiService {
       params,
     });
 
-    const validatedResponse = await await this.globalValidator.validate(
+    const validatedResponse = await this.globalValidator.validate(
       data,
       GetEverythingResponseDto,
     );

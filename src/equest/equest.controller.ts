@@ -21,7 +21,7 @@ export class EquestController {
   async tickersearch(
     @Query() query: TickerSearchQueryDto,
     @Res() res: Response,
-  ): Promise<any> {
+  ): Promise<{ bestMatches: any[] }> {
     try {
       const bestMatches = await this.equestService.tickersearch(query.ticker);
       const responseObject = { bestMatches };
@@ -38,7 +38,7 @@ export class EquestController {
     @Body() body: CreateApiKeyBodyDto,
     @Headers('x-api-key') headers: string,
     @Res() res: Response,
-  ): Promise<any> {
+  ): Promise<{ key: string }> {
     try {
       const { key } = await this.equestService.createApiKey(body.email);
 
