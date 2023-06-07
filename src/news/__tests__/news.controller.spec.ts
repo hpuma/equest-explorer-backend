@@ -1,8 +1,9 @@
+import { TestingModule } from '@nestjs/testing';
 import { GlobalValidator } from '@global/global-validator.class';
 import { NewsController } from '../news.controller';
 import { NewsService } from '../news.service';
 import { res } from '@global/testing/setup';
-import { getTestingModule } from './utils/test-setup';
+import { TestSetup, TestClass } from '@global/testing/setup.class';
 import { createGetEverythingResponse } from './utils/service-data';
 import {
   createEverythingQuery,
@@ -14,9 +15,14 @@ describe('NewsController', () => {
   let service: NewsService;
   let response;
   let globalValidator: GlobalValidator;
-
-  beforeEach(async () => {
-    const module = await getTestingModule('controller');
+  const testSetup = new TestSetup(TestClass.controller, {
+    controller: NewsController,
+    service: NewsService,
+  });
+  beforeAll(async () => {
+    const module: TestingModule = await testSetup.getTestingModule({
+      getEverything: jest.fn(),
+    });
     controller = module.get<NewsController>(NewsController);
     service = module.get<NewsService>(NewsService);
     globalValidator = module.get<GlobalValidator>(GlobalValidator);
