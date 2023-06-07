@@ -13,7 +13,7 @@ export class MarketauxApiService {
     private readonly configService: ConfigService,
   ) {}
 
-  async get(query: GetQueryDto) {
+  async get(query: GetQueryDto): Promise<GetNewsResponseDto> {
     const validatedParams = await this.globalValidator.validate(
       query,
       GetQueryDto,
@@ -39,10 +39,11 @@ export class MarketauxApiService {
       ).toString()}`,
     );
 
-    const validatedResponse = await this.globalValidator.validate(
-      data,
-      GetNewsResponseDto as any,
-    );
+    const validatedResponse =
+      await this.globalValidator.validate<GetNewsResponseDto>(
+        data,
+        GetNewsResponseDto as any,
+      );
 
     return validatedResponse;
   }
