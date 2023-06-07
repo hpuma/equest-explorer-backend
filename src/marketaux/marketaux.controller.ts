@@ -17,7 +17,7 @@ export class MarketauxController {
   @ApiResponse({
     status: 200,
     description: 'news response object',
-    // type: string,
+    type: NewsResponseDto,
   })
   async news(
     @Query() query: NewsQueryDto,
