@@ -16,7 +16,7 @@ export class MarketauxController {
   @Get('news')
   @ApiResponse({
     status: 200,
-    description: 'global-quote response object',
+    description: 'news response object',
     // type: string,
   })
   async news(@Query() query: NewsQueryDto, @Res() res: Response) {
@@ -29,7 +29,6 @@ export class MarketauxController {
       //   alphaServiceResponse,
       //   GlobalQuoteResponseDto,
       // );
-      const data = {};
 
       res.json(marketauxServiceResponse);
       return marketauxServiceResponse;
