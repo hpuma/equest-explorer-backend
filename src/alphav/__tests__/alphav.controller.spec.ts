@@ -1,6 +1,7 @@
 import { GlobalValidator } from '@global/global-validator.class';
+import { TestingModule } from '@nestjs/testing';
 import { res } from '@global/testing/setup';
-import { getTestingModule } from './utils/test-setup';
+
 import { createGetResponse } from './utils/service-data';
 import {
   createIntradayQuery,
@@ -14,6 +15,7 @@ import {
 } from './utils/controller-data';
 import { AlphavController } from '@alphav/alphav.controller';
 import { AlphavService } from '@alphav/alphav.service';
+import { TestSetup, TestClass } from '@global/testing/setup.class';
 
 describe('AlphavController', () => {
   let controller: AlphavController;
@@ -22,8 +24,18 @@ describe('AlphavController', () => {
   let globalValidator: GlobalValidator;
   const serviceErrorMessage = 'Service has encountered an error';
   const validatorErrorMessage = 'Global Validator has encountered an error';
-  beforeEach(async () => {
-    const module = await getTestingModule('controller');
+  const testSetup = new TestSetup(TestClass.controller, {
+    controller: AlphavController,
+    service: AlphavService,
+  });
+
+  beforeAll(async () => {
+    const module: TestingModule = await testSetup.getTestingModule({
+      getIntraday: jest.fn(),
+      getGlobalQuote: jest.fn(),
+      getTickerSearch: jest.fn(),
+      getNews: jest.fn(),
+    });
     controller = module.get<AlphavController>(AlphavController);
     service = module.get<AlphavService>(AlphavService);
     globalValidator = module.get<GlobalValidator>(GlobalValidator);

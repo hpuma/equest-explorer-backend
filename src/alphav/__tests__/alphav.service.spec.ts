@@ -1,11 +1,19 @@
+import { TestingModule } from '@nestjs/testing';
 import { AlphavService } from '../alphav.service';
-import { getTestingModule } from './utils/test-setup';
+import { TestSetup, TestClass } from '@global/testing/setup.class';
 
 describe('AlphavService', () => {
   let service: AlphavService;
-
-  beforeEach(async () => {
-    const module = await getTestingModule('service');
+  const testSetup = new TestSetup(TestClass.service, {
+    service: AlphavService,
+  });
+  beforeAll(async () => {
+    const module: TestingModule = await testSetup.getTestingModule({
+      getIntraday: jest.fn(),
+      getGlobalQuote: jest.fn(),
+      getTickerSearch: jest.fn(),
+      getNews: jest.fn(),
+    });
 
     service = module.get<AlphavService>(AlphavService);
   });
