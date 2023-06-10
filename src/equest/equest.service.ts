@@ -2,6 +2,7 @@ import { Model } from 'mongoose';
 import { Injectable, Inject } from '@nestjs/common';
 import { TickerValue } from '@database/models/tickervalues/tickervalue.interface';
 import { ApiKey } from '@database/models/apikeys/apikey.interface';
+import { NewsRecord } from '@database/models/newsrecords/newsrecord.interface';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
@@ -11,7 +12,13 @@ export class EquestService {
     private tickerValueModel: Model<TickerValue>,
     @Inject('APIKEY_MODEL')
     private apiKeyModel: Model<ApiKey>,
+    @Inject('NEWSRECORD_MODEL')
+    private newsRecord: Model<NewsRecord>,
   ) {}
+
+  async getNewsRecords(ticker: string) {
+    return await this.newsRecord.find({ ticker }, { _id: 0 });
+  }
 
   async tickersearch(tickerValue: string): Promise<any[]> {
     let tickerValues = [];
