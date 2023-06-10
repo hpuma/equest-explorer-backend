@@ -10,12 +10,36 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import { EquestService } from './equest.service';
-import { CreateApiKeyBodyDto, TickerSearchQueryDto } from './dto';
+import {
+  NewsRecordQueryDto,
+  NewsRecordResponseDto,
+  CreateApiKeyBodyDto,
+  TickerSearchQueryDto,
+} from './dto';
 import { AuthGuard } from '@global/auth-gaurd.class';
 
 @Controller('equest')
 export class EquestController {
   constructor(private readonly equestService: EquestService) {}
+
+  @Get('news-records')
+  async newsRecords(
+    @Query() { ticker }: NewsRecordQueryDto,
+    @Res() res: Response,
+  ): Promise<NewsRecordResponseDto> {
+    try {
+      const articles = await this.equestService.getNewsRecords(ticker);
+
+      const responseData = {
+        articles,
+        count: articles.length,
+      };
+      res.json(responseData);
+      return responseData;
+    } catch (e) {
+      res.json({ message: e.message });
+    }
+  }
 
   @Get('ticker-search')
   async tickersearch(
@@ -25,6 +49,7 @@ export class EquestController {
     try {
       const bestMatches = await this.equestService.tickersearch(query.ticker);
       const responseObject = { bestMatches };
+
       res.json(responseObject);
       return responseObject;
     } catch (e) {
