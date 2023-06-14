@@ -1,4 +1,4 @@
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Injectable, Inject } from '@nestjs/common';
 import { TickerValue } from '@database/models/tickervalues/tickervalue.interface';
 import { ApiKey } from '@database/models/apikeys/apikey.interface';
@@ -16,7 +16,14 @@ export class EquestService {
     private newsRecord: Model<NewsRecord>,
   ) {}
 
-  async getNewsRecords(ticker: string) {
+  async getNewsRecords(ticker: string): Promise<
+    Omit<
+      NewsRecord & {
+        _id: Types.ObjectId;
+      },
+      never
+    >[]
+  > {
     return await this.newsRecord.find({ ticker }, { _id: 0 });
   }
 
