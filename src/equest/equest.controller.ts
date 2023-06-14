@@ -10,11 +10,12 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import { EquestService } from './equest.service';
+import { NewsResource } from '@global/newsresource.class';
 import {
   NewsRecordQueryDto,
-  NewsRecordResponseDto,
   CreateApiKeyBodyDto,
   TickerSearchQueryDto,
+  TickerSearchResponseDto,
 } from './dto';
 import { AuthGuard } from '@global/auth-gaurd.class';
 
@@ -23,10 +24,10 @@ export class EquestController {
   constructor(private readonly equestService: EquestService) {}
 
   @Get('news-records')
-  async newsRecords(
+  async newsrecords(
     @Query() { ticker }: NewsRecordQueryDto,
     @Res() res: Response,
-  ): Promise<NewsRecordResponseDto> {
+  ): Promise<NewsResource> {
     try {
       const articles = await this.equestService.getNewsRecords(ticker);
 
@@ -43,11 +44,12 @@ export class EquestController {
 
   @Get('ticker-search')
   async tickersearch(
-    @Query() query: TickerSearchQueryDto,
+    @Query() { ticker }: TickerSearchQueryDto,
     @Res() res: Response,
-  ): Promise<{ bestMatches: any[] }> {
+  ): Promise<TickerSearchResponseDto> {
     try {
-      const bestMatches = await this.equestService.tickersearch(query.ticker);
+      const bestMatches = await this.equestService.tickersearch(ticker);
+
       const responseObject = { bestMatches };
 
       res.json(responseObject);
@@ -60,12 +62,12 @@ export class EquestController {
   @Post('create-api-key')
   @UseGuards(AuthGuard)
   async createApiKey(
-    @Body() body: CreateApiKeyBodyDto,
+    @Body() { email }: CreateApiKeyBodyDto,
     @Headers('x-api-key') headers: string,
     @Res() res: Response,
   ): Promise<{ key: string }> {
     try {
-      const { key } = await this.equestService.createApiKey(body.email);
+      const { key } = await this.equestService.createApiKey(email);
 
       res.json({ key });
       return { key };

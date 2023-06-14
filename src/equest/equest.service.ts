@@ -20,8 +20,8 @@ export class EquestService {
     return await this.newsRecord.find({ ticker }, { _id: 0 });
   }
 
-  async tickersearch(tickerValue: string): Promise<any[]> {
-    let tickerValues = [];
+  async tickersearch(tickerValue: string): Promise<TickerValue[]> {
+    let tickerValues: TickerValue[] = [];
 
     try {
       tickerValues = await this.tickerValueModel.aggregate([
