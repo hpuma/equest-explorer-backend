@@ -49,7 +49,7 @@ export class EquestController {
     @Res() res: Response,
   ): Promise<TickerSearchResponseDto> {
     try {
-      const bestMatches = await this.equestService.tickersearch(ticker);
+      const bestMatches = await this.equestService.getTickerValues(ticker);
 
       const responseObject = { bestMatches };
 
