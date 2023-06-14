@@ -52,7 +52,7 @@ export class EquestService {
     return tickerValues;
   }
 
-  async createApiKey(email: string): Promise<{ key: string }> {
+  async createApiKey(email: string): Promise<Pick<ApiKey, 'key'>> {
     const apikeyWithEmail = await this.apiKeyModel.findOne({ email }).lean();
     if (apikeyWithEmail) throw Error('Api Key already assigned to email!');
 

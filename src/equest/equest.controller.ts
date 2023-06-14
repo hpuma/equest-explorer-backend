@@ -12,8 +12,9 @@ import { Response } from 'express';
 import { EquestService } from './equest.service';
 import { NewsResource } from '@global/newsresource.class';
 import {
-  NewsRecordQueryDto,
   CreateApiKeyBodyDto,
+  CreateApiKeyResponseDto,
+  NewsRecordQueryDto,
   TickerSearchQueryDto,
   TickerSearchResponseDto,
 } from './dto';
@@ -65,7 +66,7 @@ export class EquestController {
     @Body() { email }: CreateApiKeyBodyDto,
     @Headers('x-api-key') headers: string,
     @Res() res: Response,
-  ): Promise<{ key: string }> {
+  ): Promise<CreateApiKeyResponseDto> {
     try {
       const { key } = await this.equestService.createApiKey(email);
 
