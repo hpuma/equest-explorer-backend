@@ -5,6 +5,9 @@
     },
     {
       "path": "../equestrian-explorer-web-v2"
+    },
+    {
+      "path": "../news-ingestion"
     }
   ],
   "settings": {}
