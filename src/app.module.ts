@@ -4,15 +4,14 @@ import {
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
-
-import { NewsModule } from './news/news.module';
 import { ConfigModule } from '@nestjs/config';
+import { AuthGuardModule } from 'auth/auth.guard.module';
+import { NewsModule } from './news/news.module';
 import { AlphavModule } from './alphav/alphav.module';
 import { MarketauxModule } from './marketaux/marketaux.module';
 import { EquestModule } from 'equest/equest.module';
 import { validate } from '@global/env/validate';
 import { LoggerMiddleware } from 'logger.middleware';
-import { AuthGuardModule } from 'auth/auth.guard.module';
 
 @Module({
   imports: [

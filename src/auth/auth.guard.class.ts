@@ -7,6 +7,7 @@ import {
 import { Request } from 'express';
 import { AuthGuardService } from './auth.guard.service';
 import { Logger } from '@global/helpers';
+
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private readonly authGuardService: AuthGuardService) {}
