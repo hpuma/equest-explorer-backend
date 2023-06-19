@@ -1,13 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  Query,
-  Res,
-  Headers,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { EquestService } from './equest.service';
 import { NewsResource } from '@global/newsresource.class';
@@ -18,7 +9,6 @@ import {
   TickerSearchQueryDto,
   TickerSearchResponseDto,
 } from './dto';
-import { AuthGuard } from '@global/auth-gaurd.class';
 
 @Controller('equest')
 export class EquestController {
@@ -61,10 +51,9 @@ export class EquestController {
   }
 
   @Post('create-api-key')
-  @UseGuards(AuthGuard)
   async createApiKey(
     @Body() { email }: CreateApiKeyBodyDto,
-    @Headers('x-api-key') headers: string,
+
     @Res() res: Response,
   ): Promise<CreateApiKeyResponseDto> {
     try {
