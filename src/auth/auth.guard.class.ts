@@ -6,23 +6,18 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 import { AuthGuardService } from './auth.guard.service';
-
+import { Logger } from '@global/helpers';
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private readonly authGaurdService: AuthGuardService) {}
+  constructor(private readonly authGuardService: AuthGuardService) {}
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const request = context.switchToHttp().getRequest();
+    const req = context.switchToHttp().getRequest();
 
-    const key = this.extractApiKeyFromHeader(request);
-    const apiUser = await this.authGaurdService.findApiKey(key as string);
+    const key = this.extractApiKeyFromHeader(req);
+    const apiUser = await this.authGuardService.findApiKey(key as string);
 
     if (!apiUser) throw new UnauthorizedException();
-    const { method, hostname, url } = request;
-
-    console.log(
-      `[${method}] 00000  - ${new Date().toLocaleString()} : ${hostname}${url}/${key}`,
-    );
-
+    Logger.logRequest('guard', req);
     return true;
   }
 
