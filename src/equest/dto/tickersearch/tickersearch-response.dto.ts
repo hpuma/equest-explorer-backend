@@ -1,4 +1,4 @@
-import { TickerValue } from '@database/models/tickervalues/tickervalue.interface';
+import { TickerValue } from '@database/models/tickervalue.model';
 
 export class TickerSearchResponseDto {
   bestMatches: TickerValue[] = [];

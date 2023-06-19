@@ -1,2 +1,2 @@
-import { ApiKey } from '@database/models/apikeys/apikey.interface';
+import { ApiKey } from '@database/models/apikey.model';
 export type CreateApiKeyResponseDto = Pick<ApiKey, 'key'>;

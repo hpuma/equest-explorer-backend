@@ -1,19 +1,19 @@
 import { Model, Types } from 'mongoose';
 import { Injectable, Inject } from '@nestjs/common';
-import { TickerValue } from '@database/models/tickervalues/tickervalue.interface';
-import { ApiKey } from '@database/models/apikeys/apikey.interface';
-import { NewsRecord } from '@database/models/newsrecords/newsrecord.interface';
+import { ApiKey, API_KEY } from '@database/models/apikey.model';
+import { NewsRecord, NEWS_RECORD } from '@database/models/newsrecord.model';
+import { TickerValue, TICKER_VALUE } from '@database/models/tickervalue.model';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class EquestService {
   constructor(
-    @Inject('TICKERVALUE_MODEL')
-    private tickerValueModel: Model<TickerValue>,
-    @Inject('APIKEY_MODEL')
+    @Inject(API_KEY)
     private apiKeyModel: Model<ApiKey>,
-    @Inject('NEWSRECORD_MODEL')
+    @Inject(NEWS_RECORD)
     private newsRecord: Model<NewsRecord>,
+    @Inject(TICKER_VALUE)
+    private tickerValueModel: Model<TickerValue>,
   ) {}
 
   async getNewsRecords(ticker: string): Promise<

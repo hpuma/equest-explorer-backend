@@ -1,5 +1,10 @@
-import { Connection, Schema } from 'mongoose';
+import { Document, Schema } from 'mongoose';
+import { Article } from '@global/newsresource.class';
 
+export interface NewsRecord extends Document, Article {
+  readonly ticker: string;
+  readonly newsSource: string;
+}
 export const NewsRecordSchema = new Schema({
   author: String,
   title: String,
@@ -20,10 +25,4 @@ export const NewsRecordSchema = new Schema({
   ticker: String,
   newsSource: String,
 });
-
-export const NewsRecordProvider = {
-  provide: 'NEWSRECORD_MODEL',
-  useFactory: (connection: Connection) =>
-    connection.model('newsrecord', NewsRecordSchema),
-  inject: ['DATABASE_CONNECTION'],
-};
+export const NEWS_RECORD = 'NEWSRECORD_MODEL';
