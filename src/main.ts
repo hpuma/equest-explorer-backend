@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { AuthGaurd, AuthGaurdService } from 'auth';
+import { AuthGuard, AuthGuardService } from 'auth';
 
 import 'module-alias/register';
 
@@ -17,8 +17,8 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
 
-  const authGaurdService = app.get(AuthGaurdService);
-  const authGaurd = new AuthGaurd(authGaurdService);
+  const authGaurdService = app.get(AuthGuardService);
+  const authGaurd = new AuthGuard(authGaurdService);
 
   // Register the guard globally
   app.useGlobalGuards(authGaurd);

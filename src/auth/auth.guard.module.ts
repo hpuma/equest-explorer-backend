@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '@database/database.module';
-import { AuthGaurdService } from './auth.gaurd.service';
+import { AuthGuardService } from './auth.guard.service';
 
 @Module({
   imports: [DatabaseModule],
-  providers: [AuthGaurdService],
+  providers: [AuthGuardService],
 })
-export class AuthGaurdModule {}
+export class AuthGuardModule {}

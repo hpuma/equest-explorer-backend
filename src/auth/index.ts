@@ -1,4 +1,4 @@
-import { AuthGaurd } from './auth.gaurd.class';
-import { AuthGaurdService } from './auth.gaurd.service';
+import { AuthGuard } from './auth.guard.class';
+import { AuthGuardService } from './auth.guard.service';
 
-export { AuthGaurd, AuthGaurdService };
+export { AuthGuard, AuthGuardService };
