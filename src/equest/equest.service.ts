@@ -27,6 +27,10 @@ export class EquestService {
     return await this.newsRecord.find({ ticker }, { _id: 0 });
   }
 
+  async getNewsRecordByHash(hash: string) {
+    return await this.newsRecord.findOne({ hash }, { _id: 0 }).lean();
+  }
+
   async getTickerValues(tickerValue: string): Promise<TickerValue[]> {
     let tickerValues: TickerValue[] = [];
 

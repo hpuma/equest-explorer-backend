@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Post, Query, Res } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { EquestService } from './equest.service';
-import { NewsResource } from '@global/newsresource.class';
+import { Article, NewsResource } from '@global/newsresource.class';
 import {
   CreateApiKeyBodyDto,
   CreateApiKeyResponseDto,
@@ -13,6 +13,21 @@ import {
 @Controller('equest')
 export class EquestController {
   constructor(private readonly equestService: EquestService) {}
+
+  @Get('news-record/:hash')
+  async newsrecord(
+    @Param('hash') hash: string,
+    @Res() res: Response,
+  ): Promise<Article> {
+    try {
+      const article = await this.equestService.getNewsRecordByHash(hash);
+
+      res.json(article);
+      return article;
+    } catch (e) {
+      res.json({ message: e.message });
+    }
+  }
 
   @Get('news-records')
   async newsrecords(

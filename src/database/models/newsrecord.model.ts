@@ -4,6 +4,7 @@ import { Article } from '@global/newsresource.class';
 export interface NewsRecord extends Document, Article {
   readonly ticker: string;
   readonly newsSource: string;
+  readonly hash: string;
 }
 export const NewsRecordSchema = new Schema({
   author: String,
@@ -24,5 +25,6 @@ export const NewsRecordSchema = new Schema({
   },
   ticker: String,
   newsSource: String,
+  hash: String,
 });
 export const NEWS_RECORD = 'NEWSRECORD_MODEL';
