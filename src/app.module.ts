@@ -13,8 +13,11 @@ import { MarketauxModule } from './marketaux/marketaux.module';
 import { EquestModule } from 'equest/equest.module';
 import { validate } from '@global/env/validate';
 import { LoggerMiddleware } from 'logger.middleware';
+import { AuthGaurdModule } from 'auth/auth.gaurd.module';
+
 @Module({
   imports: [
+    AuthGaurdModule,
     NewsModule,
     ConfigModule.forRoot({ validate, cache: true }),
     AlphavModule,
