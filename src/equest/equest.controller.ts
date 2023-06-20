@@ -6,6 +6,7 @@ import {
   CreateApiKeyBodyDto,
   CreateApiKeyResponseDto,
   NewsRecordQueryDto,
+  NewsRecordUploadDto,
   TickerSearchQueryDto,
   TickerSearchResponseDto,
 } from './dto';
@@ -13,6 +14,22 @@ import {
 @Controller('equest')
 export class EquestController {
   constructor(private readonly equestService: EquestService) {}
+
+  @Post('news-record/upload')
+  async newsrecordupload(
+    @Body() body: NewsRecordUploadDto,
+    @Res() res: Response,
+  ): Promise<any> {
+    try {
+      const { articles } = body;
+      const response = await this.equestService.createNewsRecords(articles);
+
+      res.json(response);
+      return 'test';
+    } catch (e) {
+      res.json({ message: e.message });
+    }
+  }
 
   @Get('news-record/:hash')
   async newsrecord(
@@ -36,11 +53,11 @@ export class EquestController {
   ): Promise<NewsResource> {
     try {
       const articles = await this.equestService.getNewsRecords(ticker);
-
       const responseData = {
         articles,
         count: articles.length,
       };
+
       res.json(responseData);
       return responseData;
     } catch (e) {
@@ -55,7 +72,6 @@ export class EquestController {
   ): Promise<TickerSearchResponseDto> {
     try {
       const bestMatches = await this.equestService.getTickerValues(ticker);
-
       const responseObject = { bestMatches };
 
       res.json(responseObject);
@@ -68,7 +84,6 @@ export class EquestController {
   @Post('create-api-key')
   async createApiKey(
     @Body() { email }: CreateApiKeyBodyDto,
-
     @Res() res: Response,
   ): Promise<CreateApiKeyResponseDto> {
     try {

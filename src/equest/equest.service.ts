@@ -4,6 +4,7 @@ import { ApiKey, API_KEY } from '@database/models/apikey.model';
 import { NewsRecord, NEWS_RECORD } from '@database/models/newsrecord.model';
 import { TickerValue, TICKER_VALUE } from '@database/models/tickervalue.model';
 import { v4 as uuidv4 } from 'uuid';
+import { Article } from '@global/newsresource.class';
 
 @Injectable()
 export class EquestService {
@@ -74,5 +75,8 @@ export class EquestService {
     });
 
     return { key };
+  }
+  async createNewsRecords(articles: Article[]) {
+    return await this.newsRecord.insertMany(articles);
   }
 }
