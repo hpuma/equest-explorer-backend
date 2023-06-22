@@ -57,6 +57,7 @@ export class EquestController {
       const responseData = {
         articles,
         count: articles.length,
+        ticker,
       };
 
       res.json(responseData);

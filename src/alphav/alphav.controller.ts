@@ -85,9 +85,13 @@ export class AlphavController {
   ): Promise<NewsSentimentResponsDto> {
     try {
       const alphaServiceResponse = await this.alphavService.getNews(query);
+      const responseData = {
+        ...alphaServiceResponse,
+        ticker: query.ticker,
+      };
 
       const data = await this.globalValidator.validate(
-        alphaServiceResponse,
+        responseData,
         NewsSentimentResponsDto,
       );
 

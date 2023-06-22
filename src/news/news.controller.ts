@@ -24,9 +24,13 @@ export class NewsController {
   ): Promise<EverythingResponseDto> {
     try {
       const newsServiceResponse = await this.newsService.getEverything(query);
+      const responseData = {
+        ...newsServiceResponse,
+        ticker: query.ticker,
+      };
 
       const data = await this.globalValidator.validate(
-        newsServiceResponse,
+        responseData,
         EverythingResponseDto,
       );
 
