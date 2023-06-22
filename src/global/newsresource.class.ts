@@ -6,6 +6,7 @@ import {
   IsNumber,
   IsString,
   ValidateIf,
+  IsOptional,
 } from 'class-validator';
 
 export class Interval {
@@ -109,6 +110,7 @@ export class Article {
   timestamp: Timestamp;
 
   @IsString()
+  @IsOptional()
   hash?: string;
 }
 
