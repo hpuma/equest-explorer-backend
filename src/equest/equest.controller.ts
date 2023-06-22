@@ -7,6 +7,7 @@ import {
   CreateApiKeyResponseDto,
   NewsRecordQueryDto,
   NewsRecordUploadDto,
+  NewsRecordUploadResponseDto,
   TickerSearchQueryDto,
   TickerSearchResponseDto,
 } from './dto';
@@ -19,13 +20,13 @@ export class EquestController {
   async newsrecordupload(
     @Body() body: NewsRecordUploadDto,
     @Res() res: Response,
-  ): Promise<any> {
+  ): Promise<NewsRecordUploadResponseDto> {
     try {
       const { articles } = body;
       const response = await this.equestService.createNewsRecords(articles);
 
       res.json(response);
-      return 'test';
+      return response;
     } catch (e) {
       res.json({ message: e.message });
     }

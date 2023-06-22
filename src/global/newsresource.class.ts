@@ -107,6 +107,9 @@ export class Article {
     type: Timestamp,
   })
   timestamp: Timestamp;
+
+  @IsString()
+  hash?: string;
 }
 
 export class NewsResource {
