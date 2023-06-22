@@ -112,6 +112,10 @@ export class Article {
   @IsString()
   @IsOptional()
   hash?: string;
+
+  @IsString()
+  @IsOptional()
+  ticker?: string;
 }
 
 export class NewsResource {
