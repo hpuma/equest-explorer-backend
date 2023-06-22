@@ -50,7 +50,7 @@ class MappedArticle extends Article {
   }
 }
 
-export class NewsSentimentResponsDto extends NewsResource {
+export class NewstResponseDto extends NewsResource {
   constructor(
     { feed, ticker }: GetNewsSentimentDto & { ticker: string } = {
       items: '',

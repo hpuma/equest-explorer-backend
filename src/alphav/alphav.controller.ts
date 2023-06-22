@@ -9,7 +9,7 @@ import {
   IntradayResponseDto,
   NewsQueryDto,
   GlobalQuoteResponseDto,
-  NewsSentimentResponsDto,
+  NewstResponseDto,
   TickerSearchResponseDto,
 } from './dto';
 import { ApiResponse } from '@nestjs/swagger';
@@ -82,17 +82,16 @@ export class AlphavController {
   async news(
     @Query() query: NewsQueryDto,
     @Res() res: Response,
-  ): Promise<NewsSentimentResponsDto> {
+  ): Promise<NewstResponseDto> {
     try {
       const alphaServiceResponse = await this.alphavService.getNews(query);
-      const responseData = {
-        ...alphaServiceResponse,
-        ticker: query.ticker,
-      };
 
       const data = await this.globalValidator.validate(
-        responseData,
-        NewsSentimentResponsDto,
+        {
+          ...alphaServiceResponse,
+          ticker: query.ticker,
+        },
+        NewstResponseDto,
       );
 
       res.json(data);
