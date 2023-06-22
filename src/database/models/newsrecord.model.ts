@@ -6,25 +6,28 @@ export interface NewsRecord extends Document, Article {
   readonly newsSource: string;
   readonly hash: string;
 }
-export const NewsRecordSchema = new Schema({
-  author: String,
-  title: String,
-  description: String,
-  url: String,
-  urlToImage: String,
-  publishedAt: Date,
-  content: String,
-  timestamp: {
-    date: String,
-    time: String,
-    interval: {
-      plusone: String,
-      exact: String,
-      minusone: String,
+export const NewsRecordSchema = new Schema(
+  {
+    author: String,
+    title: String,
+    description: String,
+    url: String,
+    urlToImage: String,
+    publishedAt: Date,
+    content: String,
+    timestamp: {
+      date: String,
+      time: String,
+      interval: {
+        plusone: String,
+        exact: String,
+        minusone: String,
+      },
     },
+    ticker: String,
+    newsSource: String,
+    hash: String,
   },
-  ticker: String,
-  newsSource: String,
-  hash: String,
-});
+  { versionKey: false },
+);
 export const NEWS_RECORD = 'NEWSRECORD_MODEL';
