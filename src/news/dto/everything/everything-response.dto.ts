@@ -41,15 +41,21 @@ class MappedArticle extends Article {
 
 export class EverythingResponseDto extends NewsResource {
   constructor(
-    { articles, totalResults }: GetEverythingResponseDto = {
+    {
+      articles,
+      totalResults,
+      ticker,
+    }: GetEverythingResponseDto & { ticker: string } = {
       articles: [],
       totalResults: 0,
       status: 'ok',
+      ticker: 'NO_TICKER',
     },
   ) {
     super({
       articles: articles.map((rawArticles) => new MappedArticle(rawArticles)),
       count: totalResults,
+      ticker,
     });
   }
 }

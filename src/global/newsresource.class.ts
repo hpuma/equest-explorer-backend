@@ -133,4 +133,8 @@ export class NewsResource {
     example: '115',
   })
   count: number;
+
+  @IsString()
+  @IsOptional()
+  ticker?: string;
 }

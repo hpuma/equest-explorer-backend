@@ -55,16 +55,16 @@ class MappedArticle extends Article {
 
 export class NewsResponseDto extends NewsResource {
   constructor(
-    newsResource: GetNewsResponseDto = {
+    { data, ticker }: GetNewsResponseDto & { ticker: string } = {
       meta: { found: 0, returned: 0, limit: 0, page: 0 },
       data: [],
+      ticker: 'NO_TICKER',
     },
   ) {
-    const { data } = newsResource;
-
     super({
       articles: data.map((dataItem) => new MappedArticle(dataItem)),
       count: data.length,
+      ticker,
     });
   }
 }

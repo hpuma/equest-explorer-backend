@@ -52,16 +52,18 @@ class MappedArticle extends Article {
 
 export class NewsSentimentResponsDto extends NewsResource {
   constructor(
-    { feed }: GetNewsSentimentDto = {
+    { feed, ticker }: GetNewsSentimentDto & { ticker: string } = {
       items: '',
       sentiment_score_definition: '.',
       relevance_score_definition: '',
       feed: [],
+      ticker: 'NO_TICKER',
     },
   ) {
     super({
       articles: feed.map((rawFeedItem) => new MappedArticle(rawFeedItem)),
       count: feed.length,
+      ticker,
     });
   }
 }
