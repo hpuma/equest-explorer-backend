@@ -9,7 +9,7 @@ import {
   IntradayResponseDto,
   NewsQueryDto,
   GlobalQuoteResponseDto,
-  NewstResponseDto,
+  NewsResponseDto,
   TickerSearchResponseDto,
 } from './dto';
 import { ApiResponse } from '@nestjs/swagger';
@@ -82,7 +82,7 @@ export class AlphavController {
   async news(
     @Query() query: NewsQueryDto,
     @Res() res: Response,
-  ): Promise<NewstResponseDto> {
+  ): Promise<NewsResponseDto> {
     try {
       const alphaServiceResponse = await this.alphavService.getNews(query);
 
@@ -91,7 +91,7 @@ export class AlphavController {
           ...alphaServiceResponse,
           ticker: query.ticker,
         },
-        NewstResponseDto,
+        NewsResponseDto,
       );
 
       res.json(data);

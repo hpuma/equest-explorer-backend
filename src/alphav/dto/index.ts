@@ -14,7 +14,7 @@ import {
   TickerSearchResponseDto,
   BestMatch,
 } from './tickersearch/tickersearch-response.dto';
-import { NewstResponseDto } from './news/news-response.dto';
+import { NewsResponseDto } from './news/news-response.dto';
 export {
   GlobalQuoteQueryDto,
   GlobalQuoteResponseDto,
@@ -26,7 +26,7 @@ export {
   TimeseriesData,
   Timeseries,
   NewsQueryDto,
-  NewstResponseDto,
+  NewsResponseDto,
   TickerSearchResponseDto,
   BestMatch,
 };

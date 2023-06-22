@@ -4,7 +4,7 @@ import {
   GlobalQuoteQueryDto,
   GlobalQuoteResponseDto,
   NewsQueryDto,
-  NewsSentimentResponsDto,
+  NewsResponseDto,
   TickerSearchQueryDto,
   TickerSearchResponseDto,
 } from '@alphav/dto';
@@ -76,8 +76,8 @@ export function createGetNewsQuery(
 }
 
 export function createNewsSentimentResponseDto(
-  overrides: NewsSentimentResponsDto | null = { articles: [], count: 2 },
-): NewsSentimentResponsDto {
+  overrides: NewsResponseDto | null = { articles: [], count: 2 },
+): NewsResponseDto {
   return overrides;
 }
 
