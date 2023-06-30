@@ -3,10 +3,13 @@ import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { AuthGuard, AuthGuardService } from 'auth';
+import * as express from 'express';
+
 import 'module-alias/register';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
+  app.use(express.json({ limit: '10mb' }));
   const config = new DocumentBuilder()
     .setTitle('EQUEST Backend API')
     .setDescription(
