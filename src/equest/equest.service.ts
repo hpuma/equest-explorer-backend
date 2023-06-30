@@ -82,11 +82,7 @@ export class EquestService {
     });
 
     const { acknowledged = false, insertedCount = 0 } = responseData;
-    console.log(
-      '🚀 ~ file: equest.service.ts:81 ~ EquestService ~ createNewsRecords ~ acknowledged = false, insertedCount = 0:',
-      acknowledged,
-      insertedCount,
-    );
+
     return { acknowledged, insertedCount };
   }
 }
