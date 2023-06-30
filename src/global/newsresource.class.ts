@@ -115,6 +115,10 @@ export class Article {
 
   @IsString()
   @IsOptional()
+  newsSource?: string;
+
+  @IsString()
+  @IsOptional()
   ticker?: string;
 }
 

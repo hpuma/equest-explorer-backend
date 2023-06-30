@@ -77,10 +77,12 @@ export class EquestService {
     return { key };
   }
   async createNewsRecords(articles: Article[]) {
-    const { acknowledged, insertedCount } = await this.newsRecord.insertMany(
-      articles,
-      { rawResult: true },
-    );
+    const responseData = await this.newsRecord.insertMany(articles, {
+      rawResult: true,
+    });
+
+    const { acknowledged = false, insertedCount = 0 } = responseData;
+
     return { acknowledged, insertedCount };
   }
 }

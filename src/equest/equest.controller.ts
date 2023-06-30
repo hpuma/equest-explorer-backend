@@ -28,7 +28,7 @@ export class EquestController {
       res.json(response);
       return response;
     } catch (e) {
-      res.json({ message: e.message });
+      res.json({ acknowledged: false, insertedCount: 0, message: e.message });
     }
   }
 

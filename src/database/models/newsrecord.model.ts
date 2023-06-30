@@ -25,8 +25,15 @@ export const NewsRecordSchema = new Schema(
       },
     },
     ticker: String,
-    newsSource: String,
-    hash: String,
+    newsSource: {
+      required: true,
+      type: String,
+    },
+    hash: {
+      required: true,
+      type: String,
+      unique: true,
+    },
   },
   { versionKey: false },
 );
