@@ -9,7 +9,7 @@ import 'module-alias/register';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
-  app.use(express.json({ limit: '10mb' }));
+  app.use(express.json({ limit: '100mb' }));
   const config = new DocumentBuilder()
     .setTitle('EQUEST Backend API')
     .setDescription(

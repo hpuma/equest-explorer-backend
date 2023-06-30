@@ -9,8 +9,8 @@ export default class Logger {
       socket: { localPort },
     } = req;
 
-    console.log(
-      `[${method}]\t\t${new Date().toLocaleString()}\t\t${hostname}:${localPort}${url} [${source}]`,
-    );
+    // console.log(
+    //   `[${method}]\t\t${new Date().toLocaleString()}\t\t${hostname}:${localPort}${url} [${source}]`,
+    // );
   }
 }
