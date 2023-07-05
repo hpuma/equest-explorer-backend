@@ -1,4 +1,5 @@
 import { Request } from 'express';
+import { ConsoleLogger } from '@nestjs/common';
 
 export default class Logger {
   static logRequest(source: string, req: Request) {
@@ -9,8 +10,8 @@ export default class Logger {
       socket: { localPort },
     } = req;
 
-    console.log(
-      `[${method}]\t\t${new Date().toLocaleString()}\t\t${hostname}:${localPort}${url} [${source}]`,
+    new ConsoleLogger(`${method}`).log(
+      `${new Date().toLocaleString()}\t\t${hostname}:${localPort}${url} [${source}]`,
     );
   }
 }
