@@ -26,18 +26,9 @@ export class AlphavApiService {
   > {
     const params = await this.globalValidator.validate(query, GetQueryDto);
 
-    const {
-      data,
-      request: { method, protocol, host },
-    } = await this.httpService.axiosRef.get('', {
+    const { data } = await this.httpService.axiosRef.get('', {
       params,
     });
-
-    console.log(
-      `[${method}] ${protocol}//${host}/query?${new URLSearchParams(
-        params as any,
-      ).toString()}`,
-    );
 
     const ResponseDto = MapQueryToResponse(QueryFunctions[query.function]);
 
