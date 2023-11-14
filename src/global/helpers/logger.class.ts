@@ -11,7 +11,7 @@ export default class Logger {
     } = req;
 
     new ConsoleLogger(`${method}`).log(
-      `${new Date().toLocaleString()}\t\t${hostname}:${localPort}${url} [${source}]`,
+      `${hostname}:${localPort}${url} [${source}]`,
     );
   }
 }

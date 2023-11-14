@@ -25,7 +25,10 @@ export class EquestService {
       never
     >[]
   > {
-    return await this.newsRecord.find({ ticker }, { _id: 0 });
+    const query = { ticker: { $regex: new RegExp(ticker, 'i') } };
+    const projection = { _id: 0 };
+
+    return await this.newsRecord.find(query, projection);
   }
 
   async getNewsRecordByHash(hash: string) {
