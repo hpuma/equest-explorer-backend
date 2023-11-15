@@ -158,6 +158,7 @@ export class NewsSentimentFeed {
   summary: string;
 
   @IsString()
+  @IsOptional()
   banner_image: string;
 
   @IsString()

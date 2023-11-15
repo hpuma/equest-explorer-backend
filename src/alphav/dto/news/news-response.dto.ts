@@ -44,7 +44,7 @@ class MappedArticle extends Article {
       description: summary,
       url,
       timestamp,
-      urlToImage: banner_image,
+      urlToImage: banner_image ?? '',
       content: summary,
     });
   }
