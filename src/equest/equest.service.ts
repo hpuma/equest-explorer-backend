@@ -36,10 +36,8 @@ export class EquestService {
   }
 
   async getTickerValues(tickerValue: string): Promise<TickerValue[]> {
-    let tickerValues: TickerValue[] = [];
-
     try {
-      tickerValues = await this.tickerValueModel.aggregate([
+      return await this.tickerValueModel.aggregate([
         {
           $search: {
             index: 'symbol_text',
@@ -63,8 +61,6 @@ export class EquestService {
     } catch (error) {
       console.log(error.message);
     }
-
-    return tickerValues;
   }
 
   async createApiKey(email: string): Promise<Pick<ApiKey, 'key'>> {
