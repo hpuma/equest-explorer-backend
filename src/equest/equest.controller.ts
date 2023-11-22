@@ -11,6 +11,7 @@ import {
   TickerSearchQueryDto,
   TickerSearchResponseDto,
 } from './dto';
+import { TickerRecordResponse } from './dto/tickerrecord/tickerrecord-response.dto';
 
 @Controller('equest')
 export class EquestController {
@@ -75,6 +76,18 @@ export class EquestController {
     try {
       const bestMatches = await this.equestService.getTickerValues(ticker);
       const responseObject = { bestMatches };
+
+      res.json(responseObject);
+      return responseObject;
+    } catch (e) {
+      res.json({ message: e.message });
+    }
+  }
+  @Get('ticker-records')
+  async tickerrecords(@Res() res: Response): Promise<TickerRecordResponse> {
+    try {
+      const records = await this.equestService.getTickerRecords();
+      const responseObject = { records, count: records.length };
 
       res.json(responseObject);
       return responseObject;
