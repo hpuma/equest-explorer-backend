@@ -16,6 +16,19 @@ export class EquestService {
     @Inject(TICKER_VALUE)
     private tickerValueModel: Model<TickerValue>,
   ) {}
+  async createNewsRecords(articles: Article[]) {
+    const responseData = await this.newsRecord.insertMany(articles, {
+      rawResult: true,
+    });
+
+    const { acknowledged = false, insertedCount = 0 } = responseData;
+
+    return { acknowledged, insertedCount };
+  }
+
+  async getNewsRecordByHash(hash: string) {
+    return await this.newsRecord.findOne({ hash }, { _id: 0 }).lean();
+  }
 
   async getNewsRecords(ticker: string): Promise<
     Omit<
@@ -29,10 +42,6 @@ export class EquestService {
     const projection = { _id: 0 };
 
     return await this.newsRecord.find(query, projection);
-  }
-
-  async getNewsRecordByHash(hash: string) {
-    return await this.newsRecord.findOne({ hash }, { _id: 0 }).lean();
   }
 
   async getTickerValues(tickerValue: string): Promise<TickerValue[]> {
@@ -78,14 +87,5 @@ export class EquestService {
     });
 
     return { key };
-  }
-  async createNewsRecords(articles: Article[]) {
-    const responseData = await this.newsRecord.insertMany(articles, {
-      rawResult: true,
-    });
-
-    const { acknowledged = false, insertedCount = 0 } = responseData;
-
-    return { acknowledged, insertedCount };
   }
 }
