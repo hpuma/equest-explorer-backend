@@ -73,7 +73,8 @@ export class EquestService {
   }
 
   async getTickerRecords(): Promise<TickerValue[]> {
-    return await this.tickerValue.find({});
+    const projection = { _id: 0 };
+    return await this.tickerValue.find({}, projection).lean();
   }
 
   async createApiKey(email: string): Promise<Pick<ApiKey, 'key'>> {
