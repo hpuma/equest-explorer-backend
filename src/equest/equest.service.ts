@@ -10,11 +10,11 @@ import { Article } from '@global/newsresource.class';
 export class EquestService {
   constructor(
     @Inject(API_KEY)
-    private apiKeyModel: Model<ApiKey>,
+    private apiKey: Model<ApiKey>,
     @Inject(NEWS_RECORD)
     private newsRecord: Model<NewsRecord>,
     @Inject(TICKER_VALUE)
-    private tickerValueModel: Model<TickerValue>,
+    private tickerValue: Model<TickerValue>,
   ) {}
   async createNewsRecords(articles: Article[]) {
     const responseData = await this.newsRecord.insertMany(articles, {
@@ -46,7 +46,7 @@ export class EquestService {
 
   async getTickerValues(tickerValue: string): Promise<TickerValue[]> {
     try {
-      return await this.tickerValueModel.aggregate([
+      return await this.tickerValue.aggregate([
         {
           $search: {
             index: 'symbol_text',
@@ -73,15 +73,15 @@ export class EquestService {
   }
 
   async getTickerRecords(): Promise<TickerValue[]> {
-    return await this.tickerValueModel.find({});
+    return await this.tickerValue.find({});
   }
 
   async createApiKey(email: string): Promise<Pick<ApiKey, 'key'>> {
-    const apikeyWithEmail = await this.apiKeyModel.findOne({ email }).lean();
+    const apikeyWithEmail = await this.apiKey.findOne({ email }).lean();
     if (apikeyWithEmail) throw Error('Api Key already assigned to email!');
 
     const generatedKey = uuidv4();
-    const { key } = await this.apiKeyModel.create({
+    const { key } = await this.apiKey.create({
       email,
       key: generatedKey,
     });
