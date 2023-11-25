@@ -26,18 +26,9 @@ export class MarketauxApiService {
       api_token,
     };
 
-    const {
-      data,
-      request: { method, protocol, host },
-    } = await this.httpService.axiosRef.get('/news/all', {
+    const { data } = await this.httpService.axiosRef.get('/news/all', {
       params,
     });
-
-    console.log(
-      `[${method}] ${protocol}//${host}/query?${new URLSearchParams(
-        params as any,
-      ).toString()}`,
-    );
 
     const validatedResponse =
       await this.globalValidator.validate<GetNewsResponseDto>(
