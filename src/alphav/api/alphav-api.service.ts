@@ -30,6 +30,8 @@ export class AlphavApiService {
       params,
     });
 
+    if (data.Information) throw new Error(`API ERROR => ${data.Information}`);
+
     const ResponseDto = MapQueryToResponse(QueryFunctions[query.function]);
 
     const validatedResponse = await this.globalValidator.validate(
