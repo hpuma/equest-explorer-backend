@@ -74,7 +74,7 @@ export class EquestService {
 
   async getTickerRecords(): Promise<TickerValue[]> {
     const projection = { _id: 0 };
-    return await this.tickerValue.find({}, projection).lean();
+    return await this.tickerValue.find({ isActive: true }, projection).lean();
   }
 
   async createApiKey(email: string): Promise<Pick<ApiKey, 'key'>> {
