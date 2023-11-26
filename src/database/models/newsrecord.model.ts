@@ -35,6 +35,7 @@ export const NewsRecordSchema = new Schema(
       unique: true,
     },
   },
-  { versionKey: false },
+
+  { timestamps: true, versionKey: false },
 );
 export const NEWS_RECORD = 'NEWSRECORD_MODEL';
