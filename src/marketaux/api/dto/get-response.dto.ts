@@ -6,6 +6,7 @@ import {
   ValidateNested,
   ValidateIf,
   ArrayMinSize,
+  IsOptional,
 } from 'class-validator';
 class GetNewsMeta {
   @IsNumber()
@@ -39,9 +40,11 @@ class EntityItem {
   name: string;
 
   @IsString()
+  @IsOptional()
   exchange: string;
 
   @IsString()
+  @IsOptional()
   exchange_long: string;
 
   @IsString()

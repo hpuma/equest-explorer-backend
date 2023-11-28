@@ -28,6 +28,9 @@ export class MarketauxApiService {
 
     const { data } = await this.httpService.axiosRef.get('/news/all', {
       params,
+      headers: {
+        'Accept-Encoding': '*',
+      },
     });
 
     const validatedResponse =
