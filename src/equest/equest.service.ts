@@ -1,4 +1,4 @@
-import { Model, Types } from 'mongoose';
+import { FilterQuery, Model, ProjectionType, Types } from 'mongoose';
 import { Injectable, Inject } from '@nestjs/common';
 import { ApiKey, API_KEY } from '@database/models/apikey.model';
 import { NewsRecord, NEWS_RECORD } from '@database/models/newsrecord.model';
@@ -30,7 +30,10 @@ export class EquestService {
     return await this.newsRecord.findOne({ hash }, { _id: 0 }).lean();
   }
 
-  async getNewsRecords(ticker: string): Promise<
+  async getNewsRecords(
+    query: FilterQuery<any>,
+    projection: ProjectionType<any> | null | undefined,
+  ): Promise<
     Omit<
       NewsRecord & {
         _id: Types.ObjectId;
@@ -38,9 +41,6 @@ export class EquestService {
       never
     >[]
   > {
-    const query = { ticker: { $regex: new RegExp(ticker, 'i') } };
-    const projection = { _id: 0 };
-
     return await this.newsRecord.find(query, projection);
   }
 

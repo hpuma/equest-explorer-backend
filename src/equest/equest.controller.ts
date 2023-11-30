@@ -54,7 +54,13 @@ export class EquestController {
     @Res() res: Response,
   ): Promise<NewsResource> {
     try {
-      const articles = await this.equestService.getNewsRecords(ticker);
+      const query = { ticker: { $regex: new RegExp(ticker, 'i') } };
+      const projection = { _id: 0 };
+
+      const articles = await this.equestService.getNewsRecords(
+        query,
+        projection,
+      );
       const responseData = {
         articles,
         count: articles.length,
