@@ -1,13 +1,15 @@
 import { Body, Controller, Get, Param, Post, Query, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { EquestService } from './equest.service';
-import { Article, NewsResource } from '@global/newsresource.class';
+import { NewsResource } from '@global/newsresource.class';
 import {
   CreateApiKeyBodyDto,
   CreateApiKeyResponseDto,
   NewsRecordQueryDto,
   NewsRecordUploadDto,
   NewsRecordUploadResponseDto,
+  NewsRecordDuplicatesBodyDto,
+  NewsRecordDuplicatesResponseDto,
   TickerSearchQueryDto,
   TickerSearchResponseDto,
 } from './dto';
@@ -33,16 +35,23 @@ export class EquestController {
     }
   }
 
-  @Get('news-record/:hash')
-  async newsrecord(
-    @Param('hash') hash: string,
+  @Post('news-record/duplicates')
+  async newsrecordDuplicates(
+    @Body() { hashes }: NewsRecordDuplicatesBodyDto,
     @Res() res: Response,
-  ): Promise<Article> {
+  ): Promise<NewsRecordDuplicatesResponseDto> {
     try {
-      const article = await this.equestService.getNewsRecordByHash(hash);
+      const duplicates = await this.equestService.getNewsRecordDuplicates(
+        hashes,
+      );
 
-      res.json(article);
-      return article;
+      const response = {
+        duplicates,
+        count: duplicates.length,
+      };
+
+      res.json(response);
+      return response;
     } catch (e) {
       res.json({ message: e.message });
     }

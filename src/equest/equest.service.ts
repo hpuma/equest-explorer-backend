@@ -17,17 +17,21 @@ export class EquestService {
     private tickerValue: Model<TickerValue>,
   ) {}
   async createNewsRecords(articles: Article[]) {
-    const responseData = await this.newsRecord.insertMany(articles, {
-      rawResult: true,
-    });
-
-    const { acknowledged = false, insertedCount = 0 } = responseData;
+    const { acknowledged = false, insertedCount = 0 } =
+      await this.newsRecord.insertMany(articles, {
+        rawResult: true,
+      });
 
     return { acknowledged, insertedCount };
   }
 
-  async getNewsRecordByHash(hash: string) {
-    return await this.newsRecord.findOne({ hash }, { _id: 0 }).lean();
+  async getNewsRecordDuplicates(hashes: string[]): Promise<any> {
+    const response = await this.newsRecord.find(
+      { hash: hashes },
+      { _id: 0, hash: 1 },
+    );
+
+    return response.map((data) => data.hash);
   }
 
   async getNewsRecords(
