@@ -1,7 +1,6 @@
 import { Document, Schema } from 'mongoose';
-import { Article } from '@global/newsresource.class';
 
-export interface TickerQuote extends Document, Article {
+export interface TickerQuote extends Document {
   readonly ticker: string;
   readonly newsSource: string;
   readonly hash: string;
