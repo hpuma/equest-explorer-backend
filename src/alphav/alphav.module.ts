@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AlphavService } from './alphav.service';
+import { EquestService } from 'equest/equest.service';
 import { AlphavController } from './alphav.controller';
 import { AlphavApiService } from './api/alphav-api.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
 import { GlobalModule } from '@global/global.module';
+import { EquestModule } from 'equest/equest.module';
 @Module({
   imports: [
     GlobalModule,
@@ -17,8 +19,9 @@ import { GlobalModule } from '@global/global.module';
       }),
       inject: [ConfigService],
     }),
+    EquestModule,
   ],
   controllers: [AlphavController],
-  providers: [AlphavService, AlphavApiService],
+  providers: [AlphavService, AlphavApiService, EquestService],
 })
 export class AlphavModule {}

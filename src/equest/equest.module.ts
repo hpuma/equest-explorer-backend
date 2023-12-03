@@ -7,5 +7,6 @@ import { DatabaseModule } from '@database/database.module';
   imports: [DatabaseModule],
   controllers: [EquestController],
   providers: [EquestService],
+  exports: [EquestService, DatabaseModule],
 })
 export class EquestModule {}
