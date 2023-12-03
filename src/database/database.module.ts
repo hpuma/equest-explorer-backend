@@ -3,6 +3,7 @@ import { connect, Connection } from 'mongoose';
 import { ApiKeySchema, API_KEY } from './models/apikey.model';
 import { NewsRecordSchema, NEWS_RECORD } from './models/newsrecord.model';
 import { TickerValueSchema, TICKER_VALUE } from './models/tickervalue.model';
+import { TickerQuoteSchema, TICKER_QUOTE } from './models/tickerquote.model';
 
 const DB_CONNECTION = 'DATABASE_CONNECTION';
 const getSchemaName = (modelName: string) => modelName.split('_')[0];
@@ -11,6 +12,7 @@ const DatabaseSources = {
   [API_KEY]: ApiKeySchema,
   [NEWS_RECORD]: NewsRecordSchema,
   [TICKER_VALUE]: TickerValueSchema,
+  [TICKER_QUOTE]: TickerQuoteSchema,
 };
 
 function createDatabaseProviders() {
