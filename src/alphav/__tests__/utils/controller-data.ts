@@ -64,6 +64,7 @@ export function createGlobalQuoteResponse(
     previousClose: '391.5600',
     change: '-5.6500',
     changePercent: '-1.4429%',
+    apiFail: false,
   },
 ): GlobalQuoteResponseDto {
   return overrides;

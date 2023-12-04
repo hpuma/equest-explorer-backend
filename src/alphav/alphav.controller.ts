@@ -1,6 +1,7 @@
 import { Controller, Get, Query, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { AlphavService } from './alphav.service';
+import { EquestService } from 'equest/equest.service';
 import { GlobalValidator } from '@global/global-validator.class';
 import {
   IntradayQueryDto,
@@ -19,6 +20,7 @@ export class AlphavController {
   constructor(
     private readonly alphavService: AlphavService,
     private readonly globalValidator: GlobalValidator,
+    private readonly equestService: EquestService,
   ) {}
 
   @Get('global-quote')
@@ -30,19 +32,32 @@ export class AlphavController {
   async globalquote(
     @Query() query: GlobalQuoteQueryDto,
     @Res() res: Response,
-  ): Promise<GlobalQuoteResponseDto> {
+  ): Promise<Response<any, Record<string, any>>> {
     try {
+      let tickerQuoteDocument = {};
+      const existingTickerData = await this.equestService.getTickerQuote(
+        query.ticker,
+      );
+
+      if (existingTickerData)
+        return res.json({ apiFailed: false, ...existingTickerData });
+
       const alphaServiceResponse = await this.alphavService.getGlobalQuote(
         query,
       );
 
-      const data = await this.globalValidator.validate(
-        alphaServiceResponse,
-        GlobalQuoteResponseDto,
-      );
+      const apiFailed = Boolean(!alphaServiceResponse);
 
-      res.json(data);
-      return data;
+      const globalQuoteData = apiFailed
+        ? {}
+        : await this.globalValidator.validate(
+            alphaServiceResponse,
+            GlobalQuoteResponseDto,
+          );
+      tickerQuoteDocument = apiFailed
+        ? {}
+        : await this.equestService.createTickerQuote(globalQuoteData);
+      return res.json({ apiFailed, ...tickerQuoteDocument });
     } catch (e) {
       res.json({ message: e.message });
     }

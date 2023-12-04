@@ -78,6 +78,7 @@ export default class Format {
       previousClose: data['08. previous close'],
       change: data['09. change'],
       changePercent: data['10. change percent'],
+      apiFail: false,
     };
 
     ['open', 'high', 'low', 'price', 'previousClose', 'change'].forEach(

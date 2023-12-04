@@ -22,7 +22,11 @@ export class AlphavApiService {
   async get(
     query: GetQueryDto,
   ): Promise<
-    GetIntradayDto | GetQuoteDto | GetNewsSentimentDto | GetTickerSearchDto
+    | GetIntradayDto
+    | GetQuoteDto
+    | GetNewsSentimentDto
+    | GetTickerSearchDto
+    | null
   > {
     const params = await this.globalValidator.validate(query, GetQueryDto);
 
@@ -30,8 +34,7 @@ export class AlphavApiService {
       params,
     });
 
-    if (data.Information) throw new Error(`API ERROR => ${data.Information}`);
-
+    if (data.Information) return null;
     const ResponseDto = MapQueryToResponse(QueryFunctions[query.function]);
 
     const validatedResponse = await this.globalValidator.validate(
