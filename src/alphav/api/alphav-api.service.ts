@@ -1,16 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { QueryFunctions } from './dto/utils';
-// GlobalValidator: Validator used for validating and transforming
 import { GlobalValidator } from '@global/global-validator.class';
-import {
-  GetQueryDto,
-  GetIntradayDto,
-  GetQuoteDto,
-  GetNewsSentimentDto,
-  GetTickerSearchDto,
-} from './dto';
-import { MapQueryToResponse } from './dto/utils';
+import { GetQueryDto } from './dto';
+import { MapQueryToResponse, GetAlphavResponseDto } from './dto/utils';
+import { ClassConstructor } from 'class-transformer';
 
 @Injectable()
 export class AlphavApiService {
@@ -19,15 +13,7 @@ export class AlphavApiService {
     private readonly globalValidator: GlobalValidator,
   ) {}
 
-  async get(
-    query: GetQueryDto,
-  ): Promise<
-    | GetIntradayDto
-    | GetQuoteDto
-    | GetNewsSentimentDto
-    | GetTickerSearchDto
-    | null
-  > {
+  async get(query: GetQueryDto): Promise<GetAlphavResponseDto> {
     const params = await this.globalValidator.validate(query, GetQueryDto);
 
     const { data } = await this.httpService.axiosRef.get('', {
@@ -37,10 +23,11 @@ export class AlphavApiService {
     if (data.Information) return null;
     const ResponseDto = MapQueryToResponse(QueryFunctions[query.function]);
 
-    const validatedResponse = await this.globalValidator.validate(
-      data,
-      ResponseDto as any,
-    );
+    const validatedResponse =
+      await this.globalValidator.validate<GetAlphavResponseDto>(
+        data,
+        ResponseDto as ClassConstructor<GetAlphavResponseDto>,
+      );
 
     return validatedResponse;
   }

@@ -36,7 +36,7 @@ export class MarketauxApiService {
     const validatedResponse =
       await this.globalValidator.validate<GetNewsResponseDto>(
         data,
-        GetNewsResponseDto as any,
+        GetNewsResponseDto,
       );
 
     return validatedResponse;

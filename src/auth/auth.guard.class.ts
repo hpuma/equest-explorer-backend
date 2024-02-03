@@ -15,15 +15,15 @@ export class AuthGuard implements CanActivate {
     const req = context.switchToHttp().getRequest();
 
     const key = this.extractApiKeyFromHeader(req);
-    const apiUser = await this.authGuardService.findApiKey(key as string);
+    const apiUser = await this.authGuardService.findApiKey(key);
 
     if (!apiUser) throw new UnauthorizedException();
     Logger.logRequest('guard', req);
     return true;
   }
 
-  private extractApiKeyFromHeader(request: Request): string | string[] {
-    const apiKey = request.headers['x-api-key'];
+  private extractApiKeyFromHeader(request: Request): string {
+    const apiKey = String(request.headers['x-api-key']);
     return apiKey;
   }
 }

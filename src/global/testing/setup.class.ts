@@ -34,9 +34,7 @@ export class TestSetup {
       providers: this.getProviderByType(serviceMethods),
     };
 
-    return (await Test.createTestingModule(
-      testModule,
-    ).compile()) as TestingModule;
+    return await Test.createTestingModule(testModule).compile();
   }
 
   getImportsByType() {

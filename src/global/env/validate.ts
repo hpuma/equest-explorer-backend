@@ -13,7 +13,7 @@ class ApiBaseUrls {
   MARKETAUX_BASE_URL = 'https://api.marketaux.com/v1';
 }
 
-class EnvVariables extends ApiBaseUrls {
+export class EnvVariables extends ApiBaseUrls {
   @IsString()
   @IsNotEmpty()
   @Expose()
