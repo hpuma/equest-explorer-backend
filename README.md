@@ -29,7 +29,7 @@ MONGODB_URI=
 
 ### Endpoints
 
-![Endpoints](https://github.com/hpuma/equest-explorer-backend-v2/blob/main/resources/endpoints.gif)
+![Endpoints](https://github.com/hpuma/equest-explorer-backend-v2/blob/main/resources/endpoints.png)
 
 ### Swagger (OpenAPI)
 
