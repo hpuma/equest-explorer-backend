@@ -4,10 +4,10 @@
       "path": "../"
     },
     {
-      "path": "../equest-explorer-web-v2"
+      "path": "../../equest-explorer-web-v2"
     },
     {
-      "path": "../news-ingestion"
+      "path": "../../news-ingestion"
     }
   ],
   "settings": {}
