@@ -10,11 +10,8 @@ import {
 } from './intraday/intraday-response.dto';
 import { NewsQueryDto } from './news/news-query.dto';
 import { TickerSearchQueryDto } from './tickersearch/tickersearch-query.dto';
-import {
-  TickerSearchResponseDto,
-  BestMatch,
-} from './tickersearch/tickersearch-response.dto';
 import { NewsResponseDto } from './news/news-response.dto';
+
 export {
   GlobalQuoteQueryDto,
   GlobalQuoteResponseDto,
@@ -27,6 +24,4 @@ export {
   Timeseries,
   NewsQueryDto,
   NewsResponseDto,
-  TickerSearchResponseDto,
-  BestMatch,
 };

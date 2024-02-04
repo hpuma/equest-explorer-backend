@@ -32,15 +32,6 @@ export class AlphavService {
     return await this.alphavApiService.get(params);
   }
 
-  async getTickerSearch(query: TickerSearchQueryDto) {
-    const params: GetQueryDto = {
-      function: QueryFunctions.SYMBOL_SEARCH,
-      keywords: query.ticker,
-    };
-
-    return await this.alphavApiService.get(params);
-  }
-
   async getNews(query: TickerSearchQueryDto) {
     const params: GetQueryDto = {
       function: QueryFunctions.NEWS_SENTIMENT,

@@ -6,7 +6,6 @@ import {
   NewsQueryDto,
   NewsResponseDto,
   TickerSearchQueryDto,
-  TickerSearchResponseDto,
 } from '@alphav/dto';
 
 export function createIntradayQuery(
@@ -85,26 +84,5 @@ export function createNewsSentimentResponseDto(
 export function createTickerSearchQuery(
   overrides: TickerSearchQueryDto | null = { ticker: 'SPY' },
 ): TickerSearchQueryDto {
-  return overrides;
-}
-
-export function createTickerSearchResponse(
-  overrides: TickerSearchResponseDto | null = {
-    bestMatches: [
-      {
-        symbol: 'SPY',
-        name: 'SPDR S&P 500 ETF Trust',
-        type: 'ETF',
-        region: 'United States',
-        marketOpen: '09:30',
-        marketClose: '16:00',
-        timezone: 'UTC-04',
-        currency: 'USD',
-        matchScore: '1.0000',
-      },
-    ],
-    count: 1,
-  },
-): TickerSearchResponseDto {
   return overrides;
 }

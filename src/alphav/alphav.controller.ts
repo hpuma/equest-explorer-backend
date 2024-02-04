@@ -6,12 +6,10 @@ import { GlobalValidator } from '@global/global-validator.class';
 import {
   IntradayQueryDto,
   GlobalQuoteQueryDto,
-  TickerSearchQueryDto,
   IntradayResponseDto,
   NewsQueryDto,
   GlobalQuoteResponseDto,
   NewsResponseDto,
-  TickerSearchResponseDto,
 } from './dto';
 import { ApiResponse } from '@nestjs/swagger';
 
@@ -107,33 +105,6 @@ export class AlphavController {
           ticker: query.ticker,
         },
         NewsResponseDto,
-      );
-
-      res.json(data);
-      return data;
-    } catch (e) {
-      res.json({ message: e.message });
-    }
-  }
-
-  @Get('ticker-search')
-  @ApiResponse({
-    status: 200,
-    description: 'ticker-search response object',
-    type: TickerSearchResponseDto,
-  })
-  async tickersearch(
-    @Query() query: TickerSearchQueryDto,
-    @Res() res: Response,
-  ): Promise<TickerSearchResponseDto> {
-    try {
-      const alphaServiceResponse = await this.alphavService.getTickerSearch(
-        query,
-      );
-
-      const data = await this.globalValidator.validate(
-        alphaServiceResponse,
-        TickerSearchResponseDto,
       );
 
       res.json(data);
