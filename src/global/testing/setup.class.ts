@@ -1,5 +1,5 @@
 import { GlobalModule } from '@global/global.module';
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
 
 type ServiceMethods = Record<any, jest.Mock<any, any>>;
 
