@@ -39,7 +39,7 @@ class MappedArticle extends Article {
   }
 }
 
-export class EverythingResponseDto extends NewsResource {
+export class NewsResponseDto extends NewsResource {
   constructor(
     { articles, ticker }: GetEverythingResponseDto & { ticker: string } = {
       articles: [],

@@ -1,4 +1,4 @@
 import { EverythingQueryDto } from './everything/everything-query.dto';
-import { EverythingResponseDto } from './everything/everything-response.dto';
+import { NewsResponseDto } from './everything/everything-response.dto';
 
-export { EverythingQueryDto, EverythingResponseDto };
+export { EverythingQueryDto, NewsResponseDto };

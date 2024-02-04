@@ -92,7 +92,7 @@ export class AlphavController {
   @ApiResponse({
     status: 200,
     description: 'News response object',
-    type: NewsQueryDto,
+    type: NewsResponseDto,
   })
   async news(
     @Query() query: NewsQueryDto,

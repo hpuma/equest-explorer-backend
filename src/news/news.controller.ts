@@ -2,7 +2,7 @@ import { Controller, Get, Query, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { NewsService } from './news.service';
 import { GlobalValidator } from '@global/global-validator.class';
-import { EverythingQueryDto, EverythingResponseDto } from './dto';
+import { EverythingQueryDto, NewsResponseDto } from './dto';
 import { ApiResponse } from '@nestjs/swagger';
 
 @Controller('news')
@@ -16,12 +16,12 @@ export class NewsController {
   @ApiResponse({
     status: 200,
     description: 'everything response object',
-    type: EverythingResponseDto,
+    type: NewsResponseDto,
   })
   async everything(
     @Query() query: EverythingQueryDto,
     @Res() res: Response,
-  ): Promise<EverythingResponseDto> {
+  ): Promise<NewsResponseDto> {
     try {
       const newsServiceResponse = await this.newsService.getEverything(query);
 
@@ -30,7 +30,7 @@ export class NewsController {
           ...newsServiceResponse,
           ticker: query.ticker,
         },
-        EverythingResponseDto,
+        NewsResponseDto,
       );
 
       res.json(data);
