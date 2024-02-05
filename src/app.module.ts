@@ -12,6 +12,7 @@ import { MarketauxModule } from './marketaux/marketaux.module';
 import { EquestModule } from 'equest/equest.module';
 import { validate } from '@global/env/validate';
 import { LoggerMiddleware } from 'logger.middleware';
+import { BingModule } from './bing/bing.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { LoggerMiddleware } from 'logger.middleware';
     AlphavModule,
     MarketauxModule,
     EquestModule,
+    BingModule,
   ],
 })
 export class AppModule implements NestModule {

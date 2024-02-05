@@ -1,12 +1,16 @@
 # Description
 
-Equest Explorer backend
-Allows search of stock news from the following integrations
+Equest Explorer backend provides news articles related to stocks via News REST API integrations such as
 
 - News API
 - Alpha Vantage
 - Marketaux
-- more to come...
+
+Work in progress 🔧
+
+- Bing
+- NewsData
+- GNew
 
 # Prerequisites
 
@@ -18,7 +22,7 @@ Allows search of stock news from the following integrations
 ```
 NODE_ENV="local"
 INTEGRATIONS_ENABLED=true
-
+BING_API_KEY=
 NEWS_API_KEY=
 ALPHAV_API_KEY=
 MARKETAUX_API_KEY=
@@ -27,11 +31,11 @@ MONGODB_URI=
 
 # Documentation
 
-### Endpoints
+## Endpoints
 
 ![Endpoints](https://github.com/hpuma/equest-explorer-backend-v2/blob/main/resources/endpoints.png)
 
-### Swagger (OpenAPI)
+## Swagger (OpenAPI)
 
 - run locally and proceed to `http://localhost:3001/api`
 
