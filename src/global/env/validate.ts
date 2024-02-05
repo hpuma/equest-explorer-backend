@@ -11,6 +11,9 @@ class ApiBaseUrls {
 
   @IsString()
   MARKETAUX_BASE_URL = 'https://api.marketaux.com/v1';
+
+  @IsString()
+  BING_BASE_URL = 'https://api.bing.microsoft.com/v7.0/news';
 }
 
 export class EnvVariables extends ApiBaseUrls {
@@ -38,6 +41,11 @@ export class EnvVariables extends ApiBaseUrls {
   @IsNotEmpty()
   @Expose()
   MARKETAUX_API_KEY: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @Expose()
+  BING_API_KEY: string;
 
   @IsString()
   @IsNotEmpty()

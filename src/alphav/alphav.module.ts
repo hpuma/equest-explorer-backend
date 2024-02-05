@@ -14,8 +14,8 @@ import { EquestModule } from 'equest/equest.module';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         baseURL: configService
-          .get('ALPHAV_BASE_URL')
-          .concat(`?apikey=${configService.get('ALPHAV_API_KEY')}`),
+          .get('BING_BASE_URL')
+          .concat(`?apikey=${configService.get('BING_API_KEY')}`),
       }),
       inject: [ConfigService],
     }),
