@@ -1,6 +1,6 @@
 import {
   Article as RawArticle,
-  GetEverythingResponseDto,
+  ResponseDto,
 } from '@news/api/dto/get-everything-response.dto';
 import {
   Article,
@@ -41,7 +41,7 @@ class MappedArticle extends Article {
 
 export class NewsResponseDto extends NewsResource {
   constructor(
-    { articles, ticker }: GetEverythingResponseDto & { ticker: string } = {
+    { articles, ticker }: ResponseDto & { ticker: string } = {
       articles: [],
       totalResults: 0,
       status: 'ok',

@@ -1,4 +1,4 @@
 import { GetEverythingQueryDto } from './get-everything-query.dto';
-import { GetEverythingResponseDto } from './get-everything-response.dto';
+import { ResponseDto } from './get-everything-response.dto';
 
-export { GetEverythingQueryDto, GetEverythingResponseDto };
+export { GetEverythingQueryDto, ResponseDto };
