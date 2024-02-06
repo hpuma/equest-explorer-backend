@@ -87,8 +87,8 @@ export class Article {
   })
   url: string;
 
+  @ValidateIf((object, value) => value !== undefined && value !== null)
   @IsString()
-  @ValidateIf((object, value) => value !== null)
   @ApiProperty({
     description: 'URL of an image that is associated with the article',
   })

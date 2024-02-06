@@ -4,7 +4,7 @@ import {
   Interval,
   Timestamp,
 } from '@global/newsresource.class';
-import { GetNewsResponseDto, DataItem } from '../api/dto/get-response.dto';
+import { GetMarketauxResponseDto, DataItem } from '../api/dto/get-response.dto';
 import { Format, Time } from '@global/helpers';
 class MappedInterval extends Interval {
   constructor(date: Date) {
@@ -55,7 +55,7 @@ class MappedArticle extends Article {
 
 export class NewsResponseDto extends NewsResource {
   constructor(
-    { data, ticker }: GetNewsResponseDto & { ticker: string } = {
+    { data, ticker }: GetMarketauxResponseDto & { ticker: string } = {
       meta: { found: 0, returned: 0, limit: 0, page: 0 },
       data: [],
       ticker: 'NO_TICKER',

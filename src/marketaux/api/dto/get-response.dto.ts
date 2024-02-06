@@ -112,8 +112,8 @@ export class DataItem {
   similar: DataItem[];
 }
 
-export class GetNewsResponseDto {
-  constructor(data: GetNewsResponseDto) {
+export class GetMarketauxResponseDto {
+  constructor(data: GetMarketauxResponseDto) {
     if (data) Object.assign(this, data);
   }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { GlobalValidator } from '@global/global-validator.class';
-import { GetQueryDto, GetNewsResponseDto } from './dto';
+import { GetQueryDto, GetMarketauxResponseDto } from './dto';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class MarketauxApiService {
     private readonly configService: ConfigService,
   ) {}
 
-  async get(query: GetQueryDto): Promise<GetNewsResponseDto> {
+  async get(query: GetQueryDto): Promise<GetMarketauxResponseDto> {
     const validatedParams: GetQueryDto = await this.globalValidator.validate(
       query,
       GetQueryDto,
@@ -28,9 +28,9 @@ export class MarketauxApiService {
       },
     });
 
-    return await this.globalValidator.validate<GetNewsResponseDto>(
+    return await this.globalValidator.validate<GetMarketauxResponseDto>(
       data,
-      GetNewsResponseDto,
+      GetMarketauxResponseDto,
     );
   }
 }
