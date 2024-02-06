@@ -81,7 +81,8 @@
     "moduleNameMapper": {
       "@global/(.*)": "<rootDir>/global/$1",
       "@alphav/(.*)": "<rootDir>/alphav/$1",
-      "@news/(.*)": "<rootDir>/news/$1"
+      "@news/(.*)": "<rootDir>/news/$1",
+      "@bing/(.*)": "<rootDir>/bing/$1"
     }
   },
   "_moduleAliases": {
