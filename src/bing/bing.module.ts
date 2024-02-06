@@ -1,20 +1,20 @@
 import { Module } from '@nestjs/common';
-import { BingService } from './bing.service';
-import { BingController } from './bing.controller';
-import { BingApiService } from './api/bing-api.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { GlobalModule } from '@global/global.module';
 import { HttpModule } from '@nestjs/axios';
-
+import { BingService } from './bing.service';
+import { BingApiService } from './api/bing-api.service';
+import { BingController } from './bing.controller';
+import { GlobalModule } from '@global/global.module';
 @Module({
   imports: [
     GlobalModule,
     HttpModule.registerAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        baseURL: configService
-          .get('BING_API_KEY')
-          .concat(`?apikey=${configService.get('BING_API_KEY')}`),
+      useFactory: async (config: ConfigService) => ({
+        baseURL: config.get('BING_BASE_URL'),
+        headers: {
+          'Ocp-Apim-Subscription-Key': config.get('BING_API_KEY'),
+        },
       }),
       inject: [ConfigService],
     }),

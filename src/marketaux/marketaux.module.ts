@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
-import { MarketauxService } from './marketaux.service';
-import { MarketauxController } from './marketaux.controller';
-import { MarketauxApiService } from './api/marketaux-api.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
+import { MarketauxService } from './marketaux.service';
+import { MarketauxApiService } from './api/marketaux-api.service';
+import { MarketauxController } from './marketaux.controller';
 import { GlobalModule } from '@global/global.module';
-
 @Module({
   imports: [
     GlobalModule,
