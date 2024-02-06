@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { GlobalValidator } from '@global/global-validator.class';
-import { GetQueryDto, GetResponseDto } from './dto';
+import { GetQueryDto, GetBingResponseDto } from './dto';
 
 @Injectable()
 export class BingApiService {
@@ -9,7 +9,7 @@ export class BingApiService {
     private readonly httpService: HttpService,
     private readonly globalValidator: GlobalValidator,
   ) {}
-  async get(query: GetQueryDto): Promise<GetResponseDto> {
+  async get(query: GetQueryDto): Promise<GetBingResponseDto> {
     const params: GetQueryDto = await this.globalValidator.validate(
       query,
       GetQueryDto,
@@ -19,9 +19,9 @@ export class BingApiService {
       params,
     });
 
-    return await this.globalValidator.validate<GetResponseDto>(
+    return await this.globalValidator.validate<GetBingResponseDto>(
       data,
-      GetResponseDto,
+      GetBingResponseDto,
     );
   }
 }

@@ -10,10 +10,10 @@ import { GlobalModule } from '@global/global.module';
     GlobalModule,
     HttpModule.registerAsync({
       imports: [ConfigModule],
-      useFactory: async (config: ConfigService) => ({
-        baseURL: config.get('BING_BASE_URL'),
+      useFactory: async (configService: ConfigService) => ({
+        baseURL: configService.get('BING_BASE_URL'),
         headers: {
-          'Ocp-Apim-Subscription-Key': config.get('BING_API_KEY'),
+          'Ocp-Apim-Subscription-Key': configService.get('BING_API_KEY'),
         },
       }),
       inject: [ConfigService],
