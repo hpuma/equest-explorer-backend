@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { NewsApiService } from './api/news-api.service';
-import { EverythingQueryDto } from './dto';
+import { NewsQueryDto } from './dto';
 import { GetEverythingQueryDto } from './api/dto';
+import { NewsApiService } from './api/news-api.service';
 
 @Injectable()
 export class NewsService {
   constructor(private newsApiService: NewsApiService) {}
 
-  async getEverything(query: EverythingQueryDto) {
+  async getNews(query: NewsQueryDto) {
     const params: GetEverythingQueryDto = {
       q: query.ticker,
       searchIn: query.contentSource,
@@ -17,7 +17,6 @@ export class NewsService {
       sortBy: query.sortBy,
       language: query.language,
     };
-
     return await this.newsApiService.get(params);
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { QueryFunctions } from './dto/utils';
 import { GlobalValidator } from '@global/global-validator.class';
+import { QueryFunctions } from './dto/utils';
 import { GetQueryDto } from './dto';
 import { MapQueryToResponse, GetAlphavResponseDto } from './dto/utils';
 import { ClassConstructor } from 'class-transformer';
@@ -13,7 +13,7 @@ export class AlphavApiService {
     private readonly globalValidator: GlobalValidator,
   ) {}
 
-  async get(query: GetQueryDto): Promise<GetAlphavResponseDto> {
+  async get(query: GetQueryDto) {
     const params: GetQueryDto = await this.globalValidator.validate(
       query,
       GetQueryDto,

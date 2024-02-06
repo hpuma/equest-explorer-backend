@@ -2,7 +2,7 @@ import { IsOptional, IsString, IsNotEmpty } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { tickerApiDoc } from '@global/documentation/query';
 
-export class EverythingQueryDto {
+export class NewsQueryDto {
   @IsNotEmpty()
   @IsString()
   @ApiProperty(tickerApiDoc)

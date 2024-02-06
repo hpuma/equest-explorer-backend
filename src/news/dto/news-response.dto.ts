@@ -1,7 +1,7 @@
 import {
   Article as RawArticle,
   GetNewsResponseDto,
-} from '@news/api/dto/get-everything-response.dto';
+} from '@news/api/dto/get-response.dto';
 import {
   Article,
   NewsResource,

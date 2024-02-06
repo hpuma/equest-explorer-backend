@@ -10,7 +10,7 @@ export class NewsApiService {
     private readonly globalValidator: GlobalValidator,
   ) {}
 
-  async get(query: GetEverythingQueryDto): Promise<GetNewsResponseDto> {
+  async get(query: GetEverythingQueryDto) {
     const params: GetEverythingQueryDto = await this.globalValidator.validate(
       query,
       GetEverythingQueryDto,

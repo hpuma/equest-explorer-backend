@@ -1,4 +1,4 @@
-import { FilterQuery, Model, ProjectionType, Types } from 'mongoose';
+import { FilterQuery, Model, ProjectionType } from 'mongoose';
 import { Injectable, Inject } from '@nestjs/common';
 import { ApiKey, API_KEY } from '@database/models/apikey.model';
 import { NewsRecord, NEWS_RECORD } from '@database/models/newsrecord.model';
@@ -27,8 +27,7 @@ export class EquestService {
 
     return { acknowledged, insertedCount };
   }
-
-  async getNewsRecordDuplicates(hashes: string[]): Promise<any> {
+  async getNewsRecordDuplicates(hashes: string[]) {
     const response = await this.newsRecord.find(
       { hash: hashes },
       { _id: 0, hash: 1 },
@@ -36,22 +35,13 @@ export class EquestService {
 
     return response.map((data) => data.hash);
   }
-
   async getNewsRecords(
     query: FilterQuery<any>,
     projection: ProjectionType<any> | null | undefined,
-  ): Promise<
-    Omit<
-      NewsRecord & {
-        _id: Types.ObjectId;
-      },
-      never
-    >[]
-  > {
+  ) {
     return await this.newsRecord.find(query, projection);
   }
-
-  async getTickerValues(tickerValue: string): Promise<TickerValue[]> {
+  async getTickerValues(tickerValue: string) {
     try {
       return await this.tickerValue.aggregate([
         {
@@ -78,13 +68,10 @@ export class EquestService {
       console.log(error.message);
     }
   }
-
-  async getTickerRecords(): Promise<TickerValue[]> {
-    const projection = { _id: 0 };
-    return await this.tickerValue.find({ isActive: true }, projection).lean();
+  async getTickerRecords() {
+    return await this.tickerValue.find({ isActive: true }, { _id: 0 }).lean();
   }
-
-  async createApiKey(email: string): Promise<Pick<ApiKey, 'key'>> {
+  async createApiKey(email: string) {
     const apikeyWithEmail = await this.apiKey.findOne({ email }).lean();
     if (apikeyWithEmail) throw Error('Api Key already assigned to email!');
 
@@ -93,13 +80,11 @@ export class EquestService {
       email,
       key: generatedKey,
     });
-
     return { key };
   }
-  async createTickerQuote(data: any): Promise<TickerQuote> {
-    const timeThreshold = new Date(); // Tiume now
+  async createTickerQuote(data: any) {
+    const timeThreshold = new Date(); // Time now
     timeThreshold.setHours(timeThreshold.getHours() - 1); // Set time an hour back
-
     return (
       (await this.tickerQuote
         .findOne({
@@ -109,7 +94,7 @@ export class EquestService {
         .lean()) ?? (await this.tickerQuote.create(data)).toJSON()
     );
   }
-  async getTickerQuote(symbol: string): Promise<TickerQuote> {
+  async getTickerQuote(symbol: string) {
     return await this.tickerQuote
       .findOne({ symbol }, {}, { sort: { createdAt: -1 } })
       .lean();

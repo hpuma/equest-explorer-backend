@@ -9,7 +9,7 @@ export class BingApiService {
     private readonly httpService: HttpService,
     private readonly globalValidator: GlobalValidator,
   ) {}
-  async get(query: GetQueryDto): Promise<GetBingResponseDto> {
+  async get(query: GetQueryDto) {
     const params: GetQueryDto = await this.globalValidator.validate(
       query,
       GetQueryDto,

@@ -27,10 +27,7 @@ export class AlphavController {
     description: 'global-quote response object',
     type: GlobalQuoteResponseDto,
   })
-  async globalquote(
-    @Query() query: GlobalQuoteQueryDto,
-    @Res() res: Response,
-  ): Promise<Response<any, Record<string, any>>> {
+  async globalquote(@Query() query: GlobalQuoteQueryDto, @Res() res: Response) {
     try {
       let tickerQuoteDocument = {};
       const existingTickerData = await this.equestService.getTickerQuote(
@@ -45,17 +42,17 @@ export class AlphavController {
       );
 
       const apiFailed = Boolean(!alphaServiceResponse);
-
       const globalQuoteData = apiFailed
         ? {}
         : await this.globalValidator.validate(
             alphaServiceResponse,
             GlobalQuoteResponseDto,
           );
+
       tickerQuoteDocument = apiFailed
         ? {}
         : await this.equestService.createTickerQuote(globalQuoteData);
-      return res.json({ apiFailed, ...tickerQuoteDocument });
+      res.json({ apiFailed, ...tickerQuoteDocument });
     } catch (e) {
       res.json({ message: e.message });
     }
@@ -67,20 +64,14 @@ export class AlphavController {
     description: 'Intraday response object',
     type: IntradayResponseDto,
   })
-  async intraday(
-    @Query() query: IntradayQueryDto,
-    @Res() res: Response,
-  ): Promise<IntradayResponseDto> {
+  async intraday(@Query() query: IntradayQueryDto, @Res() res: Response) {
     try {
       const alphaServiceResponse = await this.alphavService.getIntraday(query);
-
       const data = await this.globalValidator.validate(
         alphaServiceResponse,
         IntradayResponseDto,
       );
-
       res.json(data);
-      return data;
     } catch (e) {
       res.json({ message: e.message });
     }
@@ -92,13 +83,9 @@ export class AlphavController {
     description: 'News response object',
     type: NewsResponseDto,
   })
-  async news(
-    @Query() query: NewsQueryDto,
-    @Res() res: Response,
-  ): Promise<NewsResponseDto> {
+  async news(@Query() query: NewsQueryDto, @Res() res: Response) {
     try {
       const alphaServiceResponse = await this.alphavService.getNews(query);
-
       const data = await this.globalValidator.validate(
         {
           ...alphaServiceResponse,
@@ -106,9 +93,7 @@ export class AlphavController {
         },
         NewsResponseDto,
       );
-
       res.json(data);
-      return data;
     } catch (e) {
       res.json({ message: e.message });
     }

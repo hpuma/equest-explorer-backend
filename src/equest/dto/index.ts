@@ -1,12 +1,13 @@
-import { CreateApiKeyBodyDto } from './apikey/createapikey-body.dto';
-import { CreateApiKeyResponseDto } from './apikey/createapikey-response.dto';
-import { NewsRecordQueryDto } from './newsrecord/newsrecord-query.dto';
-import { NewsRecordUploadDto } from './newsrecord/newsrecordupload-body.dto';
-import { NewsRecordUploadResponseDto } from './newsrecord/newsrecordupload-response.dto';
-import { NewsRecordDuplicatesBodyDto } from './newsrecord/newsrecordduplicates-body.dto';
-import { NewsRecordDuplicatesResponseDto } from './newsrecord/newsrecordduplicates-response.dto';
-import { TickerSearchQueryDto } from './tickersearch/tickersearch-query.dto';
-import { TickerSearchResponseDto } from './tickersearch/tickersearch-response.dto';
+import { CreateApiKeyBodyDto } from './apikey/body.dto';
+import { CreateApiKeyResponseDto } from './apikey/response.dto';
+import { NewsRecordQueryDto } from './newsrecord/query.dto';
+import { NewsRecordUploadDto } from './newsrecordupload/body.dto';
+import { NewsRecordUploadResponseDto } from './newsrecordupload/response.dto';
+import { NewsRecordDuplicatesBodyDto } from './newsrecordduplicates/body.dto';
+import { NewsRecordDuplicatesResponseDto } from './newsrecordduplicates/response.dto';
+import { TickerSearchQueryDto } from './tickersearch/query.dto';
+import { TickerSearchResponseDto } from './tickersearch/response.dto';
+import { TickerRecordResponse } from './tickerrecord/response.dto';
 
 export {
   NewsRecordQueryDto,
@@ -18,4 +19,5 @@ export {
   CreateApiKeyResponseDto,
   TickerSearchQueryDto,
   TickerSearchResponseDto,
+  TickerRecordResponse,
 };

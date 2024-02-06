@@ -32,7 +32,6 @@ export class BingController {
 
       res.json(data);
     } catch (e) {
-      console.log('🚀 ~ BingController ~ news ~ e:', e);
       res.json({ message: e.message });
     }
   }

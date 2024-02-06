@@ -2,7 +2,7 @@ import { Controller, Get, Query, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { MarketauxService } from './marketaux.service';
 import { GlobalValidator } from '@global/global-validator.class';
-import { NewsQueryDto } from './dto/get-query.dto';
+import { NewsQueryDto } from './dto/news-query.dto';
 import { ApiResponse } from '@nestjs/swagger';
 import { NewsResponseDto } from './dto/news-response.dto';
 
@@ -19,10 +19,7 @@ export class MarketauxController {
     description: 'news response object',
     type: NewsResponseDto,
   })
-  async news(
-    @Query() query: NewsQueryDto,
-    @Res() res: Response,
-  ): Promise<NewsResponseDto> {
+  async news(@Query() query: NewsQueryDto, @Res() res: Response) {
     try {
       const marketauxServiceResponse = await this.marketauxService.getNews(
         query,
@@ -37,7 +34,6 @@ export class MarketauxController {
       );
 
       res.json(data);
-      return data;
     } catch (e) {
       res.json({ message: e.message });
     }

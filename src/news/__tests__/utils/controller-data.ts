@@ -1,8 +1,8 @@
-import { EverythingQueryDto, NewsResponseDto } from '@news/dto';
+import { NewsQueryDto, NewsResponseDto } from '@news/dto';
 
 export function createEverythingQuery(
-  overrides: EverythingQueryDto | null = { ticker: 'SPY' },
-): EverythingQueryDto {
+  overrides: NewsQueryDto | null = { ticker: 'SPY' },
+): NewsQueryDto {
   return overrides;
 }
 
