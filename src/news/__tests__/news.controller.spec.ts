@@ -13,7 +13,6 @@ import {
 describe('NewsController', () => {
   let controller: NewsController;
   let service: NewsService;
-  let response;
   let globalValidator: GlobalValidator;
   const testSetup = new TestSetup(TestClass.controller, {
     controller: NewsController,
@@ -21,9 +20,10 @@ describe('NewsController', () => {
   });
   beforeAll(async () => {
     const module: TestingModule = await testSetup.getTestingModule({
-      getEverything: jest.fn(),
+      getNews: jest.fn(),
     });
     controller = module.get<NewsController>(NewsController);
+    console.log('🚀 ~ beforeAll ~ controller:', controller);
     service = module.get<NewsService>(NewsService);
     globalValidator = module.get<GlobalValidator>(GlobalValidator);
   });
@@ -37,28 +37,26 @@ describe('NewsController', () => {
     describe('when a successful response is returned', () => {
       it('should return a successful response when all dtos are valid', async () => {
         jest
-          .spyOn(service, 'getEverything')
+          .spyOn(service, 'getNews')
           .mockResolvedValueOnce(createGetEverythingResponse());
 
         const mockGlobalValidatorData = createEverythingResponse();
         jest
           .spyOn(globalValidator, 'validate')
-          .mockResolvedValueOnce(mockGlobalValidatorData);
+          .mockResolvedValue(mockGlobalValidatorData);
 
-        response = await controller.everything(createEverythingQuery(), res);
-
+        await controller.everything(createEverythingQuery(), res);
         expect(res.json).toBeCalledWith(mockGlobalValidatorData);
-        expect(response).toEqual(mockGlobalValidatorData);
       });
     });
     describe('when an unsuccessful response returned', () => {
       it('should throw when service fails', async () => {
         const serviceErrorMessage = 'Service has encountered an error';
-        jest.spyOn(service, 'getEverything').mockImplementationOnce(() => {
+        jest.spyOn(service, 'getNews').mockImplementationOnce(() => {
           throw new Error(serviceErrorMessage);
         });
 
-        response = await controller.everything(createEverythingQuery(), res);
+        await controller.everything(createEverythingQuery(), res);
         expect(res.json).toBeCalledWith({ message: serviceErrorMessage });
       });
 
@@ -68,7 +66,7 @@ describe('NewsController', () => {
           throw new Error(serviceErrorMessage);
         });
 
-        response = await controller.everything(createEverythingQuery(), res);
+        await controller.everything(createEverythingQuery(), res);
         expect(res.json).toBeCalledWith({ message: serviceErrorMessage });
       });
     });

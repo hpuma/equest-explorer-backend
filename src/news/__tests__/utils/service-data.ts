@@ -1,4 +1,4 @@
-import { GetNewsResponseDto } from '@news/api/dto/get-response.dto';
+import { GetNewsResponseDto } from '@news/api/dto';
 
 export function createGetEverythingResponse(
   overrides: GetNewsResponseDto | null = {

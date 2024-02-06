@@ -1,16 +1,17 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { TestingModule } from '@nestjs/testing';
 import { BingController } from '../bing.controller';
 import { BingService } from '../bing.service';
-
+import { TestSetup, TestClass } from '@global/testing/setup.class';
 describe('BingController', () => {
   let controller: BingController;
-
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [BingController],
-      providers: [BingService],
-    }).compile();
-
+  const testSetup = new TestSetup(TestClass.controller, {
+    controller: BingController,
+    service: BingService,
+  });
+  beforeAll(async () => {
+    const module: TestingModule = await testSetup.getTestingModule({
+      news: jest.fn(),
+    });
     controller = module.get<BingController>(BingController);
   });
 
