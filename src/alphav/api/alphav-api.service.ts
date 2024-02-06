@@ -14,21 +14,22 @@ export class AlphavApiService {
   ) {}
 
   async get(query: GetQueryDto): Promise<GetAlphavResponseDto> {
-    const params = await this.globalValidator.validate(query, GetQueryDto);
+    const params: GetQueryDto = await this.globalValidator.validate(
+      query,
+      GetQueryDto,
+    );
 
     const { data } = await this.httpService.axiosRef.get('', {
       params,
     });
 
     if (data.Information) return null;
-    const ResponseDto = MapQueryToResponse(QueryFunctions[query.function]);
+    const ResponseDto: ClassConstructor<GetAlphavResponseDto> =
+      MapQueryToResponse(QueryFunctions[query.function]);
 
-    const validatedResponse =
-      await this.globalValidator.validate<GetAlphavResponseDto>(
-        data,
-        ResponseDto as ClassConstructor<GetAlphavResponseDto>,
-      );
-
-    return validatedResponse;
+    return await this.globalValidator.validate<GetAlphavResponseDto>(
+      data,
+      ResponseDto,
+    );
   }
 }

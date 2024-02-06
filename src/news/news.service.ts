@@ -18,6 +18,6 @@ export class NewsService {
       language: query.language,
     };
 
-    return await this.newsApiService.getEverything(params);
+    return await this.newsApiService.get(params);
   }
 }

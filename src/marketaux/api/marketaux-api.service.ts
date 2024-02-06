@@ -6,7 +6,6 @@ import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class MarketauxApiService {
-  private api_key: string = this.configService.get('MARKETAUX_API_KEY');
   constructor(
     private readonly httpService: HttpService,
     private readonly globalValidator: GlobalValidator,
@@ -14,31 +13,24 @@ export class MarketauxApiService {
   ) {}
 
   async get(query: GetQueryDto): Promise<GetNewsResponseDto> {
-    const validatedParams = await this.globalValidator.validate(
+    const validatedParams: GetQueryDto = await this.globalValidator.validate(
       query,
       GetQueryDto,
     );
 
-    const { api_key: api_token } = this;
-
-    const params = {
-      ...validatedParams,
-      api_token,
-    };
-
     const { data } = await this.httpService.axiosRef.get('/news/all', {
-      params,
+      params: {
+        ...validatedParams,
+        api_token: this.configService.get('MARKETAUX_API_KEY'),
+      },
       headers: {
         'Accept-Encoding': '*',
       },
     });
 
-    const validatedResponse =
-      await this.globalValidator.validate<GetNewsResponseDto>(
-        data,
-        GetNewsResponseDto,
-      );
-
-    return validatedResponse;
+    return await this.globalValidator.validate<GetNewsResponseDto>(
+      data,
+      GetNewsResponseDto,
+    );
   }
 }
