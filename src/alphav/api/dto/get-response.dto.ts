@@ -190,16 +190,21 @@ export class GetNewsSentimentDto {
   constructor(data: GetNewsSentimentDto) {
     if (data) Object.assign(this, data);
   }
-  @IsString()
-  items: string;
 
+  @IsOptional()
   @IsString()
-  sentiment_score_definition: string;
+  items?: string;
 
+  @IsOptional()
   @IsString()
-  relevance_score_definition: string;
+  sentiment_score_definition?: string;
+
+  @IsOptional()
+  @IsString()
+  relevance_score_definition?: string;
 
   @IsArray()
+  @IsNotEmpty()
   @ValidateNested({ each: true })
   @Type(() => NewsSentimentFeed)
   feed: NewsSentimentFeed[];

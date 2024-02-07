@@ -1,70 +1,39 @@
-import {
-  Article,
-  NewsResource,
-  Interval,
-  Timestamp,
-} from '@global/newsresource.class';
+import { Article, NewsResource } from '@global/newsresource.class';
 import { GetMarketauxResponseDto, DataItem } from '../api/dto/get-response.dto';
-import { Format, Time } from '@global/helpers';
-class MappedInterval extends Interval {
-  constructor(date: Date) {
-    super({
-      plusone: Format.dateString(Time.roundMinute(date, 'up')),
-      exact: Format.dateString(date),
-      minusone: Format.dateString(Time.roundMinute(date, 'down')),
-    });
-  }
-}
-
-class MappedTimestamp extends Timestamp {
-  constructor(publishedAt: string) {
-    const date = Format.stringToDate(publishedAt);
-    super({
-      date: Format.date(date),
-      time: Format.time(date),
-      interval: new MappedInterval(date),
-    });
-  }
-}
+import { MappedTimestamp } from '@global/response/news-response.dto';
 
 class MappedArticle extends Article {
   constructor(rawArticle: DataItem) {
     const {
-      source,
+      source: author,
       title,
-      snippet,
+      snippet: content,
       description,
       url,
-      image_url,
+      image_url: urlToImage,
       published_at,
     } = rawArticle;
 
     const timestamp = new MappedTimestamp(published_at);
 
     super({
-      author: source,
+      author,
       title,
       description,
       url,
       timestamp,
-      urlToImage: image_url,
-      content: snippet,
+      urlToImage,
+      content,
     });
   }
 }
 
 export class NewsResponseDto extends NewsResource {
-  constructor(
-    { data, ticker }: GetMarketauxResponseDto & { ticker: string } = {
-      meta: { found: 0, returned: 0, limit: 0, page: 0 },
-      data: [],
-      ticker: 'NO_TICKER',
-    },
-  ) {
+  constructor(data: GetMarketauxResponseDto) {
+    const articles = data?.data ?? [];
     super({
-      articles: data.map((dataItem) => new MappedArticle(dataItem)),
-      count: data.length,
-      ticker,
+      articles: articles.map((article) => new MappedArticle(article)),
+      count: articles.length,
     });
   }
 }

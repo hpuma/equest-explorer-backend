@@ -1,41 +1,19 @@
+import { Article, NewsResource } from '@global/newsresource.class';
 import {
   NewsSentimentFeed,
   GetNewsSentimentDto,
 } from '@alphav/api/dto/get-response.dto';
-import {
-  Article,
-  NewsResource,
-  Interval,
-  Timestamp,
-} from '@global/newsresource.class';
-import { Format, Time } from '@global/helpers';
-
-class MappedInterval extends Interval {
-  constructor(date: Date) {
-    super({
-      plusone: Format.dateString(Time.roundMinute(date, 'up')),
-      exact: Format.dateString(date),
-      minusone: Format.dateString(Time.roundMinute(date, 'down')),
-    });
-  }
-}
-
-class MappedTimestamp extends Timestamp {
-  constructor(publishedAt: string) {
-    const date = Format.stringToDate(publishedAt);
-    super({
-      date: Format.date(date),
-      time: Format.time(date),
-      interval: new MappedInterval(date),
-    });
-  }
-}
+import { MappedTimestamp } from '@global/response/news-response.dto';
 
 class MappedArticle extends Article {
-  constructor(rawArticle: NewsSentimentFeed) {
-    const { authors, title, summary, url, banner_image, time_published } =
-      rawArticle;
-
+  constructor({
+    authors,
+    title,
+    summary,
+    url,
+    banner_image: urlToImage,
+    time_published,
+  }: NewsSentimentFeed) {
     const timestamp = new MappedTimestamp(time_published);
 
     super({
@@ -44,26 +22,18 @@ class MappedArticle extends Article {
       description: summary,
       url,
       timestamp,
-      urlToImage: banner_image ?? '',
+      urlToImage,
       content: summary,
     });
   }
 }
 
 export class NewsResponseDto extends NewsResource {
-  constructor(
-    { feed, ticker }: GetNewsSentimentDto & { ticker: string } = {
-      items: '',
-      sentiment_score_definition: '.',
-      relevance_score_definition: '',
-      feed: [],
-      ticker: 'NO_TICKER',
-    },
-  ) {
+  constructor(data: GetNewsSentimentDto) {
+    const articles = data?.feed ?? [];
     super({
-      articles: feed.map((rawFeedItem) => new MappedArticle(rawFeedItem)),
-      count: feed.length,
-      ticker,
+      articles: articles.map((article) => new MappedArticle(article)),
+      count: articles.length,
     });
   }
 }

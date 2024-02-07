@@ -54,10 +54,10 @@ export class GetNewsResponseDto {
     if (data) Object.assign(this, data);
   }
   @IsString()
-  status: string;
+  status?: string;
 
   @IsNumber()
-  totalResults: number;
+  totalResults?: number;
 
   @IsArray()
   @ValidateNested({ each: true })

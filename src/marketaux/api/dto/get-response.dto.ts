@@ -118,7 +118,7 @@ export class GetMarketauxResponseDto {
   }
 
   @Type(() => DataItem)
-  meta: GetNewsMeta;
+  meta?: GetNewsMeta;
 
   @IsArray()
   @ValidateNested({ each: true })

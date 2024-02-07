@@ -1,7 +1,6 @@
 import {
   IsOptional,
   IsString,
-  IsNotEmpty,
   IsBoolean,
   IsArray,
   ValidateNested,
@@ -40,7 +39,6 @@ class Organization {
 }
 
 class Thumbnail {
-  @IsOptional()
   @IsString()
   contentUrl: string;
 
@@ -97,7 +95,7 @@ class Video {
 
 export class NewsArticle {
   @IsOptional()
-  about: any[];
+  about?: any[];
 
   @IsString()
   category: string;
@@ -106,10 +104,10 @@ export class NewsArticle {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => NewsArticle)
-  clusteredArticles: NewsArticle[];
+  clusteredArticles?: NewsArticle[];
 
   @IsOptional()
-  contractualRules: any[];
+  contractualRules?: any[];
 
   @IsString()
   datePublished: string;
@@ -117,11 +115,9 @@ export class NewsArticle {
   @IsString()
   description: string;
 
-  @IsBoolean()
-  headline: boolean;
-
+  @IsOptional()
   @IsString()
-  id: string;
+  id?: string;
 
   @Type(() => Image)
   image: Image;
@@ -135,7 +131,6 @@ export class NewsArticle {
   @IsString()
   name: string;
 
-  @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => Organization)
@@ -164,34 +159,35 @@ export class GetBingResponseDto {
 
   @IsOptional()
   @IsString()
-  _type: string;
+  _type?: string;
 
   @IsOptional()
   @IsString()
-  readLink: string;
+  readLink?: string;
 
   @IsOptional()
   @Type(() => QueryContext)
-  queryContext: QueryContext;
+  queryContext?: QueryContext;
 
   @IsOptional()
   @Type(() => RelatedTopic)
-  relatedTopics: RelatedTopic;
+  relatedTopics?: RelatedTopic;
 
   @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => Sort)
-  sort: Sort[];
+  sort?: Sort[];
+
+  @IsNumber()
+  totalEstimatedMatches? = 0;
 
   @IsOptional()
-  @IsNumber()
-  totalEstimatedMatches: number;
-
-  @IsNotEmpty()
-  value: NewsArticle[];
+  @ValidateNested({ each: true })
+  @Type(() => NewsArticle)
+  value?: NewsArticle[];
 
   @IsOptional()
   @IsString()
-  webSearchUrl: string;
+  webSearchUrl?: string;
 }
