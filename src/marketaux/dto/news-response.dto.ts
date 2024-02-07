@@ -3,17 +3,15 @@ import { GetMarketauxResponseDto, DataItem } from '../api/dto/get-response.dto';
 import { MappedTimestamp } from '@global/response/news-response.dto';
 
 class MappedArticle extends Article {
-  constructor(rawArticle: DataItem) {
-    const {
-      source: author,
-      title,
-      snippet: content,
-      description,
-      url,
-      image_url: urlToImage,
-      published_at,
-    } = rawArticle;
-
+  constructor({
+    source: author,
+    title,
+    snippet: content,
+    description,
+    url,
+    image_url: urlToImage,
+    published_at,
+  }: DataItem) {
     const timestamp = new MappedTimestamp(published_at);
 
     super({
