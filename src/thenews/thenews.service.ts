@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { NewsQueryDto } from './dto/news-query.dto';
 import { TheNewsServiceApi } from './api/thenews-api.service';
-import { GetQueryDto } from './api/dto';
+import { GetQueryDto } from './api/dto/get-query.dto';
 
 @Injectable()
 export class TheNewsService {

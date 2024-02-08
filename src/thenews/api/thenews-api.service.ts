@@ -1,7 +1,8 @@
 import { GlobalValidator } from '@global/global-validator.class';
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import { GetQueryDto, GetResponseDto } from './dto';
+import { GetQueryDto } from './dto/get-query.dto';
+import { GetResponseDto } from './dto/get-response.dto';
 import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class TheNewsServiceApi {

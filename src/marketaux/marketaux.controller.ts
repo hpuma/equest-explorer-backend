@@ -3,8 +3,8 @@ import { Response } from 'express';
 import { MarketauxService } from './marketaux.service';
 import { GlobalValidator } from '@global/global-validator.class';
 import { NewsQueryDto } from './dto/news-query.dto';
-import { ApiResponse } from '@nestjs/swagger';
 import { NewsResponseDto } from './dto/news-response.dto';
+import { ApiResponse } from '@nestjs/swagger';
 
 @Controller('marketaux')
 export class MarketauxController {

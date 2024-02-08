@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { NewsQueryDto } from './dto';
-import { GetQueryDto } from './api/dto';
+import { NewsQueryDto } from './dto/news-query.dto';
+import { GetQueryDto } from './api/dto/get-query.dto';
 import { BingApiService } from './api/bing-api.service';
 
 @Injectable()

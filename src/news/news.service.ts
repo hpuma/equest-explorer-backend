@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { NewsQueryDto } from './dto';
-import { GetEverythingQueryDto } from './api/dto';
+import { NewsQueryDto } from './dto/news-query.dto';
+import { GetEverythingQueryDto } from './api/dto/get-query.dto';
 import { NewsApiService } from './api/news-api.service';
 
 @Injectable()

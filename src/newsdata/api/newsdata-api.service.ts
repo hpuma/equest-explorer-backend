@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { GlobalValidator } from '@global/global-validator.class';
-import { GetQueryDto, GetResponseDto } from './dto';
+import { GetQueryDto } from './dto/get-query.dto';
+import { GetResponseDto } from './dto/get-response.dto';
 @Injectable()
 export class NewsDataApiService {
   constructor(

@@ -3,8 +3,8 @@ import { Response } from 'express';
 import { BingService } from './bing.service';
 import { ApiResponse } from '@nestjs/swagger';
 import { GlobalValidator } from '@global/global-validator.class';
-import { NewsQueryDto, NewsResponseDto } from './dto';
-
+import { NewsQueryDto } from './dto/news-query.dto';
+import { NewsResponseDto } from './dto/news-response.dto';
 @Controller('bing')
 export class BingController {
   constructor(
