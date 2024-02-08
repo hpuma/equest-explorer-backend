@@ -5,7 +5,7 @@ import {
   RequestMethod,
 } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AuthGuardModule } from './auth/auth.guard.module';
+import { AuthGuardModule } from './global/auth/auth.guard.module';
 import { NewsModule } from './news/news.module';
 import { AlphavModule } from './alphav/alphav.module';
 import { MarketauxModule } from './marketaux/marketaux.module';

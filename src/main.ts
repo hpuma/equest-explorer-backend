@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import { AuthGuard, AuthGuardService } from 'auth';
+import { AuthGuard, AuthGuardService } from '@global/auth';
 import * as express from 'express';
 
 async function bootstrap() {
