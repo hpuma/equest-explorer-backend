@@ -5,10 +5,8 @@ Equest Explorer backend provides news articles related to stocks via News REST A
 - News API
 - Alpha Vantage
 - Marketaux
-
+- Bing (2/7/2024)
 Work in progress 🔧
-
-- Bing
 - NewsData
 - GNew
 
