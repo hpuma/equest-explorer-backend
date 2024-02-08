@@ -14,7 +14,7 @@
       "@news/*": ["news/*"],
       "@global/*": ["global/*"],
       "@alphav/*": ["alphav/*"],
-      "@bing": ["bing/*"],
+      "@bing/*": ["bing/*"],
       "@database/*": ["database/*"]
     },
     "incremental": true,
