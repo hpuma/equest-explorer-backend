@@ -17,6 +17,9 @@ class ApiBaseUrls {
 
   @IsString()
   NEWSDATA_BASE_URL = 'https://newsdata.io/api/1';
+
+  @IsString()
+  GNEWS_BASE_URL = 'https://gnews.io/api/v4';
 }
 
 export class EnvVariables extends ApiBaseUrls {
@@ -54,6 +57,11 @@ export class EnvVariables extends ApiBaseUrls {
   @IsNotEmpty()
   @Expose()
   NEWSDATA_API_KEY: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @Expose()
+  GNEWS_API_KEY: string;
 
   @IsString()
   @IsNotEmpty()
