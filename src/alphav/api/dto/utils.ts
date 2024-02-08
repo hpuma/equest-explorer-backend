@@ -12,7 +12,7 @@ export enum QueryFunctions {
   SYMBOL_SEARCH = 'SYMBOL_SEARCH',
 }
 
-export type GetAlphavResponseDto =
+export type GetResponseDto =
   | GetIntradayDto
   | GetQuoteDto
   | GetNewsSentimentDto
@@ -20,13 +20,13 @@ export type GetAlphavResponseDto =
 
 export function MapQueryToResponse(
   queryFunction: QueryFunctions,
-): ClassConstructor<GetAlphavResponseDto> {
+): ClassConstructor<GetResponseDto> {
   const mapper = {
     TIME_SERIES_INTRADAY: GetIntradayDto,
     GLOBAL_QUOTE: GetQuoteDto,
     NEWS_SENTIMENT: GetNewsSentimentDto,
     SYMBOL_SEARCH: GetTickerSearchDto,
-  } as GetAlphavResponseDto;
+  } as GetResponseDto;
 
   return mapper[queryFunction];
 }

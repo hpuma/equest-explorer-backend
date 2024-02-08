@@ -1,7 +1,7 @@
 import { Article, NewsResource } from '@global/newsresource.class';
 import {
   Article as RawArticle,
-  GetNewsResponseDto,
+  GetResponseDto,
 } from '@news/api/dto/get-response.dto';
 import { MappedTimestamp } from '@global/response/news-response.dto';
 
@@ -14,7 +14,7 @@ class MappedArticle extends Article {
 }
 
 export class NewsResponseDto extends NewsResource {
-  constructor(data: GetNewsResponseDto) {
+  constructor(data: GetResponseDto) {
     const articles = data?.articles ?? [];
     super({
       articles: articles.map((article) => new MappedArticle(article)),

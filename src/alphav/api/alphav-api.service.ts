@@ -4,7 +4,7 @@ import { GlobalValidator } from '@global/global-validator.class';
 import {
   QueryFunctions,
   MapQueryToResponse,
-  GetAlphavResponseDto,
+  GetResponseDto,
 } from './dto/utils';
 import { GetQueryDto } from './dto';
 import { ClassConstructor } from 'class-transformer';
@@ -27,10 +27,11 @@ export class AlphavApiService {
     });
 
     if (data.Information) return null;
-    const ResponseDto: ClassConstructor<GetAlphavResponseDto> =
-      MapQueryToResponse(QueryFunctions[query.function]);
+    const ResponseDto: ClassConstructor<GetResponseDto> = MapQueryToResponse(
+      QueryFunctions[query.function],
+    );
 
-    return await this.globalValidator.validate<GetAlphavResponseDto>(
+    return await this.globalValidator.validate<GetResponseDto>(
       data,
       ResponseDto,
     );

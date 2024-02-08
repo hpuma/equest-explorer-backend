@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { GlobalValidator } from '@global/global-validator.class';
-import { GetQueryDto, GetMarketauxResponseDto } from './dto';
+import { GetQueryDto, GetResponseDto } from './dto';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
@@ -28,9 +28,9 @@ export class MarketauxApiService {
       },
     });
 
-    return await this.globalValidator.validate<GetMarketauxResponseDto>(
+    return await this.globalValidator.validate<GetResponseDto>(
       data,
-      GetMarketauxResponseDto,
+      GetResponseDto,
     );
   }
 }

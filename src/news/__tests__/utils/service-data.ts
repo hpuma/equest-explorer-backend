@@ -1,11 +1,11 @@
-import { GetNewsResponseDto } from '@news/api/dto';
+import { GetResponseDto } from '@news/api/dto';
 
 export function createGetEverythingResponse(
-  overrides: GetNewsResponseDto | null = {
+  overrides: GetResponseDto | null = {
     status: 'OK',
     totalResults: 0,
     articles: [],
   },
-): GetNewsResponseDto {
+): GetResponseDto {
   return overrides;
 }

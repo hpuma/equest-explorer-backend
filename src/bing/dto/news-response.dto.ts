@@ -1,5 +1,5 @@
 import { Article, NewsResource } from '@global/newsresource.class';
-import { GetBingResponseDto, NewsArticle } from '../api/dto/get-response.dto';
+import { GetResponseDto, NewsArticle } from '../api/dto/get-response.dto';
 import { MappedTimestamp } from '@global/response/news-response.dto';
 
 class MappedArticle extends Article {
@@ -27,7 +27,7 @@ class MappedArticle extends Article {
 }
 
 export class NewsResponseDto extends NewsResource {
-  constructor(data: GetBingResponseDto) {
+  constructor(data: GetResponseDto) {
     const articles = data?.value ?? [];
     super({
       articles: articles.map((article) => new MappedArticle(article)),

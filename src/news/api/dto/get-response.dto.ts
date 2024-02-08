@@ -49,8 +49,8 @@ export class Article {
   content: string;
 }
 
-export class GetNewsResponseDto {
-  constructor(data: GetNewsResponseDto) {
+export class GetResponseDto {
+  constructor(data: GetResponseDto) {
     if (data) Object.assign(this, data);
   }
   @IsString()

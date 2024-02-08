@@ -1,3 +1,3 @@
 import { GetQueryDto } from './get-query.dto';
-import { GetBingResponseDto } from './get-response.dto';
-export { GetQueryDto, GetBingResponseDto };
+import { GetResponseDto } from './get-response.dto';
+export { GetQueryDto, GetResponseDto };

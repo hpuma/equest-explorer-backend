@@ -152,8 +152,8 @@ class RelatedTopic {
   @IsString()
   webSearchUrl: string;
 }
-export class GetBingResponseDto {
-  constructor(data: GetBingResponseDto) {
+export class GetResponseDto {
+  constructor(data: GetResponseDto) {
     if (data) Object.assign(this, data);
   }
 
