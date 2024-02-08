@@ -15,6 +15,7 @@ import { NewsDataModule } from './newsdata/newsdata.module';
 import { GNewsModule } from './gnews/gnews.module';
 import { validate } from './global/env/validate';
 import { LoggerMiddleware } from 'logger.middleware';
+import { TheNewsModule } from './thenews/thenews.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { LoggerMiddleware } from 'logger.middleware';
     BingModule,
     NewsDataModule,
     GNewsModule,
+    TheNewsModule,
   ],
 })
 export class AppModule implements NestModule {

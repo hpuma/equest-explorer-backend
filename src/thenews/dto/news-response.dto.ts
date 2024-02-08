@@ -1,34 +1,35 @@
 import { NewsResource } from '@global/newsresource.class';
 import { Article } from '@global/newsresource.class';
-import { GetResponseDto, Result } from '../api/dto/get-response.dto';
+import { GetResponseDto, Data } from '../api/dto/get-response.dto';
 import { MappedTimestamp } from '@global/response/news-response.dto';
 
 class MappedArticle extends Article {
   constructor({
-    creator,
+    source: author,
     title,
     description,
-    source_url: url,
+    url,
     image_url: urlToImage,
-    pubDate: datePublished,
-  }: Result) {
+    published_at: datePublished,
+    snippet: content,
+  }: Data) {
     const timestamp = new MappedTimestamp(datePublished);
 
     super({
-      author: creator ? creator[0] : '',
+      author,
       title,
       description,
       url,
       timestamp,
       urlToImage,
-      content: '',
+      content,
     });
   }
 }
 
 export class NewsResponseDto extends NewsResource {
   constructor(data: GetResponseDto) {
-    const articles = data?.results ?? [];
+    const articles = data?.data ?? [];
     super({
       articles: articles.map((article) => new MappedArticle(article)),
       count: articles.length,

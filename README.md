@@ -1,15 +1,18 @@
 # Description
 
 Equest Explorer backend provides news articles related to stocks via News REST API integrations such as
-- News API
-- Alpha Vantage
-- Marketaux
-- Bing (2/7/2024)
-- NewsData (2/8/2024)
-- GNews (2/8/2024)
+
+- ![NewsAPI](https://newsapi.org/docs)
+- ![AlphaVantage](https://www.alphavantage.co/documentation/)
+- ![Marketaux](https://www.marketaux.com/documentation)
+- ![Bing](https://www.microsoft.com/en-us/bing/apis/bing-news-search-api) (2/7/2024)
+- ![NewsData](https://newsapi.org/) (2/8/2024)
+- ![GNews](https://gnews.io/docs/v4#introduction) (2/8/2024)
+- ![TheNewsAPI](https://www.thenewsapi.com/documentation) (2/8/2024)
 
 Work in progress 🔧
-- The News API
+
+- search in progress...
 
 # Prerequisites
 
@@ -28,6 +31,7 @@ MARKETAUX_API_KEY=
 BING_API_KEY=
 NEWSDATA_API_KEY=
 GNEWS_API_KEY=
+THENEWS_API_KEY=
 MONGODB_URI=
 ```
 
