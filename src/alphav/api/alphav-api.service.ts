@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { GlobalValidator } from '@global/global-validator.class';
-import { QueryFunctions } from './dto/utils';
+import {
+  QueryFunctions,
+  MapQueryToResponse,
+  GetAlphavResponseDto,
+} from './dto/utils';
 import { GetQueryDto } from './dto';
-import { MapQueryToResponse, GetAlphavResponseDto } from './dto/utils';
 import { ClassConstructor } from 'class-transformer';
 
 @Injectable()
