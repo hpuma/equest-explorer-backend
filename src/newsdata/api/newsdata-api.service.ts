@@ -2,29 +2,18 @@ import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { GlobalValidator } from '@global/global-validator.class';
 import { GetQueryDto, GetResponseDto } from './dto';
-import { ConfigService } from '@nestjs/config';
-
 @Injectable()
-export class MarketauxApiService {
+export class NewsDataApiService {
   constructor(
     private readonly httpService: HttpService,
     private readonly globalValidator: GlobalValidator,
-    private readonly config: ConfigService,
   ) {}
-
   async get(query: GetQueryDto) {
-    const validatedParams: GetQueryDto = await this.globalValidator.validate(
-      query,
-      GetQueryDto,
-    );
+    const params = await this.globalValidator.validate(query, GetQueryDto);
 
-    const { data } = await this.httpService.axiosRef.get('/news/all', {
-      params: {
-        ...validatedParams,
-        api_token: this.config.get('MARKETAUX_API_KEY'),
-      },
+    const { data } = await this.httpService.axiosRef.get('/news', {
+      params,
     });
-
     return await this.globalValidator.validate<GetResponseDto>(
       data,
       GetResponseDto,

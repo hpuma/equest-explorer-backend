@@ -11,6 +11,7 @@ import { AlphavModule } from './alphav/alphav.module';
 import { MarketauxModule } from './marketaux/marketaux.module';
 import { EquestModule } from './equest/equest.module';
 import { BingModule } from './bing/bing.module';
+import { NewsDataModule } from './newsdata/newsdata.module';
 import { validate } from './global/env/validate';
 import { LoggerMiddleware } from 'logger.middleware';
 
@@ -23,6 +24,7 @@ import { LoggerMiddleware } from 'logger.middleware';
     MarketauxModule,
     EquestModule,
     BingModule,
+    NewsDataModule,
   ],
 })
 export class AppModule implements NestModule {

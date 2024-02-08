@@ -14,6 +14,9 @@ class ApiBaseUrls {
 
   @IsString()
   BING_BASE_URL = 'https://api.bing.microsoft.com/v7.0';
+
+  @IsString()
+  NEWSDATA_BASE_URL = 'https://newsdata.io/api/1';
 }
 
 export class EnvVariables extends ApiBaseUrls {
@@ -46,6 +49,11 @@ export class EnvVariables extends ApiBaseUrls {
   @IsNotEmpty()
   @Expose()
   BING_API_KEY: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @Expose()
+  NEWSDATA_API_KEY: string;
 
   @IsString()
   @IsNotEmpty()

@@ -10,8 +10,8 @@ import { GlobalModule } from '@global/global.module';
     GlobalModule,
     HttpModule.registerAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        baseURL: configService.get('MARKETAUX_BASE_URL'),
+      useFactory: async (config: ConfigService) => ({
+        baseURL: config.get('MARKETAUX_BASE_URL'),
       }),
       inject: [ConfigService],
     }),

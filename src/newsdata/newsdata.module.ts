@@ -1,25 +1,26 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
-import { BingService } from './bing.service';
-import { BingApiService } from './api/bing-api.service';
-import { BingController } from './bing.controller';
+import { NewsDataService } from './newsdata.service';
+import { NewsDataController } from './newsdata.controller';
+import { NewsDataApiService } from './api/newsdata-api.service';
 import { GlobalModule } from '@global/global.module';
+
 @Module({
   imports: [
     GlobalModule,
     HttpModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (config: ConfigService) => ({
-        baseURL: config.get('BING_BASE_URL'),
+        baseURL: config.get('NEWSDATA_BASE_URL'),
         headers: {
-          'Ocp-Apim-Subscription-Key': config.get('BING_API_KEY'),
+          'X-ACCESS-KEY': config.get('NEWSDATA_API_KEY'),
         },
       }),
       inject: [ConfigService],
     }),
   ],
-  controllers: [BingController],
-  providers: [BingService, BingApiService],
+  controllers: [NewsDataController],
+  providers: [NewsDataService, NewsDataApiService],
 })
-export class BingModule {}
+export class NewsDataModule {}
