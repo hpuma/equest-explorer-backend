@@ -23,7 +23,6 @@ describe('NewsController', () => {
       getNews: jest.fn(),
     });
     controller = module.get<NewsController>(NewsController);
-    console.log('🚀 ~ beforeAll ~ controller:', controller);
     service = module.get<NewsService>(NewsService);
     globalValidator = module.get<GlobalValidator>(GlobalValidator);
   });
