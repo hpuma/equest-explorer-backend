@@ -2,7 +2,7 @@ import { IsString, ValidateNested, IsArray, IsNumber } from 'class-validator';
 import { Type } from 'class-transformer';
 import { GetIntradayDto } from '@alphav/api/dto';
 import { ApiProperty } from '@nestjs/swagger';
-import { Format } from '../utils';
+import { Format } from '../news/utils';
 
 export class ChartTimeSeries {
   @IsString()

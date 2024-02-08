@@ -1,7 +1,7 @@
 import { IsBoolean, IsString } from 'class-validator';
 import { GetQuoteDto } from '@alphav/api/dto';
 import { ApiProperty } from '@nestjs/swagger';
-import { Format } from '../utils';
+import { Format } from '../news/utils';
 
 export class GlobalQuoteResponseDto {
   constructor(data: GetQuoteDto) {
