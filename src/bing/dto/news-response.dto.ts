@@ -1,4 +1,4 @@
-import { Article, NewsResource } from '@global/newsresource.class';
+import { Article, NewsResource } from '@global/response/newsresource.class';
 import { GetResponseDto, NewsArticle } from '../api/dto/get-response.dto';
 import { MappedTimestamp } from '@global/response/news-response.dto';
 

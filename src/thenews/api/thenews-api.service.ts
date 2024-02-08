@@ -1,4 +1,4 @@
-import { GlobalValidator } from '@global/global-validator.class';
+import { GlobalValidator } from '@global/validation/validator.class';
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { GetQueryDto } from './dto/get-query.dto';

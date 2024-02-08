@@ -3,7 +3,7 @@ import { Response } from 'express';
 import { GNewsService } from './gnews.service';
 import { NewsQueryDto } from './dto/news-query.dto';
 import { NewsResponseDto } from './dto/news-response.dto';
-import { GlobalValidator } from '@global/global-validator.class';
+import { GlobalValidator } from '@global/validation/validator.class';
 import { ApiResponse } from '@nestjs/swagger';
 
 @Controller('gnews')

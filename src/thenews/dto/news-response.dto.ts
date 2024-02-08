@@ -1,5 +1,5 @@
-import { NewsResource } from '@global/newsresource.class';
-import { Article } from '@global/newsresource.class';
+import { NewsResource } from '@global/response/newsresource.class';
+import { Article } from '@global/response/newsresource.class';
 import { GetResponseDto, Data } from '../api/dto/get-response.dto';
 import { MappedTimestamp } from '@global/response/news-response.dto';
 

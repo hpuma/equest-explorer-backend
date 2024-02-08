@@ -13,7 +13,7 @@ import {
   TickerSearchResponseDto,
   TickerRecordResponse,
 } from './dto';
-import { NewsResource } from '@global/newsresource.class';
+import { NewsResource } from '@global/response/newsresource.class';
 
 @Controller('equest')
 export class EquestController {

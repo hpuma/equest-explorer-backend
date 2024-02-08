@@ -4,7 +4,7 @@ import { TheNewsService } from './thenews.service';
 import { NewsQueryDto } from './dto/news-query.dto';
 import { NewsResponseDto } from './dto/news-response.dto';
 import { ApiResponse } from '@nestjs/swagger';
-import { GlobalValidator } from '@global/global-validator.class';
+import { GlobalValidator } from '@global/validation/validator.class';
 
 @Controller('thenews')
 export class TheNewsController {

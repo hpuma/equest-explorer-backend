@@ -5,7 +5,7 @@ import { NewsRecord, NEWS_RECORD } from '@database/models/newsrecord.model';
 import { TickerValue, TICKER_VALUE } from '@database/models/tickervalue.model';
 import { TickerQuote, TICKER_QUOTE } from '@database/models/tickerquote.model';
 import { v4 as uuidv4 } from 'uuid';
-import { Article } from '@global/newsresource.class';
+import { Article } from '@global/response/newsresource.class';
 
 @Injectable()
 export class EquestService {

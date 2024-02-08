@@ -1,5 +1,5 @@
 import { TestingModule } from '@nestjs/testing';
-import { GlobalValidator } from '@global/global-validator.class';
+import { GlobalValidator } from '@global/validation/validator.class';
 import { NewsController } from '../news.controller';
 import { NewsService } from '../news.service';
 import { res } from '@global/testing/setup';

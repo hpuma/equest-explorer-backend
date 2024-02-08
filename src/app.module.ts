@@ -13,7 +13,7 @@ import { EquestModule } from './equest/equest.module';
 import { BingModule } from './bing/bing.module';
 import { NewsDataModule } from './newsdata/newsdata.module';
 import { GNewsModule } from './gnews/gnews.module';
-import { validate } from './global/env/validate';
+import { validate } from './global/validation/env';
 import { LoggerMiddleware } from 'logger.middleware';
 import { TheNewsModule } from './thenews/thenews.module';
 

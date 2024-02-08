@@ -33,6 +33,7 @@ export class Result {
   @IsUrl()
   video_url: string | null;
 
+  @IsOptional()
   @IsString()
   description: string;
 

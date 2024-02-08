@@ -1,4 +1,4 @@
-import { Interval, Timestamp } from '@global/newsresource.class';
+import { Interval, Timestamp } from '@global/response/newsresource.class';
 import { Format, Time } from '@global/helpers';
 
 class MappedInterval extends Interval {

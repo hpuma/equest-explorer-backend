@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { GlobalValidator } from '@global/global-validator.class';
+import { GlobalValidator } from '@global/validation/validator.class';
 import { GetEverythingQueryDto } from './dto/get-query.dto';
 import { GetResponseDto } from './dto/get-response.dto';
 @Injectable()

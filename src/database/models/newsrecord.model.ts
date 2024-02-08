@@ -1,5 +1,5 @@
 import { Document, Schema } from 'mongoose';
-import { Article } from '@global/newsresource.class';
+import { Article } from '@global/response/newsresource.class';
 
 export interface NewsRecord extends Document, Article {
   readonly ticker: string;

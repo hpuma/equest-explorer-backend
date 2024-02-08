@@ -1,4 +1,4 @@
-import { Article, NewsResource } from '@global/newsresource.class';
+import { Article, NewsResource } from '@global/response/newsresource.class';
 import {
   Article as RawArticle,
   GetResponseDto,
