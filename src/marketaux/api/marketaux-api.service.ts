@@ -23,9 +23,6 @@ export class MarketauxApiService {
         ...validatedParams,
         api_token: this.configService.get('MARKETAUX_API_KEY'),
       },
-      headers: {
-        'Accept-Encoding': '*',
-      },
     });
 
     return await this.globalValidator.validate<GetResponseDto>(

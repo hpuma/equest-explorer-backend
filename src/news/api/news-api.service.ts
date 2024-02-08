@@ -18,9 +18,6 @@ export class NewsApiService {
 
     const { data } = await this.httpService.axiosRef.get('/everything', {
       params,
-      headers: {
-        'Accept-Encoding': '*',
-      },
     });
 
     return await this.globalValidator.validate(data, GetResponseDto);
