@@ -1,11 +1,72 @@
-<!doctype html>
-<html>
-<head>
-<title>Our Funky HTML Page</title>
-<meta name="description" content="Our first page">
-<meta name="keywords" content="html tutorial template">
-</head>
-<body>
-Content goes here.
-</body>
-</html>
+<h1 id="description">Description</h1>
+<p>Equest Explorer backend provides news articles related to stocks via News REST API integrations such as</p>
+<ul>
+<li><a href="https://newsapi.org/docs">NewsAPI</a></li>
+<li><a href="https://www.alphavantage.co/documentation/">AlphaVantage</a></li>
+<li><a href="https://www.marketaux.com/documentation">Marketaux</a></li>
+<li><a href="https://www.microsoft.com/en-us/bing/apis/bing-news-search-api">Bing</a> (2/7/2024)</li>
+<li><a href="https://newsapi.org/">NewsData</a> (2/8/2024)</li>
+<li><a href="https://gnews.io/docs/v4#introduction">GNews</a> (2/8/2024)</li>
+<li><a href="https://www.thenewsapi.com/documentation">TheNewsAPI</a> (2/8/2024)</li>
+</ul>
+<p>Work in progress 🔧</p>
+<ul>
+<li>Search in progress...</li>
+</ul>
+<h1 id="prerequisites">Prerequisites</h1>
+<p><code>.env file</code> in root directory</p>
+<ul>
+<li>API keys procured from their respective websites</li>
+<li>MongoDB URI for news record keeping</li>
+</ul>
+<pre><code><span class="hljs-attr">NODE_ENV</span>=<span class="hljs-string">"local"</span>
+<span class="hljs-attr">INTEGRATIONS_ENABLED</span>=<span class="hljs-literal">true</span>
+<span class="hljs-attr">BING_API_KEY</span>=
+<span class="hljs-attr">NEWS_API_KEY</span>=
+<span class="hljs-attr">ALPHAV_API_KEY</span>=
+<span class="hljs-attr">MARKETAUX_API_KEY</span>=
+<span class="hljs-attr">BING_API_KEY</span>=
+<span class="hljs-attr">NEWSDATA_API_KEY</span>=
+<span class="hljs-attr">GNEWS_API_KEY</span>=
+<span class="hljs-attr">THENEWS_API_KEY</span>=
+<span class="hljs-attr">MONGODB_URI</span>=
+</code></pre><h1 id="documentation">Documentation</h1>
+<h2 id="endpoints">Endpoints</h2>
+<p><img src="https://github.com/hpuma/equest-explorer-backend-v2/blob/main/resources/endpoints.png" alt="Endpoints"></p>
+<h2 id="swagger-openapi-">Swagger (OpenAPI)</h2>
+<ul>
+<li>run locally and proceed to <code>http://localhost:3001/api</code></li>
+</ul>
+<p><img src="https://github.com/hpuma/equest-explorer-backend-v2/blob/main/resources/swagger.gif" alt="Swagger Documentation"></p>
+<h2 id="installation">Installation</h2>
+<pre><code class="lang-bash">$ npm <span class="hljs-keyword">install</span>
+</code></pre>
+<h1 id="running-the-app">Running the app</h1>
+<pre><code class="lang-bash"><span class="hljs-comment"># development</span>
+$ npm <span class="hljs-keyword">run</span><span class="bash"> start
+</span>
+<span class="hljs-comment"># watch mode</span>
+$ npm <span class="hljs-keyword">run</span><span class="bash"> start:dev
+</span>
+<span class="hljs-comment"># production mode</span>
+$ npm <span class="hljs-keyword">run</span><span class="bash"> start:prod</span>
+</code></pre>
+<h1 id="test">Test</h1>
+<pre><code class="lang-bash"><span class="hljs-comment"># unit tests</span>
+$ npm <span class="hljs-keyword">run</span><span class="bash"> <span class="hljs-built_in">test</span>
+</span>
+<span class="hljs-comment"># e2e tests</span>
+$ npm <span class="hljs-keyword">run</span><span class="bash"> <span class="hljs-built_in">test</span>:e2e
+</span>
+<span class="hljs-comment"># test coverage</span>
+$ npm <span class="hljs-keyword">run</span><span class="bash"> <span class="hljs-built_in">test</span>:cov</span>
+</code></pre>
+<h1 id="technologies">Technologies</h1>
+<p><img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&amp;logo=typescript&amp;logoColor=white" alt="TypeScript">
+<img src="https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&amp;logo=npm&amp;logoColor=white" alt="NPM">
+<img src="https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&amp;logo=nestjs&amp;logoColor=white" alt="NestJS">
+<img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&amp;logo=mongodb&amp;logoColor=white" alt="MongoDB">
+<img src="https://img.shields.io/badge/circle%20ci-%23161616.svg?style=for-the-badge&amp;logo=circleci&amp;logoColor=white" alt="CircleCI">
+<img src="https://img.shields.io/badge/rxjs-%23B7178C.svg?style=for-the-badge&amp;logo=reactivex&amp;logoColor=white" alt="RxJS">
+<img src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&amp;logo=eslint&amp;logoColor=white" alt="ESLint">
+<img src="https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&amp;logo=jest&amp;logoColor=white" alt="Jest"></p>
