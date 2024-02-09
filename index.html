@@ -1,72 +1,121 @@
-<h1 id="description">Description</h1>
-<p>Equest Explorer backend provides news articles related to stocks via News REST API integrations such as</p>
-<ul>
-<li><a href="https://newsapi.org/docs">NewsAPI</a></li>
-<li><a href="https://www.alphavantage.co/documentation/">AlphaVantage</a></li>
-<li><a href="https://www.marketaux.com/documentation">Marketaux</a></li>
-<li><a href="https://www.microsoft.com/en-us/bing/apis/bing-news-search-api">Bing</a> (2/7/2024)</li>
-<li><a href="https://newsapi.org/">NewsData</a> (2/8/2024)</li>
-<li><a href="https://gnews.io/docs/v4#introduction">GNews</a> (2/8/2024)</li>
-<li><a href="https://www.thenewsapi.com/documentation">TheNewsAPI</a> (2/8/2024)</li>
-</ul>
-<p>Work in progress 🔧</p>
-<ul>
-<li>Search in progress...</li>
-</ul>
-<h1 id="prerequisites">Prerequisites</h1>
-<p><code>.env file</code> in root directory</p>
-<ul>
-<li>API keys procured from their respective websites</li>
-<li>MongoDB URI for news record keeping</li>
-</ul>
-<pre><code><span class="hljs-attr">NODE_ENV</span>=<span class="hljs-string">"local"</span>
-<span class="hljs-attr">INTEGRATIONS_ENABLED</span>=<span class="hljs-literal">true</span>
-<span class="hljs-attr">BING_API_KEY</span>=
-<span class="hljs-attr">NEWS_API_KEY</span>=
-<span class="hljs-attr">ALPHAV_API_KEY</span>=
-<span class="hljs-attr">MARKETAUX_API_KEY</span>=
-<span class="hljs-attr">BING_API_KEY</span>=
-<span class="hljs-attr">NEWSDATA_API_KEY</span>=
-<span class="hljs-attr">GNEWS_API_KEY</span>=
-<span class="hljs-attr">THENEWS_API_KEY</span>=
-<span class="hljs-attr">MONGODB_URI</span>=
-</code></pre><h1 id="documentation">Documentation</h1>
-<h2 id="endpoints">Endpoints</h2>
-<p><img src="https://github.com/hpuma/equest-explorer-backend-v2/blob/main/resources/endpoints.png" alt="Endpoints"></p>
-<h2 id="swagger-openapi-">Swagger (OpenAPI)</h2>
-<ul>
-<li>run locally and proceed to <code>http://localhost:3001/api</code></li>
-</ul>
-<p><img src="https://github.com/hpuma/equest-explorer-backend-v2/blob/main/resources/swagger.gif" alt="Swagger Documentation"></p>
-<h2 id="installation">Installation</h2>
-<pre><code class="lang-bash">$ npm <span class="hljs-keyword">install</span>
-</code></pre>
-<h1 id="running-the-app">Running the app</h1>
-<pre><code class="lang-bash"><span class="hljs-comment"># development</span>
-$ npm <span class="hljs-keyword">run</span><span class="bash"> start
-</span>
-<span class="hljs-comment"># watch mode</span>
-$ npm <span class="hljs-keyword">run</span><span class="bash"> start:dev
-</span>
-<span class="hljs-comment"># production mode</span>
-$ npm <span class="hljs-keyword">run</span><span class="bash"> start:prod</span>
-</code></pre>
-<h1 id="test">Test</h1>
-<pre><code class="lang-bash"><span class="hljs-comment"># unit tests</span>
-$ npm <span class="hljs-keyword">run</span><span class="bash"> <span class="hljs-built_in">test</span>
-</span>
-<span class="hljs-comment"># e2e tests</span>
-$ npm <span class="hljs-keyword">run</span><span class="bash"> <span class="hljs-built_in">test</span>:e2e
-</span>
-<span class="hljs-comment"># test coverage</span>
-$ npm <span class="hljs-keyword">run</span><span class="bash"> <span class="hljs-built_in">test</span>:cov</span>
-</code></pre>
-<h1 id="technologies">Technologies</h1>
-<p><img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&amp;logo=typescript&amp;logoColor=white" alt="TypeScript">
-<img src="https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&amp;logo=npm&amp;logoColor=white" alt="NPM">
-<img src="https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&amp;logo=nestjs&amp;logoColor=white" alt="NestJS">
-<img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&amp;logo=mongodb&amp;logoColor=white" alt="MongoDB">
-<img src="https://img.shields.io/badge/circle%20ci-%23161616.svg?style=for-the-badge&amp;logo=circleci&amp;logoColor=white" alt="CircleCI">
-<img src="https://img.shields.io/badge/rxjs-%23B7178C.svg?style=for-the-badge&amp;logo=reactivex&amp;logoColor=white" alt="RxJS">
-<img src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&amp;logo=eslint&amp;logoColor=white" alt="ESLint">
-<img src="https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&amp;logo=jest&amp;logoColor=white" alt="Jest"></p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>tldr pages</title>
+  <meta name="author" content="hpuma">
+  <meta name="description" content="equest explorer project page">
+  <meta name="keywords" content="newsapi, alphavantage, marketaux, bing, newsdata, gnews, thenewsapi">
+  <meta name="robots" content="noodp,noydir">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/index.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Inconsolata:400,700|Source+Code+Pro">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Equest Explorer</h1>
+    <a class="badges" href="https://app.circleci.com/pipelines/github/hpuma/equest-explorer-backend-v2/"><img
+        alt="CircleCI" src="https://img.shields.io/circleci/build/github/hpuma/equest-explorer-backend-v2/main"></a>
+    <a class="badges" href="https://github.com/hpuma/equest-explorer-backend-v2/commits/main/"><img
+        alt="GitHub commit activity"
+        src="https://img.shields.io/github/commit-activity/m/hpuma/equest-explorer-backend-v2">
+    </a>
+    <a class="badges" href="https://github.com/hpuma/equest-explorer-backend-v2/commits/main/">
+      <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/hpuma/equest-explorer-backend-v2">
+    </a>
+
+    <br>
+    <a class="badges" href="https://github.com/hpuma/equest-explorer-backend-v2"><img alt="GitHub Repo stars"
+        src="https://img.shields.io/github/stars/hpuma/equest-explorer-backend-v2">
+    </a>
+    <br>
+
+    <blockquote>Equest explorer is a web application built using React, Axios, Vite, and Ant Design (antd) that provides
+      users with a comprehensive
+      toolset for tracking stocks, accessing news related to financial markets, and analyzing stock data.</blockquote>
+    <div><img class="badges"
+        src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&amp;logo=typescript&amp;logoColor=white"
+        alt="TypeScript">
+      <img src="https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&amp;logo=npm&amp;logoColor=white"
+        class="badges" alt="NPM">
+      <img
+        src="https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&amp;logo=nestjs&amp;logoColor=white"
+        class="badges" alt="NestJS">
+      <img
+        src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&amp;logo=mongodb&amp;logoColor=white"
+        class="badges" alt="MongoDB">
+      <img
+        src="https://img.shields.io/badge/circle%20ci-%23161616.svg?style=for-the-badge&amp;logo=circleci&amp;logoColor=white"
+        class="badges" alt="CircleCI">
+      <img
+        src="https://img.shields.io/badge/rxjs-%23B7178C.svg?style=for-the-badge&amp;logo=reactivex&amp;logoColor=white"
+        class="badges" alt="RxJS">
+      <img src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&amp;logo=eslint&amp;logoColor=white"
+        class="badges" alt="ESLint">
+      <img src="https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&amp;logo=jest&amp;logoColor=white"
+        class="badges" alt="Jest">
+    </div>
+
+    <br />
+    <br />
+    <p><img src="https://github.com/hpuma/equest-explorer-web-v2/blob/main/equest.gif" alt="equest screenshot"></p>
+    <h2>Features</h2>
+    <ul>
+      <li><strong>Stock Quote for Ticker:</strong> Users can input a stock ticker symbol to retrieve real-time stock
+        quotes.
+      </li>
+      <li><strong>Enable/Disable Stock Chart via Trading View:</strong> Users can toggle the display of a stock chart
+        powered by TradingView to visualize stock data.</li>
+      <li><strong>Theme Changes (Dark vs Light):</strong> Users can switch between dark and light themes for better
+        readability and user preference.</li>
+      <li><strong>News Sources Ingested from Multiple APIs:</strong> News articles related to stocks are sourced from
+        multiple APIs including News API, Alpha Vantage, Marketaux, Bing, NewsData, and TheNewsAPI.</li>
+      <li><strong>Ticker Search (On Key Type):</strong> As users type, the application dynamically searches for stock
+        tickers and provides suggestions for auto-completion.</li>
+      <li><strong>News Preview Viewer with Vertical Adjustment:</strong> Users can view a preview of news articles with
+        the
+        ability to vertically adjust the content for better readability.</li>
+      <li><strong>Responsive Table with Filtering and Sorting:</strong> A responsive table displays stock data with
+        features
+        for filtering and sorting based on various parameters such as stock symbol, price, volume, etc.</li>
+    </ul>
+    <h2>Integrations</h2>
+    <ul>
+      <li><a href="https://newsapi.org/docs">NewsAPI</a></li>
+      <li><a href="https://www.alphavantage.co/documentation/">AlphaVantage</a></li>
+      <li><a href="https://www.marketaux.com/documentation">Marketaux</a></li>
+      <li><a href="https://www.microsoft.com/en-us/bing/apis/bing-news-search-api">Bing</a> (2/7/2024)</li>
+      <li><a href="https://newsapi.org/">NewsData</a> (2/8/2024)</li>
+      <li><a href="https://gnews.io/docs/v4#introduction">GNews</a> (2/8/2024)</li>
+      <li><a href="https://www.thenewsapi.com/documentation">TheNewsAPI</a> (2/8/2024)</li>
+    </ul>
+    <h2>Prerequisites</h2>
+    <p><code>.env file</code> in root directory</p>
+    <p>API keys procured from their respective websites</p>
+    <p>MongoDB URI for news record keeping</p>
+    <pre><code>
+        NODE_ENV="local"
+        INTEGRATIONS_ENABLED=true
+        BING_API_KEY=
+        NEWS_API_KEY=
+        ALPHAV_API_KEY=
+        MARKETAUX_API_KEY=
+        BING_API_KEY=
+        NEWSDATA_API_KEY=
+        GNEWS_API_KEY=
+        THENEWS_API_KEY=
+        MONGODB_URI=
+            </code></pre>
+    <h2 id="installation">
+      <a href="#installation">§</a>
+      Installation
+    </h2>
+    <p>Navigate to root directory in terminal and type command:</p>
+    <pre>npm install</pre>
+  </div>
+</body>
+
+</html>

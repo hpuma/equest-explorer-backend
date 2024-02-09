@@ -1,0 +1,251 @@
+/*!
+ * tldr-pages site stylesheet
+ * Licensed under the MIT license.
+ */
+
+/*
+ * The fun begins here.
+ */
+html {
+  font: 16px/1.5 Inconsolata, monospace;
+}
+
+body {
+  margin: 2rem 0 5rem;
+  color: #333;
+}
+
+a {
+  color: #0074d9; /* From http://clrs.cc */
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Montserrat, monospace;
+  margin: 0 0 0.5rem -0.1rem; /* align left edge */
+  line-height: 1;
+  color: #111;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  margin-top: 2rem;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+h2 a {
+  color: #555;
+  font-family: Inconsolata, monospace;
+  margin-left: -1rem;
+  visibility: hidden;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+p,
+ul,
+ol,
+dl,
+table,
+pre,
+blockquote {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+ul,
+ol {
+  padding-left: 1.5rem;
+}
+
+dd {
+  margin-left: 1.5rem;
+}
+
+blockquote {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0.5rem 1rem;
+  border-left: 0.25rem solid #ccc;
+  color: #666;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+hr {
+  border: none;
+  margin: 1.5rem 0;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  top: -1px;
+}
+
+.container img,
+.container iframe {
+  max-width: 100%;
+}
+
+.container img {
+  margin: 0 auto;
+  display: block;
+}
+
+table {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #ccc;
+}
+
+pre,
+code {
+  font-family: 'Source Code Pro', monospace;
+  background-color: #eee;
+}
+
+pre {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+}
+
+code {
+  padding: 0.1rem 0.25rem;
+}
+
+.container {
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.widgets {
+  margin-bottom: 2rem;
+}
+
+.widgets img {
+  height: 30px;
+  margin: 0;
+  display: inline;
+}
+
+iframe#twitter-widget-0 {
+  height: 30px !important;
+}
+
+.github-corner {
+  fill: #151513;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  border: 0;
+  right: 0;
+}
+
+.octo-arm {
+  transform-origin: 130px 106px;
+}
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+
+#iframe-content {
+  display: none;
+}
+
+noscript {
+  display: block;
+}
+
+#enable_js {
+  background-color: #ff00000a;
+  padding: 0.5rem;
+}
+
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+
+  20%,
+  60% {
+    transform: rotate(-25deg);
+  }
+
+  40%,
+  80% {
+    transform: rotate(10deg);
+  }
+}
+
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+    animation: none;
+  }
+
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
+
+@media (min-width: 30rem) {
+  html {
+    font-size: 20px;
+  }
+
+  body {
+    margin-top: 5rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    margin-top: 2.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 40rem) {
+  h2 a {
+    visibility: visible;
+  }
+}
+
+.badges {
+  float: left;
+}
