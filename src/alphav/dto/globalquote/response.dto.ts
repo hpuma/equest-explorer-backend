@@ -1,4 +1,4 @@
-import { IsBoolean, IsString } from 'class-validator';
+import { IsString } from 'class-validator';
 import { GetQuoteDto } from '@alphav/api/dto';
 import { ApiProperty } from '@nestjs/swagger';
 import { Format } from '../news/utils';
@@ -85,7 +85,4 @@ export class GlobalQuoteResponseDto {
     example: '-0.025',
   })
   changePercent: string;
-
-  @IsBoolean()
-  apiFail: boolean;
 }

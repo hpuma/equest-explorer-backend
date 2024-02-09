@@ -26,7 +26,6 @@ export class AlphavApiService {
       params,
     });
 
-    if (data.Information) return null;
     const ResponseDto: ClassConstructor<GetResponseDto> = MapQueryToResponse(
       QueryFunctions[query.function],
     );

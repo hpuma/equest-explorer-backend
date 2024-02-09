@@ -63,7 +63,6 @@ export function createGlobalQuoteResponse(
     previousClose: '391.5600',
     change: '-5.6500',
     changePercent: '-1.4429%',
-    apiFail: false,
   },
 ): GlobalQuoteResponseDto {
   return overrides;
@@ -78,11 +77,5 @@ export function createGetNewsQuery(
 export function createNewsSentimentResponseDto(
   overrides: NewsResponseDto | null = { articles: [], count: 2 },
 ): NewsResponseDto {
-  return overrides;
-}
-
-export function createTickerSearchQuery(
-  overrides: TickerSearchQueryDto | null = { ticker: 'SPY' },
-): TickerSearchQueryDto {
   return overrides;
 }
