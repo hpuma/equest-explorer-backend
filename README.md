@@ -1,6 +1,7 @@
 # Description
 
 Equest Explorer backend provides news articles related to stocks via News REST API integrations such as
+
 - [NewsAPI](https://newsapi.org/docs)
 - [AlphaVantage](https://www.alphavantage.co/documentation/)
 - [Marketaux](https://www.marketaux.com/documentation)
@@ -12,6 +13,8 @@ Equest Explorer backend provides news articles related to stocks via News REST A
 Work in progress 🔧
 
 - Search in progress...
+
+  ![Equest Frontend](https://github.com/hpuma/equestrian-explorer-web-v2/blob/main/equest.gif)
 
 # Prerequisites
 
