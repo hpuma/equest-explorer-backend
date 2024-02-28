@@ -1,15 +1,36 @@
+class Time {
+  static roundMinute(date: Date, direction: string) {
+    const minutes = 1;
+    const ms = 1000 * 60 * minutes;
+    switch (direction) {
+      case 'plusone':
+        return new Date(Math.ceil(date.getTime() / ms) * ms);
+      case 'minusone':
+        return new Date(Math.floor(date.getTime() / ms) * ms - ms);
+      default:
+        return date;
+    }
+  }
+}
+
 export default class Format {
-  static stringToDate(publishedAt: string) {
+  stringToDate: Date;
+  constructor(publishedAt: string) {
     const year = parseInt(publishedAt.substring(0, 4));
-    const month = parseInt(publishedAt.substring(4, 2)) - 1; // Months are zero-based in JavaScript Date object
+    const month = parseInt(publishedAt.substring(4, 2)) - 1;
     const day = parseInt(publishedAt.substring(6, 2));
     const hours = parseInt(publishedAt.substring(9, 2));
     const minutes = parseInt(publishedAt.substring(11, 2));
     const seconds = parseInt(publishedAt.substring(13, 2));
-
-    return new Date(year, month, day, hours, minutes, seconds);
+    this.stringToDate = new Date(year, month, day, hours, minutes, seconds);
   }
-  static date(date: Date) {
+
+  dateString(direction = '') {
+    const isTimeFrame = direction === 'plusone' || direction === 'minusone';
+    const date = isTimeFrame
+      ? Time.roundMinute(this.stringToDate, direction)
+      : this.stringToDate;
+
     return (
       date.getFullYear() +
       '-' +
@@ -18,15 +39,18 @@ export default class Format {
       ('0' + date.getDate()).slice(-2)
     );
   }
-  static time(date: Date) {
-    return date.toLocaleTimeString('en', {
+  timeString() {
+    return this.stringToDate.toLocaleTimeString('en', {
       timeStyle: 'medium',
       hour12: false,
       timeZone: 'EST',
     });
   }
+  formattedDateString(direction = '') {
+    const isTimeFrame = direction === 'plusone' || direction === 'minusone';
 
-  static dateString(date: Date) {
-    return Format.date(date) + ' ' + Format.time(date);
+    return isTimeFrame
+      ? this.dateString(direction)
+      : this.dateString(direction) + ' ' + this.timeString();
   }
 }

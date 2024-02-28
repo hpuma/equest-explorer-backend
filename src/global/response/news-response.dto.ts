@@ -1,23 +1,23 @@
 import { Interval, Timestamp } from '@global/response/newsresource.class';
-import { Format, Time } from '@global/helpers';
+import { Format } from '@global/helpers';
 
 class MappedInterval extends Interval {
-  constructor(date: Date) {
+  constructor(formatter: Format) {
     super({
-      plusone: Format.dateString(Time.roundMinute(date, 'up')),
-      exact: Format.dateString(date),
-      minusone: Format.dateString(Time.roundMinute(date, 'down')),
+      plusone: formatter.formattedDateString('plusone'),
+      exact: formatter.formattedDateString(),
+      minusone: formatter.formattedDateString('minusone'),
     });
   }
 }
 
 export class MappedTimestamp extends Timestamp {
   constructor(publishedAt: string) {
-    const date = Format.stringToDate(publishedAt);
+    const formatter = new Format(publishedAt);
     super({
-      date: Format.date(date),
-      time: Format.time(date),
-      interval: new MappedInterval(date),
+      date: formatter.dateString(),
+      time: formatter.timeString(),
+      interval: new MappedInterval(formatter),
     });
   }
 }
