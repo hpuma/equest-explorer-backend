@@ -5,7 +5,6 @@ import {
   GlobalQuoteResponseDto,
   NewsQueryDto,
   NewsResponseDto,
-  TickerSearchQueryDto,
 } from '@alphav/dto';
 
 export function createIntradayQuery(
@@ -75,7 +74,11 @@ export function createGetNewsQuery(
 }
 
 export function createNewsSentimentResponseDto(
-  overrides: NewsResponseDto | null = { articles: [], count: 2 },
+  overrides: NewsResponseDto | null = {
+    articles: [],
+    count: 2,
+    ticker: 'SPY',
+  },
 ): NewsResponseDto {
   return overrides;
 }

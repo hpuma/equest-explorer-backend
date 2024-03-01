@@ -8,7 +8,7 @@ export function createEverythingQuery(
 }
 
 export function createEverythingResponse(
-  overrides: NewsResponseDto | null,
+  overrides: NewsResponseDto | null = { articles: [], count: 2, ticker: 'SPY' },
 ): NewsResponseDto {
   return overrides;
 }
