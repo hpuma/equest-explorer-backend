@@ -44,7 +44,7 @@ export class Result {
   pubDate: string;
 
   @IsOptional()
-  @IsUrl()
+  @IsString()
   image_url: string | null;
 
   @IsString()

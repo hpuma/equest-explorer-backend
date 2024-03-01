@@ -26,14 +26,11 @@ export class MarketauxController {
       );
 
       const data = await this.globalValidator.validate(
-        {
-          ...marketauxServiceResponse,
-          ticker: query.ticker,
-        },
+        marketauxServiceResponse,
         NewsResponseDto,
       );
 
-      res.json(data);
+      res.json({ ...data, ticker: query.ticker });
     } catch (e) {
       res.json({ message: e.message });
     }

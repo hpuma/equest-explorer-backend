@@ -23,14 +23,11 @@ export class GNewsController {
       const newsDataServiceResponse = await this.gNewsService.getNews(query);
 
       const data = await this.globalValidator.validate(
-        {
-          ...newsDataServiceResponse,
-          ticker: query.ticker,
-        },
+        newsDataServiceResponse,
         NewsResponseDto,
       );
 
-      res.json(data);
+      res.json({ ...data, ticker: query.ticker });
     } catch (e) {
       res.json({ message: e.message });
     }

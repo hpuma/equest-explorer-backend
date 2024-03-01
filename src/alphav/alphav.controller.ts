@@ -70,13 +70,10 @@ export class AlphavController {
     try {
       const alphaServiceResponse = await this.alphavService.getNews(query);
       const data = await this.globalValidator.validate(
-        {
-          ...alphaServiceResponse,
-          ticker: query.ticker,
-        },
+        alphaServiceResponse,
         NewsResponseDto,
       );
-      res.json(data);
+      res.json({ ...data, ticker: query.ticker });
     } catch (e) {
       res.json({ message: e.message });
     }

@@ -23,14 +23,11 @@ export class BingController {
       const bingServiceResponse = await this.bingService.getNews(query);
 
       const data = await this.globalValidator.validate(
-        {
-          ...bingServiceResponse,
-          ticker: query.ticker,
-        },
+        bingServiceResponse,
         NewsResponseDto,
       );
 
-      res.json(data);
+      res.json({ ...data, ticker: query.ticker });
     } catch (e) {
       res.json({ message: e.message });
     }
