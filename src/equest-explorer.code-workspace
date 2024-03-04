@@ -1,11 +1,14 @@
 {
-	"folders": [
-		{
-			"path": ".."
-		},
-		{
-			"path": "../../equestrian-explorer-web-v2"
-		}
-	],
+  "folders": [
+    {
+      "path": ".."
+    },
+    {
+      "path": "../../equestrian-explorer-web-v2"
+    },
+    {
+      "path": "../../equest-news-ingestion"
+    }
+  ],
   "settings": {}
 }
