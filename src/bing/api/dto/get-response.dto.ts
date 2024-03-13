@@ -5,6 +5,7 @@ import {
   IsArray,
   ValidateNested,
   IsNumber,
+  ValidateIf,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -98,6 +99,7 @@ export class NewsArticle {
   about?: any[];
 
   @IsString()
+  @IsOptional()
   category: string;
 
   @IsOptional()
